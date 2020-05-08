@@ -4,6 +4,7 @@ import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-grid/src/vaadin-grid.js';
+import './contact-form.js';
 
 class MainView extends PolymerElement {
 
@@ -19,10 +20,11 @@ class MainView extends PolymerElement {
  <vaadin-horizontal-layout theme="spacing">
   <vaadin-text-field placeholder="Filter by name..." clear-button-visible></vaadin-text-field>
   <vaadin-button>
-   Add Contact
+    Add Contact 
   </vaadin-button>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <contact-form></contact-form>
   <vaadin-grid style="width: 100%; height: 100%;"></vaadin-grid>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>

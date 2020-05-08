@@ -2,6 +2,8 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.tutorial.crm.ui.ContactForm;
+import com.vaadin.flow.component.polymertemplate.Id;
 
 /**
  * A Designer generated component for the main-view template.
@@ -13,7 +15,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 @JsModule("./src/views/main-view.js")
 public class MainView extends PolymerTemplate<MainView.MainViewModel> {
 
-    /**
+    @Id("contactForm")
+	private ContactForm contactForm;
+
+	/**
      * Creates a new MainView.
      */
     public MainView() {
