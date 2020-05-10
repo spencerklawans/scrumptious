@@ -24,8 +24,8 @@ class MainView extends PolymerElement {
   </vaadin-button>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout theme="spacing" style="width: 100%; height: 100%;">
+  <vaadin-grid style="width: 100%; height: 100%; flex: 1;"></vaadin-grid>
   <contact-form></contact-form>
-  <vaadin-grid style="width: 100%; height: 100%;"></vaadin-grid>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 `;
