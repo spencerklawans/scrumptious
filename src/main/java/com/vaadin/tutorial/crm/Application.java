@@ -7,8 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 /**
  * The entry point of the Spring Boot application.
  */
-@SpringBootApplication(scanBasePackages = {"com.vaadin.tutorial.crm.backend.repository", "com.vaadin.tutorial.crm.backend.service", "com.vaadin.tutorial.crm.backend.entity"})
-
+@SpringBootApplication
 
 
 public class Application extends SpringBootServletInitializer {
