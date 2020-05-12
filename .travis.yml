@@ -1,0 +1,10 @@
+language: java  
+jdk:
+    -openjdk11
+addons:
+    sonarcloud:
+        organization: spencerklawans
+        token: fe70bb69a8aa040b9490e06ffc5c55ae633e03a0
+script:
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=spencerklawans_spencerklawans.github.io
+    - sonar-scanner
