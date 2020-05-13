@@ -38,7 +38,7 @@ class AppLayoutMain extends PolymerElement {
   </vaadin-vertical-layout>
   <vaadin-vertical-layout style="align-self: center;">
    <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s);">
-    Switch Projects
+     Switch Projects 
    </vaadin-button>
   </vaadin-vertical-layout>
  </vaadin-vertical-layout>
