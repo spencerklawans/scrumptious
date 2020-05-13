@@ -43,7 +43,6 @@ class AppLayoutMain extends PolymerElement {
     </vaadin-vertical-layout>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
- </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 `;
     }

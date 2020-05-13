@@ -20,10 +20,10 @@ class NewTicket extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%; padding: var(--lumo-space-m);">
- Create New Ticket
+  Create New Ticket 
  <vaadin-form-item style="margin: var(--lumo-space-m);">
   <label slot="label">Title</label>
-  <vaadin-text-field class="full-width" required has-value></vaadin-text-field>
+  <vaadin-text-field class="full-width" required has-value invalid></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-form-item style="width: 100%; margin: var(--lumo-space-m);">
   <label slot="label">Description</label>
@@ -35,44 +35,44 @@ class NewTicket extends PolymerElement {
  </vaadin-horizontal-layout>
  <vaadin-checkbox-group style="padding: var(--lumo-space-m);" label="Assign to">
   <vaadin-checkbox>
-   Ryan
+    Ryan 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   Kira
+    Kira 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   Galen
+    Galen 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   Spencer
+    Spencer 
   </vaadin-checkbox>
  </vaadin-checkbox-group>
  <vaadin-combo-box></vaadin-combo-box>
  <vaadin-checkbox-group label="Priority" style="padding: var(--lumo-space-m);">
   <vaadin-checkbox>
-   Low
+    Low 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   Medium 
+    Medium 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   High 
+    High 
   </vaadin-checkbox>
  </vaadin-checkbox-group>
  <vaadin-checkbox-group label="Status" style="padding: var(--lumo-space-m);">
   <vaadin-checkbox>
-   To-Do 
+    To-Do 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   In Progress
+    In Progress 
   </vaadin-checkbox>
   <vaadin-checkbox>
-   Completed
+    Completed 
   </vaadin-checkbox>
  </vaadin-checkbox-group>
  <vaadin-horizontal-layout style="width: 100%; align-self: center;">
   <vaadin-button style="margin: var(--lumo-space-l);">
-   Cancel
+    Cancel 
   </vaadin-button>
   <vaadin-horizontal-layout theme="margin" style="flex-grow: 1;"></vaadin-horizontal-layout>
   <vaadin-button style="margin: var(--lumo-space-l);">
