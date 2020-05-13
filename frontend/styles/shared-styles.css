@@ -9,4 +9,7 @@
   margin: 0 auto;
   max-width: 250px;
 }
-
+.menu-bar-button {
+	background-color: rgba(210, 209, 213, 0.75);
+	color: #000000; 
+}
