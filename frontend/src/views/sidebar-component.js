@@ -28,7 +28,7 @@ class SidebarComponent extends PolymerElement {
     Team 
   </vaadin-button>
   <vaadin-vertical-layout style="width: 95%; padding: var(--lumo-space-xs); flex-grow: 0; flex-shrink: 1; align-self: center; justify-content: flex-end; margin: var(--lumo-space-xl);" theme="spacing-l">
-   <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); width: 100%; align-self: center; padding: var(--lumo-space-xs);" id="toProjectPage">
+   <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); width: 100%; align-self: center; padding: var(--lumo-space-xs); flex-shrink: 1;" id="toProjectPage">
      Switch Projects 
    </vaadin-button>
   </vaadin-vertical-layout>
