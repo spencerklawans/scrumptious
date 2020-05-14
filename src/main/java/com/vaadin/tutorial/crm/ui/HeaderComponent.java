@@ -25,13 +25,7 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
      * Creates a new HeaderComponent.
      */
     public HeaderComponent() {
-        // You can initialise any data required for the connected UI components here.
-    	Image logo = new Image("icons/updatedLogo.png", "scrumptious logo"); 
-    	logo.setHeight("50px");
-    	logo.setWidth("180px");
-    	
-    	logoWrapper.add(logo);
-    	
+        // You can initialise any data required for the connected UI components here.    	
     }
 
     /**
@@ -39,5 +33,13 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
      */
     public interface HeaderComponentModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+    public void setLogo() {
+    	Image logo = new Image("icons/updatedLogo.png", "scrumptious logo"); 
+    	logo.setHeight("50px");
+    	logo.setWidth("180px");
+    	
+    	logoWrapper.add(logo);
     }
 }

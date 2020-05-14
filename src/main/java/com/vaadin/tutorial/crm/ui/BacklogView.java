@@ -13,7 +13,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.tutorial.crm.ui.AppLayoutMain;
 import com.vaadin.tutorial.crm.ui.SidebarComponent;
 
 /**
@@ -27,15 +26,18 @@ import com.vaadin.tutorial.crm.ui.SidebarComponent;
 @Route(value = "backlog")
 public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 
-	@Id("sidebarComponent")
-	private SidebarComponent sidebarComponent;
+	@Id("sidebar")
+	private SidebarComponent sidebar;
+	@Id("header")
+	private HeaderComponent header;
 
 	/**
      * Creates a new BacklogView.
      */
     public BacklogView() {
         // You can initialise any data required for the connected UI components here.
-    	sidebarComponent.setNavButtons();
+    	sidebar.setNavButtons();
+    	header.setLogo();
     }
 
     /**

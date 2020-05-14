@@ -4,6 +4,8 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.polymertemplate.Id;
 
 /**
  * A Designer generated component for the tickets-by-status template.
@@ -15,7 +17,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 @JsModule("./src/views/tickets-by-status.js")
 public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsByStatusModel> {
 
-    /**
+    @Id("createButton")
+	private Button createButton;
+
+	/**
      * Creates a new TicketsByStatus.
      */
     public TicketsByStatus() {
@@ -27,5 +32,11 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
      */
     public interface TicketsByStatusModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+    public void setNavButtons() {
+    	createButton.addClickListener(e -> {
+    		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket")); 
+    	});
     }
 }
