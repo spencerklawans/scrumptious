@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.button.Button;
 
 /**
  * A Designer generated component for the header-component template.
@@ -20,6 +21,8 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
 
     @Id("logoWrapper")
 	private HorizontalLayout logoWrapper;
+	@Id("userDashButton")
+	private Button userDashButton;
 
 	/**
      * Creates a new HeaderComponent.
@@ -41,5 +44,11 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
     	logo.setWidth("180px");
     	
     	logoWrapper.add(logo);
+    }
+    
+    public void setUserButton() {
+    	userDashButton.addClickListener(e -> {
+    		userDashButton.getUI().ifPresent(ui -> ui.navigate("dashboard")); 
+    	});
     }
 }

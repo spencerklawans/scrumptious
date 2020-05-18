@@ -60,5 +60,9 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 			toTickets.getUI().ifPresent(ui -> ui.navigate("team"));
 
 		});
+    	
+    	toCalendar.addClickListener(e -> {
+    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"));
+    	});
     }
 }

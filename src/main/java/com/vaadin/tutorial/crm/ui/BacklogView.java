@@ -38,6 +38,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
         // You can initialise any data required for the connected UI components here.
     	sidebar.setNavButtons();
     	header.setLogo();
+    	header.setUserButton();
     }
 
     /**
