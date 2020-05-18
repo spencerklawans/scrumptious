@@ -35,6 +35,7 @@ public class AddToBacklogMain extends PolymerTemplate<AddToBacklogMain.AddToBack
     	header.setLogo();
     	sidebar.setNavButtons();
     	addToBacklog.setNavButtons();
+    	header.setUserButton();
     }
 
     /**

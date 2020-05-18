@@ -6,29 +6,26 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 
 /**
- * A Designer generated component for the team-view template.
+ * A Designer generated component for the project-mini-component template.
  *
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
-@Tag("team-view")
-@JsModule("./src/views/team-view.js")
-public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
+@Tag("project-mini-component")
+@JsModule("./src/views/project-mini-component.js")
+public class ProjectMiniComponent extends PolymerTemplate<ProjectMiniComponent.ProjectMiniComponentModel> {
 
     /**
-     * Creates a new TeamView.
+     * Creates a new ProjectMiniComponent.
      */
-    public TeamView() {
+    public ProjectMiniComponent() {
         // You can initialise any data required for the connected UI components here.
     }
 
-    public void setNavButtons() {
-    }
-
     /**
-     * This model binds properties between TeamView and team-view
+     * This model binds properties between ProjectMiniComponent and project-mini-component
      */
-    public interface TeamViewModel extends TemplateModel {
+    public interface ProjectMiniComponentModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
 }

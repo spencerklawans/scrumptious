@@ -35,6 +35,7 @@ public class TicketByStatusMain extends PolymerTemplate<TicketByStatusMain.Ticke
         // You can initialise any data required for the connected UI components here.
     	ticketStatusView.setNavButtons();
     	header.setLogo();
+    	header.setUserButton();
     	sidebar.setNavButtons();
     }
 
