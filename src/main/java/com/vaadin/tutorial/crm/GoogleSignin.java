@@ -55,11 +55,6 @@ public class GoogleSignin extends Component {
     private Width width;
     private Height height;
     private Theme theme;
-    private boolean autoLogout = true;
-
-    private List<Consumer<UserLoginEvent>> loginListeners;
-    private List<Runnable> logoutListeners;
-
 
     public enum Brand {
         GOOGLE("google"),
@@ -129,108 +124,11 @@ public class GoogleSignin extends Component {
                 new NetHttpTransport(), JacksonFactory.getDefaultInstance())
                 .setAudience(Collections.singleton(clientId))
                 .build();
-        // init listeners
-        this.loginListeners = new ArrayList<>();
-        this.logoutListeners = new ArrayList<>();
-        // Set default values
         getElement().setProperty("clientId", clientId);
         setWidth(Width.WIDE);
         setHeight(Height.TALL);
         setBrand(Brand.GOOGLE);
         setTheme(Theme.LIGHT);
-        // add base-listener for sign-in events
-        addListener(InternalSignInEvent.class, this::handleLogin);
-        addListener(InternalSignOutEvent.class, this::handleLogout);
-    }
-
-    private void handleLogin(InternalSignInEvent event) {
-        try {
-            GoogleIdToken idToken = tokenVerifier.verify(event.getIdToken());
-            if (idToken != null) {
-                GoogleIdToken.Payload payload = idToken.getPayload();
-
-                // Print user identifier
-                String userId = payload.getSubject();
-
-                // Get profile information from payload
-                String email = payload.getEmail();
-                String name = (String) payload.get("name");
-                String pictureUrl = (String) payload.get("picture");
-                String locale = (String) payload.get("locale");
-                String familyName = (String) payload.get("family_name");
-                String givenName = (String) payload.get("given_name");
-
-                UserLoginEvent userEvent = new UserLoginEvent(userId, email,
-                        name, pictureUrl, locale, givenName, familyName,
-                        event.getIdToken());
-                fireEvent(userEvent);
-                if (autoLogout) {
-                    logout();
-                }
-            }
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void fireEvent(UserLoginEvent event) {
-        loginListeners.forEach(consumer -> consumer.accept(event));
-    }
-
-    private void handleLogout(InternalSignOutEvent event) {
-        // omit logout events, if auto-logout is on
-        if (!autoLogout) {
-            logoutListeners.forEach(Runnable::run);
-        }
-    }
-
-    /**
-     * Add listener for login action
-     *
-     * @param consumer that consumes the {@link UserLoginEvent} which has all user info
-     * @return hook for removing the listener
-     */
-    public Registration addLoginListener(Consumer<UserLoginEvent> consumer) {
-        loginListeners.add(consumer);
-        return () -> loginListeners.remove(consumer);
-    }
-
-    /**
-     * Add listener for logout action
-     * NOTE: logout listeners are NOT informed of logout action,
-     * if isAutoLogout is true
-     *
-     * @param action Action to perform if logout is triggered
-     * @return hook for removing the listener
-     */
-    public Registration addLogoutListener(Runnable action) {
-        logoutListeners.add(action);
-        return () -> logoutListeners.remove(action);
-    }
-
-    /**
-     * Logout current google login
-     */
-    public void logout() {
-        getElement().callFunction("signOut");
-    }
-
-    /**
-     * Tells if auto-logout is active:
-     *
-     * if auto-logout is on then the google login is closed after successful
-     * login.
-     *
-     * @return
-     */
-    public boolean isAutoLogout() {
-        return autoLogout;
-    }
-
-    public void setAutoLogout(boolean autoLogout) {
-        this.autoLogout = autoLogout;
     }
 
     /**
