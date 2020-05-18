@@ -16,15 +16,14 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 @Tag("team-view-main")
 @JsModule("./src/views/team-view-main.js")
 @Route(value = "team")
-
 public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel> {
 
     @Id("header")
     private HeaderComponent header;
     @Id("sidebar")
     private SidebarComponent sidebar;
-    @Id("addToBacklog")
-    private AddToBacklog addToBacklog;
+    @Id("teamView")
+    private TeamView teamView;
 
     /**
      * Creates a new TeamViewMain.
@@ -33,7 +32,7 @@ public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel
         // You can initialise any data required for the connected UI components here.
         header.setLogo();
         sidebar.setNavButtons();
-        addToBacklog.setNavButtons();
+        teamView.setNavButtons();
     }
 
     /**

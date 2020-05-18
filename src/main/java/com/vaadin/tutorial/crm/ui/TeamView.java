@@ -22,6 +22,9 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         // You can initialise any data required for the connected UI components here.
     }
 
+    public void setNavButtons() {
+    }
+
     /**
      * This model binds properties between TeamView and team-view
      */
