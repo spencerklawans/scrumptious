@@ -77,6 +77,10 @@ public class Ticket {
 		this.dueDate = dt;
 	}
 	
-	
+	public String jsonify(){
+        // TODO: update to return json to be pushed to database
+		// TODO: Deprecated?? using raw ticket data in db push?
+        return "Pushed to database";
+    }
 	
 }
