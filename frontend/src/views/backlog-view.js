@@ -24,9 +24,14 @@ class BacklogView extends PolymerElement {
    <sidebar-component id="sidebar" style="flex-shrink: 0; flex-grow: 1; align-self: stretch;"></sidebar-component>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout style="flex-grow: 1; flex-shrink: 1; width: 80%; height: 100%; align-self: stretch;">
-   <vaadin-button style="color: #000000; background-color: #FFFFFF; font-size: 16pt; margin: var(--lumo-space-l);" disabled>
+   <vaadin-button style="color: #000000; background-color: #FFFFFF; font-size: 16pt; margin: var(--lumo-space-l);" disabled tabindex="">
      Backlog 
    </vaadin-button>
+   <vaadin-horizontal-layout style="width: 100%;">
+    <vaadin-vertical-layout style="width: 33%;"></vaadin-vertical-layout>
+    <vaadin-vertical-layout style="width: 33%;"></vaadin-vertical-layout>
+    <vaadin-vertical-layout style="width: 33%;"></vaadin-vertical-layout>
+   </vaadin-horizontal-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>

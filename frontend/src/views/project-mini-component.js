@@ -12,34 +12,34 @@ class ProjectMiniComponent extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="background: #FFFFFF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; width: 100%; height: 100%;">
- <vaadin-vertical-layout style="align-self: center;">
-  <vaadin-button style="font-family: Roboto;
+<vaadin-vertical-layout style="background: #FFFFFF;
+box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;">
+ <vaadin-vertical-layout style="align-self: center; margin: var(--lumo-space-m);">
+  <vaadin-button style="width: 100%; background-color: rgba(255, 255, 255); font-family: Roboto;
 font-style: normal;
 font-weight: bold;
 font-size: 36px;
-line-height: 42px;
-
-color: #000000;">
-   Student Database Web App
+line-height: 42px; color: #000000;" disabled>
+   Title 
   </vaadin-button>
-  <vaadin-button style="font-family: Roboto;
+  <vaadin-button style="width: 100%; background-color: rgba(255, 255, 255, 0.75);font-family: Roboto;
 font-style: normal;
 font-weight: 500;
 font-size: 24px;
 line-height: 28px;
 
-color: #000000;">
-   Time 
+color: #000000;" disabled id="date created" tabindex="">
+   Date Created
   </vaadin-button>
-  <vaadin-button style="font-family: Roboto;
+  <vaadin-button style="width: 100%; background-color: rgba(255, 255, 255, 0.75); font-family: Roboto;
 font-style: normal;
-font-weight: bold;
-font-size: 36px;
-line-height: 42px;
+font-weight: 500;
+font-size: 18px;
+line-height: 21px;
 
-color: #000000;">
-    Button 
+color: #000000;" disabled tabindex="">
+   Created By: 
   </vaadin-button>
  </vaadin-vertical-layout>
 </vaadin-vertical-layout>
