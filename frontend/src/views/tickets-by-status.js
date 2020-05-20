@@ -22,7 +22,7 @@ font-size: 48px;
 line-height: 56px;
 
 color: #000000;">
- <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; align-self: flex-start; margin-left: var(--lumo-space-m); margin-top: var(--lumo-space-l);" disabled>
+ <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; align-self: flex-start; margin-left: var(--lumo-space-m); margin-top: var(--lumo-space-l);" disabled tabindex="">
    Tickets 
  </vaadin-button>
  <vaadin-horizontal-layout style="height: 100%; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; color: #FFFFFF; align-self: center; width: 100%;">
