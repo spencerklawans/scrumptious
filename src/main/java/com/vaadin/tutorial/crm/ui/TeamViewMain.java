@@ -33,6 +33,7 @@ public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel
         header.setLogo();
         sidebar.setNavButtons();
         teamView.setNavButtons();
+        header.setUserButton();
     }
 
     /**
