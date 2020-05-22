@@ -39,6 +39,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
     	sidebar.setNavButtons();
     	header.setLogo();
     	header.setUserButton();
+  
     }
 
     /**
