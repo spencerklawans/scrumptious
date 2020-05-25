@@ -4,22 +4,33 @@ import java.util.ArrayList;
 
 public class User {
 	
-	private final int id = 1; // temporarily an int
+	private final String id; // temporarily an int
+	//login info:
 	private String name;
 	private String email;
+	private String pictureURL;
+	private String locale;
+	private String familyName;
+	private String givenName;
+	
+	
+	
 	private ArrayList<Project> projects;
 	//password hash??
 	private ArrayList<Ticket> tickets;
 	private String bio;
 	private ArrayList<String> notes;
 	
-	public User(String name) {
-		// new User constructor should at minimum require a name
+	public User(String id) {
+		// new User constructor should at minimum require an email
 		// TODO new user constructor
+		this.id = id;
 		
 	}
-	public User(String name, String placeholder) {
+	
+	public User(String id, String placeholder) {
 		// TODO user constructor from database call
+		this.id = id;
 		
 	}
 	
