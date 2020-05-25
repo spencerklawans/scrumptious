@@ -1,4 +1,7 @@
-package com.vaadin.tutorial.crm.backend.entity;
+package com.vaadin.tutorial.crm.backend.controller;
+
+import com.vaadin.tutorial.crm.backend.entity.Project;
+import com.vaadin.tutorial.crm.backend.entity.User;
 
 public class ProjectController {
 	
