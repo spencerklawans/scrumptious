@@ -28,7 +28,9 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     public TeamView() {
         // You can initialise any data required for the connected UI components here.
         for (int i = 0; i < 2; i++) {
-            _2ndColumn.add(new UserComponent());
+            UserComponent user = new UserComponent();
+            user.setDetails("My Name");
+            _2ndColumn.add(user);
         }
     }
 

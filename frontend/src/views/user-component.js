@@ -14,8 +14,8 @@ class UserComponent extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%; justify-content: center; padding: var(--lumo-space-l);">
- <vaadin-button style="background: #009FB7; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-size: 18px; line-height: 28px; color: #000000; width: 100%; height: 100%; align-self: center;">
-  <iron-icon icon="lumo:user" slot="prefix"></iron-icon>Ryan Flynn 
+ <vaadin-button style="background: #009FB7; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-size: 18px; line-height: 28px; color: #000000; width: 100%; height: 100%; align-self: center;" id="userButton">
+  <iron-icon icon="lumo:user" slot="prefix" id="userIcon"></iron-icon>Ryan Flynn 
  </vaadin-button>
 </vaadin-vertical-layout>
 `;

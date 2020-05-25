@@ -76,7 +76,7 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     	p.setName(nameField.getValue());
     	p.setDescription(descriptionField.getValue());
 //    	METHOD NOT DEFINED IN GALEN's WORKING COPY
-    	p.setTeam(buildTeam());
+//    	p.setTeam(buildTeam());
     }
     
     public ArrayList<User> buildTeam() {
