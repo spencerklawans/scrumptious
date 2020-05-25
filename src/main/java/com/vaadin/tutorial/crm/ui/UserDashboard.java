@@ -5,7 +5,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-import com.vaadin.tutorial.crm.ui.HeaderComponent;
+//import com.vaadin.tutorial.crm.ui.HeaderComponent;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
@@ -61,13 +61,13 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
-    	toProjectsButton.addClickListener(e -> {
-    		toProjectsButton.getUI().ifPresent(ui -> ui.navigate("projects")); 
-    	});
+    	toProjectsButton.addClickListener(e ->
+    		toProjectsButton.getUI().ifPresent(ui -> ui.navigate("projects"))
+    	);
     	
-    	toTicketsButton.addClickListener(e -> {
-    		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets")); 
-    	});
+    	toTicketsButton.addClickListener(e ->
+    		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
+    	);
     	
     }
     

@@ -4,7 +4,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.router.Route;
+//import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
 
@@ -38,12 +38,12 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     }
     
     public void setNavButtons() {
-    	cancelButton.addClickListener(e -> {
-    		cancelButton.getUI().ifPresent(ui -> ui.navigate("tickets")); 
-    	});
+    	cancelButton.addClickListener(e ->
+    		cancelButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
+    	);
     	
-    	createButton.addClickListener(e -> {
-    		createButton.getUI().ifPresent(ui -> ui.navigate("tickets")); 
-    	});
+    	createButton.addClickListener(e ->
+    		createButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
+    	);
     }
 }

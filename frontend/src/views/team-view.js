@@ -1,8 +1,8 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import './user-component.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import './user-component.js';
 
 class TeamView extends PolymerElement {
 
@@ -14,7 +14,7 @@ class TeamView extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%;">
+<vaadin-vertical-layout style="width: 100%; height: 100%;" id="root">
  <vaadin-button style="font-size: 16pt; color: #000000; margin-top: var(--lumo-space-l); margin-left: var(--lumo-space-m); align-self: flex-start; background-color: #FFFFFF;" disabled tabindex="">
    Team 
  </vaadin-button>
@@ -23,14 +23,8 @@ class TeamView extends PolymerElement {
    <user-component style="align-self: stretch;"></user-component>
    <user-component style="align-self: stretch;"></user-component>
   </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="height: 100%; width: 33%;">
-   <user-component style="align-self: stretch;"></user-component>
-   <user-component style="align-self: stretch;"></user-component>
-  </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="width: 33%;">
-   <user-component style="width: 100%;"></user-component>
-   <user-component style="width: 100%;"></user-component>
-  </vaadin-vertical-layout>
+  <vaadin-vertical-layout style="height: 100%; width: 33%;" id="2nd column"></vaadin-vertical-layout>
+  <vaadin-vertical-layout style="width: 33%;"></vaadin-vertical-layout>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%;">
   <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin: var(--lumo-space-l);">

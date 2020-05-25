@@ -9,9 +9,9 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-import com.vaadin.tutorial.crm.ui.HeaderComponent;
+//import com.vaadin.tutorial.crm.ui.HeaderComponent;
 import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.tutorial.crm.ui.SidebarComponent;
+//import com.vaadin.tutorial.crm.ui.SidebarComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
