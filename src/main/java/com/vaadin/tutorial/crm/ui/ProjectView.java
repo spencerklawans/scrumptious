@@ -28,6 +28,7 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
     public ProjectView() {
         // You can initialise any data required for the connected UI components here.
     	header.setLogo();
+    	header.setUserButton();
     }
 
     /**

@@ -34,6 +34,7 @@ public class NewTicketMain extends PolymerTemplate<NewTicketMain.NewTicketMainMo
         // You can initialise any data required for the connected UI components here.
     	newTicketForm.setNavButtons();
     	header.setLogo();
+    	header.setUserButton();
     	sidebar.setNavButtons();
     }
 

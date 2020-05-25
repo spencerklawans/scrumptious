@@ -53,7 +53,16 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     	});
     	
     	toTickets.addClickListener(e -> {
-    		toTickets.getUI().ifPresent(ui -> ui.navigate("tickets")); 
+			toTickets.getUI().ifPresent(ui -> ui.navigate("tickets"));
+
+		});
+		toTeam.addClickListener(e -> {
+			toTickets.getUI().ifPresent(ui -> ui.navigate("team"));
+
+		});
+    	
+    	toCalendar.addClickListener(e -> {
+    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"));
     	});
     }
 }
