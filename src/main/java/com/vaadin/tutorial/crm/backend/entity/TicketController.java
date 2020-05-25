@@ -32,14 +32,6 @@ public class TicketController {
 
         //push data back to database
         //should return JSON to be passed to database method
-        ticketToJSON(ticket);
-    }
-	
-	private static void ticketToJSON(Ticket ticket){
-		//TODO: deprecated?? use raw ticket object instead
-
-        System.out.println(ticket.jsonify());
-
-    }
+	}
 
 }
