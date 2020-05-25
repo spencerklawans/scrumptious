@@ -35,8 +35,8 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     }
     
     public void setNavButtons() {
-    	createButton.addClickListener(e -> {
-    		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket")); 
-    	});
+    	createButton.addClickListener(e ->
+    		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
+    	);
     }
 }

@@ -47,8 +47,8 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
     }
     
     public void setUserButton() {
-    	userDashButton.addClickListener(e -> {
-    		userDashButton.getUI().ifPresent(ui -> ui.navigate("dashboard")); 
-    	});
+    	userDashButton.addClickListener(e ->
+    		userDashButton.getUI().ifPresent(ui -> ui.navigate("dashboard"))
+    	);
     }
 }

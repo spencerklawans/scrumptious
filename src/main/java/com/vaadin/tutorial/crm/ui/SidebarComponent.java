@@ -44,25 +44,25 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     }
     
     public void setNavButtons() {
-    	toBacklog.addClickListener(e -> {
-    		toBacklog.getUI().ifPresent(ui -> ui.navigate("backlog")); 
-    	});
+    	toBacklog.addClickListener(e ->
+    		toBacklog.getUI().ifPresent(ui -> ui.navigate("backlog"))
+    	);
     	
-    	toProjectPage.addClickListener(e -> {
-    		toProjectPage.getUI().ifPresent(ui -> ui.navigate("projects")); 
-    	});
+    	toProjectPage.addClickListener(e ->
+    		toProjectPage.getUI().ifPresent(ui -> ui.navigate("projects"))
+    	);
     	
-    	toTickets.addClickListener(e -> {
-			toTickets.getUI().ifPresent(ui -> ui.navigate("tickets"));
+    	toTickets.addClickListener(e ->
+			toTickets.getUI().ifPresent(ui -> ui.navigate("tickets"))
 
-		});
-		toTeam.addClickListener(e -> {
-			toTickets.getUI().ifPresent(ui -> ui.navigate("team"));
+		);
+		toTeam.addClickListener(e ->
+			toTickets.getUI().ifPresent(ui -> ui.navigate("team"))
 
-		});
+		);
     	
-    	toCalendar.addClickListener(e -> {
-    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"));
-    	});
+    	toCalendar.addClickListener(e ->
+    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"))
+    	);
     }
 }
