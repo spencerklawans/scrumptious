@@ -77,6 +77,4 @@ public class Ticket {
 		this.dueDate = dt;
 	}
 	
-	
-	
 }

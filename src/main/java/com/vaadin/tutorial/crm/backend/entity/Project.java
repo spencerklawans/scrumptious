@@ -19,9 +19,9 @@ public class Project {
 		// TODO: new project constructor
 	}
 	
-	public Project(String placeholder, LocalDateTime dt) {
+	public Project(String placeholder) {
 		this.id = 0;
-		this.dateCreated = dt;
+		this.dateCreated = LocalDateTime.now();//This should be replaced with paramter and database data
 		//TODO: project from database call constructor
 	}
 	
