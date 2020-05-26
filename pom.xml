@@ -187,7 +187,8 @@
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
-            </exclusions>    
+            </exclusions>
+        </dependency>
         <dependency>
    			<groupId>org.vaadin.stefan</groupId>
    			<artifactId>fullcalendar2</artifactId>
