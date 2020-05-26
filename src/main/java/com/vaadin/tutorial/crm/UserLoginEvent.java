@@ -9,7 +9,6 @@ public class UserLoginEvent {
     private String firstName;
     private String lastName;
     private String token;
-    private String uid;
 
     public UserLoginEvent(String userId, String email, String name, String pictureUrl, String locale, String firstName,
             String lastName, String token) {
