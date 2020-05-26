@@ -2,56 +2,86 @@ package com.vaadin.tutorial.crm.backend.entity;
 
 import java.util.ArrayList;
 
-public class User {
-	
-	private final String id; // temporarily an int
-	//login info:
-	private String name;
-	private String email;
-	private String pictureURL;
-	private String locale;
-	private String familyName;
-	private String givenName;
-	
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.vaadin.tutorial.crm.backend.repository.UserRepository;
+
+@Entity
+public class User extends AbstractEntity implements Cloneable {
 	
 	
 	private ArrayList<Project> projects;
-	//password hash??
 	private ArrayList<Ticket> tickets;
-	private String bio;
 	private ArrayList<String> notes;
+	private String bio;
 	
-	public User(String id) {
-		// new User constructor should at minimum require an email
-		// TODO new user constructor
-		this.id = id;
-		
-	}
-	
-	public User(String id, String placeholder) {
-		// TODO user constructor from database call
-		this.id = id;
-		
-	}
-	
-	public String getName() {return this.name;}
-	
-	public void setName(String newName) {this.name = newName;}
-	
-	public String getEmail() {return this.email;}
-	
-	public void setEmail(String email) throws IllegalArgumentException{
-		// checks that parameter email is a valid email address before updating field
-		String emailRegex = "^[\\w._%+-]+@[\\w.-]+\\.[A-Z]{2,}$";
-		if (email.matches(emailRegex)) {
-			this.email = email;
-		}
-		else {
-			throw new IllegalArgumentException("Invalid email format.");
-		}
-	}
-	
-	public ArrayList<Project> getProjects(){return this.projects;}
+    @NotNull
+    @NotEmpty
+    private String firstName = "";
+
+    @NotNull
+    @NotEmpty
+    private String lastName = "";
+
+    @NotNull
+    @NotEmpty
+    private String email = "";
+    
+    @NotNull
+    @NotEmpty
+    private String uid = "";
+    
+    @NotNull
+    @NotEmpty
+    private String picURL = "";
+    
+    public User(String firstName, String lastName, String email, String uid, String picURL)
+    {
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.email = email;
+    	this.uid = uid;
+    	this.picURL = picURL;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+    
+    public String getPic() {
+        return picURL;
+    }
+
+    public void setPic(String picURL) {
+        this.picURL = picURL;
+    }
+    
+public ArrayList<Project> getProjects(){return this.projects;}
 	
 	public void addProject(Project project, boolean override) throws DuplicateProjectException {
 		// warns (via raising a custom exception) user project already exists in projects. 
@@ -91,7 +121,12 @@ public class User {
 	
 	public String getBio(){return this.bio;}
 	
-	public void setBio(String bio) {this.bio = bio;}
+	public void setBio(String bio) 
+	{
+		
+		this.bio = bio;
+		//userRepository.save(this);
+	}
 	
 	public ArrayList<String> getNotes(){return this.notes;}
 	
@@ -108,5 +143,6 @@ public class User {
 		}
 		return false;
 	}
+    
 
 }
