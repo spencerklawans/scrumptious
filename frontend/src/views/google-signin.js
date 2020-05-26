@@ -28,7 +28,7 @@ import './google-signin-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import "firebase/auth";
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 //import firebase from "firebase/app";
 //import "firebase/auth";

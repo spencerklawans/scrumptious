@@ -1,9 +1,8 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import './google-signin.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-text-field/src/vaadin-text-area.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
-class LoginView extends PolymerElement {
+class AddProjectComponent extends PolymerElement {
 
     static get template() {
         return html`
@@ -13,15 +12,16 @@ class LoginView extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%; align-items: center;" id="vaadinVerticalLayout">
-  Welcome to Scrumptious 
- <google-signin id="signin" style="align-self: center;"></google-signin>
+<vaadin-vertical-layout style="width: 100%; height: 100%;">
+ <vaadin-button theme="icon" aria-label="Add new" id="addButton" style="width: 100%; background-color: #FED766; box-shadow: var(--lumo-box-shadow-s); border-radius: 10px; color: #000000; font-size: 12pt;">
+  Add Project 
+ </vaadin-button>
 </vaadin-vertical-layout>
 `;
     }
 
     static get is() {
-        return 'login-view';
+        return 'add-project-component';
     }
 
     static get properties() {
@@ -31,4 +31,4 @@ class LoginView extends PolymerElement {
     }
 }
 
-customElements.define(LoginView.is, LoginView);
+customElements.define(AddProjectComponent.is, AddProjectComponent);

@@ -5,9 +5,9 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.dom.Element;
+//import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.tutorial.crm.ui.AddToBacklog;
+//import com.vaadin.tutorial.crm.ui.AddToBacklog;
 
 /**
  * A Designer generated component for the add-to-backlog-main template.
@@ -35,6 +35,7 @@ public class AddToBacklogMain extends PolymerTemplate<AddToBacklogMain.AddToBack
     	header.setLogo();
     	sidebar.setNavButtons();
     	addToBacklog.setNavButtons();
+    	header.setUserButton();
     }
 
     /**

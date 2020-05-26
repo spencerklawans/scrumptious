@@ -1,5 +1,7 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -13,13 +15,25 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
  */
 @Tag("team-view-main")
 @JsModule("./src/views/team-view-main.js")
+@Route(value = "team")
 public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel> {
+
+    @Id("header")
+    private HeaderComponent header;
+    @Id("sidebar")
+    private SidebarComponent sidebar;
+    @Id("teamView")
+    private TeamView teamView;
 
     /**
      * Creates a new TeamViewMain.
      */
     public TeamViewMain() {
         // You can initialise any data required for the connected UI components here.
+        header.setLogo();
+        sidebar.setNavButtons();
+        teamView.setNavButtons();
+        header.setUserButton();
     }
 
     /**

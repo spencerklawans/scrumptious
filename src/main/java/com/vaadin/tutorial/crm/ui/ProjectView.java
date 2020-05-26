@@ -5,8 +5,10 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.dom.Element;
+//import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.component.polymertemplate.Id;
+//import com.vaadin.tutorial.crm.ui.AddProjectComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  * A Designer generated component for the main-project-view template.
@@ -21,6 +23,10 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 
     @Id("header")
 	private HeaderComponent header;
+	@Id("addButton")
+	private AddProjectComponent addButton;
+	@Id("topLayout")
+	private HorizontalLayout topLayout;
 
 	/**
      * Creates a new MainProjectView.
@@ -28,6 +34,8 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
     public ProjectView() {
         // You can initialise any data required for the connected UI components here.
     	header.setLogo();
+    	header.setUserButton();
+    	addButton.setNavButton();
     }
 
     /**

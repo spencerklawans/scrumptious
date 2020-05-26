@@ -25,5 +25,5 @@
     "webpack-dev-server": "3.9.0",
     "webpack-merge": "4.2.2"
   },
-  "vaadinAppPackageHash": "4e1f953fa867266cd3258d0cd3cd0598e94ed33db5be5b01ea7f196f9b29e53f"
+  "vaadinAppPackageHash": "78433693a3b0e02389324bd944f1641b4111161d23d42ba249a6c257241cc219"
 }
