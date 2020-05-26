@@ -83,8 +83,8 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     	String[] names = teamField.getValue().split(","); 
     	ArrayList<User> team = new ArrayList<>(); 
     	for (String name : names) {
-    		User user = new User(name); 
-    		team.add(user); 
+    		//User user = new User(name); 
+    		//team.add(user); 
     	}
     	return team; 		
     }
