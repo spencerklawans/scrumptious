@@ -27,12 +27,6 @@ import './google-icons.js';
 import './google-signin-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import "firebase/auth";
-import firebase from 'firebase';
-
-//import firebase from "firebase/app";
-//import "firebase/auth";
-//import "firebase/firestore";
 
 /**
  * Enum brand values.
@@ -58,12 +52,12 @@ const firebaseConfig = {
     measurementId: "G-3DXXJ0MDKQ"
  };
  
-require('firebase/auth')
- 
-firebase.initializeApp(firebaseConfig);
-var provider = new firebase.auth.GoogleAuthProvider();
-
-var auth = firebase.auth();
+//require('firebase/auth')
+// 
+//firebase.initializeApp(firebaseConfig);
+//var provider = new firebase.auth.GoogleAuthProvider();
+//
+//var auth = firebase.auth();
 
 
 /**
@@ -601,34 +595,44 @@ Polymer({
    * The dialog will be blocked by a popup blocker unless called inside click handler.
    */
   signIn: function () {
-	  //this.$.aware.signIn();
-	  firebase.auth().signInWithPopup(provider).then(function(result) {
+//	  var user;
+//	  var token;
+//	  var googleUser;
+	  this.$.aware.signIn();
+//	  firebase.auth().signInWithPopup(provider).then(function(result) {
 		  // This gives you a Google Access Token. You can use it to access the Google API.
-		  var token = result.credential.accessToken;
 		  // The signed-in user info.
-		  var user = result.user;
-		  // ...
-	  })
-  	}
-});
+//		  user = result.user;
+//		  googleUser = gapi.auth2.getAuthInstance().currentUser.get();
+//		  token = googleUser.getAuthResponse().id_token;
+//		  // ...
+//	  })
+//	 var xhr = new XMLHttpRequest();
+//	 xhr.open('POST', 'https://localhost:8080/tokensignin');
+//	 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//	 xhr.onload = function() {
+//		 console.log('Signed in as: ' + xhr.responseText);
+//	 };
+//	 xhr.send('idtokenString=' + token);    
+  	},
 
-//  _signInKeyPress: function (e) {
-//    if (e.which == 13 || e.keyCode == 13 || e.which == 32 || e.keyCode == 32) {
-//      e.preventDefault();
-//      this.signIn();
-//    }
-//  },
-//
-//  /** Sign out the user */
-//  signOut: function () {
-//    this.fire('google-signout-attempted');
-//    this.$.aware.signOut();
-//  },
-//
-//  _signOutKeyPress: function (e) {
-//    if (e.which == 13 || e.keyCode == 13 || e.which == 32 || e.keyCode == 32) {
-//      e.preventDefault();
-//      this.signOut();
-//    }
-//  }
-//});
+  _signInKeyPress: function (e) {
+    if (e.which == 13 || e.keyCode == 13 || e.which == 32 || e.keyCode == 32) {
+      e.preventDefault();
+      this.signIn();
+    }
+  },
+
+  /** Sign out the user */
+  signOut: function () {
+    this.fire('google-signout-attempted');
+    this.$.aware.signOut();
+  },
+
+  _signOutKeyPress: function (e) {
+    if (e.which == 13 || e.keyCode == 13 || e.which == 32 || e.keyCode == 32) {
+      e.preventDefault();
+      this.signOut();
+    }
+  }
+});
