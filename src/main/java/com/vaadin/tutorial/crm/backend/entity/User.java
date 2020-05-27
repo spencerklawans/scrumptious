@@ -81,6 +81,10 @@ public class User extends AbstractEntity implements Cloneable {
         this.picURL = picURL;
     }
     
+    public String getFirstName() {
+    	return firstName; 
+    }
+    
 public ArrayList<Project> getProjects(){return this.projects;}
 	
 	public void addProject(Project project, boolean override) throws DuplicateProjectException {
