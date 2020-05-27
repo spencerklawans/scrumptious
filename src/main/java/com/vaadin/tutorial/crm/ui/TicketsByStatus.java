@@ -52,8 +52,18 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	);
     }
     public void populateTickets() {
-        ArrayList<Ticket> todoTickets = ticketController.getTickets("todo", this_project);
-        for (Ticket ticket : todoTickets) {
-            todo.add(ticket);
-        }
-    }}
+////      filling in tickets based on db calls
+//        ArrayList<Ticket> todoTickets = ticketController.getTickets("todo", this_project);
+//        for (Ticket ticket : todoTickets) {
+//            todo.add(ticket);
+//        }
+//        ArrayList<Ticket> inProgressTickets = ticketController.getTickets("inProgress", this_project);
+//        for (Ticket ticket : inProgressTickets) {
+//            todo.add(ticket);
+//        }
+//        ArrayList<Ticket> completedTickets = ticketController.getTickets("completed", this_project);
+//        for (Ticket ticket : completedTickets) {
+//            todo.add(ticket);
+//        }
+    }
+}
