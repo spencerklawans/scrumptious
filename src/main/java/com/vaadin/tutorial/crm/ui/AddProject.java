@@ -2,19 +2,14 @@ package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
 
-import java.util.ArrayList;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
-import com.vaadin.tutorial.crm.backend.entity.Project;
-import com.vaadin.tutorial.crm.backend.entity.User;
-import com.vaadin.tutorial.crm.ui.HeaderComponent;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.formlayout.FormLayout.FormItem;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.textfield.TextField;
 

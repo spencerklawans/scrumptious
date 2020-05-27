@@ -147,6 +147,10 @@ public ArrayList<Project> getProjects(){return this.projects;}
 		}
 		return false;
 	}
-    
 
+	@Override
+	public Object clone() throws CloneNotSupportedException{
+		User clone = (User)super.clone();
+		return clone;
+	}
 }

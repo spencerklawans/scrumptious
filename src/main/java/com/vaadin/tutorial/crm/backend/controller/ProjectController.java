@@ -2,6 +2,7 @@ package com.vaadin.tutorial.crm.backend.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.User;
@@ -55,7 +56,7 @@ public class ProjectController {
     	return teamList; 		
     }
     
-    public String ownerList(ArrayList<User> admins) {
+    public String ownerList(List<User> admins) {
     	String owners = ""; 
     	for (int i = 0; i < admins.size() - 1; i++) {
     		owners += admins.get(i).getFirstName() + ", ";
