@@ -1,7 +1,5 @@
 package com.vaadin.tutorial.crm;
 
-import com.vaadin.tutorial.crm.GoogleSignin;
-
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.DomEvent;
 import com.vaadin.flow.component.EventData;

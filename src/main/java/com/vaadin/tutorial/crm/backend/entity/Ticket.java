@@ -2,10 +2,11 @@ package com.vaadin.tutorial.crm.backend.entity;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Ticket {
 	
-	final private int id = 0; // placeholder int
+	private static final int ID = 0; // placeholder int
 	private String title;
 	private PriorityEnum priority;
 	private StatusEnum status;
@@ -40,7 +41,7 @@ public class Ticket {
 	
 	public void setStatus(StatusEnum newStatus) {this.status = newStatus;}
 	
-	public ArrayList<User> getAssignees() {return this.assignees;}
+	public List<User> getAssignees() {return this.assignees;}
 	
 	public void addAssignee(User user) {
 		this.assignees.add(user);

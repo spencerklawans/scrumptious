@@ -2,6 +2,7 @@ package com.vaadin.tutorial.crm.backend.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.User;
@@ -45,7 +46,7 @@ public class ProjectController {
     }
     
     //replace with call to db that finds user associated with email
-    public ArrayList<User> buildTeam(String team) {
+    public List<User> buildTeam(String team) {
     	String[] names = team.split(","); 
     	ArrayList<User> teamList = new ArrayList<>(); 
     	for (String name : names) {
@@ -55,7 +56,7 @@ public class ProjectController {
     	return teamList; 		
     }
     
-    public String ownerList(ArrayList<User> admins) {
+    public String ownerList(List<User> admins) {
     	String owners = ""; 
     	for (int i = 0; i < admins.size() - 1; i++) {
     		owners += admins.get(i).getFirstName() + ", ";
@@ -65,7 +66,7 @@ public class ProjectController {
     }
 
 
-    public ArrayList<ProjectMiniComponent> buildProjComponents() {
+    public List<ProjectMiniComponent> buildProjComponents() {
     	ArrayList<ProjectMiniComponent> miniComponents = new ArrayList<>(); 
     	for (Project project : projectList) {
     		ProjectMiniComponent projComponent = new ProjectMiniComponent(); 
