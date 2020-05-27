@@ -1,6 +1,6 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Project {
@@ -9,19 +9,19 @@ public class Project {
 	private String name;
 	//private ArrayList<User> users; is needed??
 	private String description;
-	final private LocalDateTime dateCreated;
+	final private LocalDate dateCreated;
 	private ArrayList<User> admins;
 	private ArrayList<User> team;
 
 	public Project() {
 		this.id = 0;
-		this.dateCreated = LocalDateTime.now();
+		this.dateCreated = LocalDate.now();
 		// TODO: new project constructor
 	}
 	
-	public Project(String placeholder) {
+	public Project(LocalDate date) {
 		this.id = 0;
-		this.dateCreated = LocalDateTime.now();//This should be replaced with paramter and database data
+		this.dateCreated = date;//This should be replaced with paramter and database data
 		//TODO: project from database call constructor
 	}
 	
@@ -33,10 +33,17 @@ public class Project {
 	
 	public void setDescription(String description) {this.description = description;}
 	
-	public LocalDateTime getDateCreated() {return this.dateCreated;}
+	public LocalDate getDateCreated() {return this.dateCreated;}
 	
+	public void setTeam(ArrayList<User> team) {
+		this.team = team; 
+	}
 	
 	public ArrayList<User> getAdmins(){return this.admins;}
+	
+	public void setAdmins(ArrayList<User> admins) {
+		this.admins = admins; 
+	}
 	
 	public int promoteUser(User user) {
 		// returns current number of admins

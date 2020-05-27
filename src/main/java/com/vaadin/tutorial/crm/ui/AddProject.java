@@ -8,6 +8,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.User;
 import com.vaadin.tutorial.crm.ui.HeaderComponent;
@@ -42,12 +43,14 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
 	private TextField descriptionField;
 	@Id("teamField")
 	private TextField teamField;
+	private ProjectController projectController; 
 
 	/**
      * Creates a new AddProject.
      */
     public AddProject() {
         // You can initialise any data required for the connected UI components here.
+    	projectController = new ProjectController(); 
     	header.setLogo();
     	header.setUserButton();
     	setNavButtons(); 
@@ -66,26 +69,8 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     	});
     	
     	createButton.addClickListener(e -> {
-    		getFormData(); 
+    		projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue());
     		createButton.getUI().ifPresent(ui -> ui.navigate("projects")); 
     	});
-    }
-    
-    public void getFormData() {
-    	Project p = new Project(); 
-    	p.setName(nameField.getValue());
-    	p.setDescription(descriptionField.getValue());
-//    	METHOD NOT DEFINED IN GALEN's WORKING COPY
-//    	p.setTeam(buildTeam());
-    }
-    
-    public ArrayList<User> buildTeam() {
-    	String[] names = teamField.getValue().split(","); 
-    	ArrayList<User> team = new ArrayList<>(); 
-    	for (String name : names) {
-    		//User user = new User(name); 
-    		//team.add(user); 
-    	}
-    	return team; 		
     }
 }
