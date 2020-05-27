@@ -51,7 +51,7 @@ public class GoogleSignin extends Component {
     private Width width;
     private Height height;
     private Theme theme;
-    private boolean autoLogout = true;
+    private boolean autoLogout = false;
 
     private List<Consumer<UserLoginEvent>> loginListeners;
     private List<Runnable> logoutListeners;
