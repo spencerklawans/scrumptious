@@ -1,9 +1,14 @@
 package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.tutorial.crm.GoogleSignin;
+import com.vaadin.tutorial.crm.GoogleSignin.Height;
+import com.vaadin.tutorial.crm.GoogleSignin.Theme;
+import com.vaadin.tutorial.crm.GoogleSignin.Width;
+import com.vaadin.tutorial.crm.backend.controller.DatabaseController;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -26,17 +31,25 @@ public class LoginMain extends PolymerTemplate<LoginMain.LoginMainModel> {
 	private HorizontalLayout logoWrapper;
 	@Id("signInWrapper")
 	private HorizontalLayout signInWrapper;
-
+	
+    DatabaseController dbc;
 	/**
      * Creates a new LoginMain.
      */
-    public LoginMain() {
+    public LoginMain(DatabaseController dbc) {
         // You can initialise any data required for the connected UI components here.
     	setLogo(); 
     	signin = new GoogleSignin(MY_GOOGLE_CLIENT_ID);
+    	signin.setHeight(Height.TALL);
+    	signin.setWidth(Width.WIDE);
+    	signin.setTheme(Theme.LIGHT);
+    	this.dbc = dbc;
+        signin.addLoginListener(event -> {
+            dbc.updateUser(event);
+        });
         signInWrapper.add(signin);
     }
-
+        
     /**
      * This model binds properties between LoginMain and login-main
      */
