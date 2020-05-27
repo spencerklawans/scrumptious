@@ -12,35 +12,36 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.tutorial.crm.UserLoginEvent;
 import com.vaadin.tutorial.crm.backend.entity.User;
 import com.vaadin.tutorial.crm.backend.repository.UserRepository;
+
 import java.util.List;
 
-@RestController
+@Service
 public class DatabaseController {
 	
-	private static DatabaseController dbc;
+	private String uid;
+	
+	@Autowired
+	UserRepository userRepository;
+	
     private static User currUser;
 	
-	public static synchronized DatabaseController getInstance()
-	{
-		if (dbc == null)
-			dbc = new DatabaseController();
-		return dbc;
-	}
-	
-    @Autowired
-    private UserRepository userRepository;
-    
     public void updateUser(UserLoginEvent login) {
     	if (login == null)
     		return;
+    	this.uid = login.getUserId();
     	login.getUserId();
-    	currUser = (User) userRepository.findByUid(login.getUserId());
+    	currUser = (User) this.userRepository.findByUid(login.getUserId());
     	if (currUser == null)
     		currUser = createFromLogin(login);
+    	
     }
     
     public User getCurrUser() {
     	return currUser;
+    }
+    
+    public String getUid() {
+    	return uid;
     }
     
     public void saveUser() {
