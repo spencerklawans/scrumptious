@@ -3,13 +3,8 @@ package com.vaadin.tutorial.crm.backend.entity;
 import java.util.ArrayList;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vaadin.tutorial.crm.backend.repository.UserRepository;
 
 @Entity
 public class User extends AbstractEntity implements Cloneable {

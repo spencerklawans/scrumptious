@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Ticket {
 	
-	private static final int id = 0; // placeholder int
+	private static final int ID = 0; // placeholder int
 	private String title;
 	private PriorityEnum priority;
 	private StatusEnum status;
