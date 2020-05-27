@@ -26,17 +26,17 @@ color: #000000;">
    Tickets 
  </vaadin-button>
  <vaadin-horizontal-layout style="height: 100%; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; color: #FFFFFF; align-self: center; width: 100%;">
-  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #00758B; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; border-radius: 10px; flex-direction: column-reverse; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);">
+  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #00758B; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; border-radius: 10px; flex-direction: column-reverse; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);" id="todo">
    <vaadin-button style="color: #FFFFFF; background-color: #00758B; font-size: 18pt; margin-bottom: auto;" disabled tabindex="">
      To Do 
    </vaadin-button>
   </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #009FB7; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; flex-direction: column-reverse; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; flex-direction: column-reverse; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);">
+  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #009FB7; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; flex-direction: column-reverse; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; flex-direction: column-reverse; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);" id="inProgress">
    <vaadin-button style="color: #FFFFFF; background-color: #009FB7; font-size: 18pt; margin-bottom: auto;">
      In Progress 
    </vaadin-button>
   </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="background: #31BCCD; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; flex-direction: column-reverse; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; flex-direction: column-reverse; margin: var(--lumo-space-l); width: 33%; height: 100%; margin-right: var(--lumo-space-xl); margin-left: var(--lumo-space-xl);">
+  <vaadin-vertical-layout style="background: #31BCCD; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; flex-direction: column-reverse; font-family: Roboto; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; flex-direction: column-reverse; margin: var(--lumo-space-l); width: 33%; height: 100%; margin-right: var(--lumo-space-xl); margin-left: var(--lumo-space-xl);" id="completed">
    <vaadin-button style="color: #FFFFFF; background-color: #31BCCD; font-size: 18pt; margin-bottom: auto;">
      Completed 
    </vaadin-button>

@@ -1,11 +1,16 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
+
+import java.util.ArrayList;
 
 /**
  * A Designer generated component for the tickets-by-status template.
@@ -19,8 +24,15 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
 
     @Id("createButton")
 	private Button createButton;
+    private TicketController ticketController = new TicketController();
+    @Id("todo")
+    private VerticalLayout todo;
+    @Id("inProgress")
+    private VerticalLayout inProgress;
+    @Id("completed")
+    private VerticalLayout completed;
 
-	/**
+    /**
      * Creates a new TicketsByStatus.
      */
     public TicketsByStatus() {
@@ -39,4 +51,9 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
     	);
     }
-}
+    public void populateTickets() {
+        ArrayList<Ticket> todoTickets = ticketController.getTickets("todo", this_project);
+        for (Ticket ticket : todoTickets) {
+            todo.add(ticket);
+        }
+    }}
