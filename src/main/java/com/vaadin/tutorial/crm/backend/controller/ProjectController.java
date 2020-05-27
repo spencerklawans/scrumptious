@@ -73,7 +73,9 @@ public class ProjectController {
     		projComponent.setDate(project.getDateCreated());
     		projComponent.setOwner(ownerList(project.getAdmins()));
     		projComponent.getElement().addEventListener("click", e -> { 
-    			projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));});
+    			projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));
+    			this.currentProject = project;
+    			});
     		miniComponents.add(projComponent); 
     	}
 
