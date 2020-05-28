@@ -4,6 +4,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -51,7 +52,7 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
     }
     
     public void generateDisplay() {
-    	ArrayList<ProjectMiniComponent> compList = projectController.buildProjComponents();
+    	List<ProjectMiniComponent> compList = projectController.buildProjComponents();
     	for (ProjectMiniComponent pmc : compList) {
     		topLayout.add(pmc);
     	}

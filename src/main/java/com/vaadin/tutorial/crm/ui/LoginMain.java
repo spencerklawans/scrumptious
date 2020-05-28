@@ -25,7 +25,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 @Route(value = "")
 public class LoginMain extends PolymerTemplate<LoginMain.LoginMainModel> {
 	private final GoogleSignin signin;
-	final String MY_GOOGLE_CLIENT_ID = "5379470553-vten4rndcb1loc0m21fravtih0jl9gqn.apps.googleusercontent.com";
+	final static String MY_GOOGLE_CLIENT_ID = "5379470553-vten4rndcb1loc0m21fravtih0jl9gqn.apps.googleusercontent.com";
 
     @Id("logoWrapper")
 	private HorizontalLayout logoWrapper;

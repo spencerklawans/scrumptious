@@ -2,6 +2,7 @@ package com.vaadin.tutorial.crm.backend.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Project {
 	
@@ -10,8 +11,8 @@ public class Project {
 	//private ArrayList<User> users; is needed??
 	private String description;
 	final private LocalDate dateCreated;
-	private ArrayList<User> admins;
-	private ArrayList<User> team;
+	private List<User> admins;
+	private List<User> team;
 
 	public Project() {
 		this.id = 0;
@@ -35,13 +36,13 @@ public class Project {
 	
 	public LocalDate getDateCreated() {return this.dateCreated;}
 	
-	public void setTeam(ArrayList<User> team) {
+	public void setTeam(List<User> team) {
 		this.team = team; 
 	}
 	
-	public ArrayList<User> getAdmins(){return this.admins;}
+	public List<User> getAdmins(){return this.admins;}
 	
-	public void setAdmins(ArrayList<User> admins) {
+	public void setAdmins(List<User> admins) {
 		this.admins = admins; 
 	}
 	
@@ -62,7 +63,7 @@ public class Project {
 		return false;
 	}
 	
-	public ArrayList<User> getTeam(){return this.team;}
+	public List<User> getTeam(){return this.team;}
 	
 	public int addMember(User user) {
 		// returns updated count of team members on project

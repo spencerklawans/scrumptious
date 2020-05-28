@@ -22,7 +22,7 @@ public class TicketController {
         return ticket;
     }
 	
-	public void UpdateTicket(String reference){
+	public void updateTicket(String reference){
         //boundary-facing method for accessing database info and updating info
 		//TODO: this needs to be fixed
 

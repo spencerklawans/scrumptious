@@ -13,7 +13,7 @@ public class LoginController {
 		//set this.user to DB entry
 	}
 	
-	public void RegisterNewUser(String placeholderCredentials) {
+	public void registerNewUser(String placeholderCredentials) {
 		//Takes in google credentials and builds new user
 		//User u = getNewUser(placeholderCredentials);
 		//this.user = u; // Sets logged in user to new user
