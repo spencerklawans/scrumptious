@@ -1,12 +1,10 @@
 package com.vaadin.tutorial.crm.backend.controller;
 
-import com.vaadin.tutorial.crm.backend.entity.Database;
 import com.vaadin.tutorial.crm.backend.entity.User;
 
 public class LoginController {
 	
 	private User user; //logged in user
-	private Database db;
 	
 	public void getUserFromDB(String email) {
 		//TODO get the appropriate user data from the database

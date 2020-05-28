@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -8,6 +9,9 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.tutorial.crm.backend.entity.Database;
+import com.vaadin.tutorial.crm.backend.entity.User;
+
 
 /**
  * A Designer generated component for the header-component template.
@@ -24,6 +28,9 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
 	@Id("userDashButton")
 	private Button userDashButton;
 
+
+	private static Database dbc = new Database();
+	private User user;
 	/**
      * Creates a new HeaderComponent.
      */
@@ -47,6 +54,11 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
     }
     
     public void setUserButton() {
+		this.user = dbc.getCurrUser();
+    	Image icon = new Image(user.getPic(),"UserIcon");
+		icon.setHeight("50px");
+		icon.setWidth("50px");
+    	userDashButton.setIcon(icon);
     	userDashButton.addClickListener(e ->
     		userDashButton.getUI().ifPresent(ui -> ui.navigate("dashboard"))
     	);
