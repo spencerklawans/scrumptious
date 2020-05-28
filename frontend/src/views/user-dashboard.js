@@ -3,8 +3,8 @@ import './header-component.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-list-box/src/vaadin-list-box.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-item/src/vaadin-item.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class UserDashboard extends PolymerElement {
 
@@ -26,13 +26,19 @@ class UserDashboard extends PolymerElement {
      User Dashboard 
    </vaadin-button>
    <vaadin-vertical-layout style="width: 100%; height: 90%; background-color: #009FB7; margin-top: var(--lumo-space-xs); border-radius: 15px;">
-    <vaadin-horizontal-layout style="width: 100%; height: 50%; padding: var(--lumo-space-l);">
-     <vaadin-button style="border-radius: 50%; width: 100%; height: 100%; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); " disabled tabindex=""></vaadin-button>
-    </vaadin-horizontal-layout>
+    <vaadin-horizontal-layout style="width: 100%; height: 50%; padding: var(--lumo-space-l);" id="userProfilePic"></vaadin-horizontal-layout>
     <vaadin-vertical-layout style="height: 60%; width: 100%; flex-direction: column;">
-     <vaadin-horizontal-layout style="width: 100%;" id="nameField"></vaadin-horizontal-layout>
-     <vaadin-horizontal-layout style="width: 100%;" id="roleField"></vaadin-horizontal-layout>
-     <vaadin-horizontal-layout style="width: 100%;" id="emailField"></vaadin-horizontal-layout>
+     <vaadin-horizontal-layout style="width: 100%;" id="nameField">
+      <vaadin-button id="name" style="width: 100%; background-color: #009FB7; " disabled> 
+      </vaadin-button>
+     </vaadin-horizontal-layout>
+     <vaadin-horizontal-layout style="width: 100%;" id="roleField">
+      <vaadin-button id="role" style="width: 100%; background-color: #009FB7; "> 
+      </vaadin-button>
+     </vaadin-horizontal-layout>
+     <vaadin-horizontal-layout style="width: 100%;" id="emailField">
+      <vaadin-button id="email" style="width: 100%; background-color: #009FB7; "></vaadin-button>
+     </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="phoneField"></vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: center;">
       <vaadin-button id="editProfileButton" style="background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt;">
