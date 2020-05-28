@@ -78,5 +78,6 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
         }
         ticketComponent.setAssignedUser(ticket.getAssignees().get(0).getFirstName());
         ticketComponent.setTitle(ticket.getTitle());
+        return ticketComponent;
     }
 }
