@@ -46,6 +46,4 @@ public class DatabaseController {
     	userRepository.save(newUser);
     	return newUser;
     }
-    
-    
 }
