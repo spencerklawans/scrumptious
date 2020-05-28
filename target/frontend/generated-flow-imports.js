@@ -103,6 +103,7 @@ import 'Frontend/src/views/sidebar-component.js';
 import 'Frontend/src/views/team-view-main.js';
 import 'Frontend/src/views/team-view.js';
 import 'Frontend/src/views/ticket-by-status-main.js';
+import 'Frontend/src/views/ticket-component.js';
 import 'Frontend/src/views/tickets-by-status.js';
 import 'Frontend/src/views/user-component.js';
 import 'Frontend/src/views/user-dashboard.js';

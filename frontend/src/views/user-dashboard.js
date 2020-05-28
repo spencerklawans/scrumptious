@@ -26,10 +26,12 @@ class UserDashboard extends PolymerElement {
      User Dashboard 
    </vaadin-button>
    <vaadin-vertical-layout style="width: 100%; height: 90%; background-color: #009FB7; margin-top: var(--lumo-space-xs); border-radius: 15px;">
-    <vaadin-horizontal-layout style="width: 100%; height: 50%; padding: var(--lumo-space-l);" id="userProfilePic"></vaadin-horizontal-layout>
     <vaadin-vertical-layout style="height: 60%; width: 100%; flex-direction: column;">
+    <vaadin-horizontal-layout style="width: 100%;" id="profilePicField">
+    <vaadin-button id="userProfilePic" style="width: 100%; height: 100%; border-radius: 50%; background-color: transparent; flex-grow: 0; flex-shrink: 1; align-self: center;"></vaadin-button>
+    </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="nameField">
-      <vaadin-button id="name" style="width: 100%; background-color: #009FB7; " disabled> 
+      <vaadin-button id="name" style="width: 100%; background-color: #009FB7; color: #000000" disabled>
       </vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="roleField">
