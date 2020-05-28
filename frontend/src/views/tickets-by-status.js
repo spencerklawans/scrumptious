@@ -26,7 +26,7 @@ color: #000000;">
    Tickets 
  </vaadin-button>
  <vaadin-horizontal-layout style="height: 100%; font-style: normal; font-weight: 500; font-size: 36px; line-height: 42px; color: #FFFFFF; align-self: center; width: 100%;">
-  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #00758B; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; border-radius: 10px; flex-direction: column-reverse; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);" id="todo">
+  <vaadin-vertical-layout style="height: 100%; width: 33%; background: #00758B; border: 1px solid rgba(0, 0, 0, 0.5); box-sizing: border-box; border-radius: 10px; flex-direction: column; margin: var(--lumo-space-l); margin-left: var(--lumo-space-xl); margin-right: var(--lumo-space-xl);" id="todo">
    <vaadin-button style="color: #FFFFFF; background-color: #00758B; font-size: 18pt; margin-bottom: auto;" disabled tabindex="">
      To Do 
    </vaadin-button>
