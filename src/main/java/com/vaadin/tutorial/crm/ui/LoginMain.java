@@ -4,7 +4,7 @@ import com.vaadin.tutorial.crm.GoogleSignin;
 import com.vaadin.tutorial.crm.GoogleSignin.Height;
 import com.vaadin.tutorial.crm.GoogleSignin.Theme;
 import com.vaadin.tutorial.crm.GoogleSignin.Width;
-import com.vaadin.tutorial.crm.backend.controller.DatabaseController;
+import com.vaadin.tutorial.crm.backend.entity.Database;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Image;
@@ -32,11 +32,11 @@ public class LoginMain extends PolymerTemplate<LoginMain.LoginMainModel> {
 	@Id("signInWrapper")
 	private HorizontalLayout signInWrapper;
 	
-    DatabaseController dbc;
+    Database dbc;
 	/**
      * Creates a new LoginMain.
      */
-    public LoginMain(DatabaseController dbc) {
+    public LoginMain(Database dbc) {
         // You can initialise any data required for the connected UI components here.
     	setLogo(); 
     	signin = new GoogleSignin(MY_GOOGLE_CLIENT_ID);

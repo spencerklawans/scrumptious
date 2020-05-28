@@ -9,7 +9,7 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.tutorial.crm.backend.controller.DatabaseController;
+import com.vaadin.tutorial.crm.backend.entity.Database;
 import com.vaadin.tutorial.crm.backend.entity.User;
 
 
@@ -29,7 +29,7 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
 	private Button userDashButton;
 
 
-	private static DatabaseController dbc = new DatabaseController();
+	private static Database dbc = new Database();
 	private User user;
 	/**
      * Creates a new HeaderComponent.
