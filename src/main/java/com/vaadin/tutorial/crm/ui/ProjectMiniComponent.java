@@ -2,7 +2,7 @@ package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.vaadin.flow.component.Tag;
@@ -42,9 +42,15 @@ public class ProjectMiniComponent extends PolymerTemplate<ProjectMiniComponent.P
         // Add setters and getters for template properties here.
     }
     
-    public void setDetails(String name, LocalDateTime date, String creator) {
+    public void setName(String name) {
     	title.setText(name);
+    }
+    
+    public void setDate(LocalDate date) {
     	dateCreated.setText(date.toString());
-    	owner.setText(creator);
+    }
+    
+    public void setOwner(String team) {
+    	owner.setText(team);
     }
 }

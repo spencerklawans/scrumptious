@@ -1,6 +1,11 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -27,7 +32,7 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 	private AddProjectComponent addButton;
 	@Id("topLayout")
 	private HorizontalLayout topLayout;
-
+	private ProjectController projectController = new ProjectController(); 
 	/**
      * Creates a new MainProjectView.
      */
@@ -36,6 +41,7 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
     	header.setLogo();
     	header.setUserButton();
     	addButton.setNavButton();
+    	generateDisplay(); 
     }
 
     /**
@@ -43,5 +49,12 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
      */
     public interface ProjectViewModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+    public void generateDisplay() {
+    	List<ProjectMiniComponent> compList = projectController.buildProjComponents();
+    	for (ProjectMiniComponent pmc : compList) {
+    		topLayout.add(pmc);
+    	}
     }
 }

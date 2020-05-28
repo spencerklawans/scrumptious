@@ -15,7 +15,7 @@ class AddBacklogComponent extends PolymerElement {
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;">
  <vaadin-button theme="icon" aria-label="Add new" style="width: 100%; background-color: #FED766; box-shadow: var(--lumo-box-shadow-s); border-radius: 10px; color: #000000;" id="addButton">
-  <iron-icon icon="lumo:plus"></iron-icon>
+  <iron-icon icon="lumo:plus"></iron-icon>Add to Backlog
  </vaadin-button>
 </vaadin-vertical-layout>
 `;

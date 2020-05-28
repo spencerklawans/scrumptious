@@ -3,13 +3,8 @@ package com.vaadin.tutorial.crm.backend.entity;
 import java.util.ArrayList;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.vaadin.tutorial.crm.backend.repository.UserRepository;
 
 @Entity
 public class User extends AbstractEntity implements Cloneable {
@@ -81,6 +76,10 @@ public class User extends AbstractEntity implements Cloneable {
         this.picURL = picURL;
     }
     
+    public String getFirstName() {
+    	return firstName; 
+    }
+    
 public ArrayList<Project> getProjects(){return this.projects;}
 	
 	public void addProject(Project project, boolean override) throws DuplicateProjectException {
@@ -143,6 +142,10 @@ public ArrayList<Project> getProjects(){return this.projects;}
 		}
 		return false;
 	}
-    
 
+	@Override
+	public Object clone() throws CloneNotSupportedException{
+		User clone = (User)super.clone();
+		return clone;
+	}
 }

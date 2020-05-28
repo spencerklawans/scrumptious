@@ -7,6 +7,8 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 //import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 
 /**
  * A Designer generated component for the add-to-backlog template.
@@ -22,6 +24,12 @@ public class AddToBacklog extends PolymerTemplate<AddToBacklog.AddToBacklogModel
 	private Button cancelButton;
 	@Id("addButton")
 	private Button addButton;
+	@Id("title")
+	private TextField title;
+	@Id("description")
+	private TextField description;
+	@Id("prioritySelection")
+	private RadioButtonGroup<String> prioritySelection;
 
 	/**
      * Creates a new AddToBacklog.

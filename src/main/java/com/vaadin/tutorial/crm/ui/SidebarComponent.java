@@ -65,4 +65,6 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"))
     	);
     }
+    public void setToBacklog() {
+	}
 }
