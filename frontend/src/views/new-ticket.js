@@ -25,36 +25,36 @@ class NewTicket extends PolymerElement {
  </vaadin-button>
  <vaadin-form-item style="margin: var(--lumo-space-m); ">
   <label slot="label">Title</label>
-  <vaadin-text-field class="full-width" required has-value></vaadin-text-field>
+  <vaadin-text-field class="full-width" required has-value id="title" invalid></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-form-item style="width: 100%; margin: var(--lumo-space-m);">
   <label slot="label">Description</label>
-  <vaadin-text-field class="full-width" style="padding: var(--lumo-space-xs); padding-right: var(--lumo-space-l); flex-grow: 1;" has-value></vaadin-text-field>
+  <vaadin-text-field class="full-width" style="padding: var(--lumo-space-xs); padding-right: var(--lumo-space-l); flex-grow: 1;" has-value id="description"></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-horizontal-layout theme="spacing-xl" style="margin: var(--lumo-space-m); justify-content: space-around;">
-  <vaadin-date-picker label="Date Assigned" placeholder="Default: Today" style="font-size: 12pt;"></vaadin-date-picker>
-  <vaadin-date-picker label="Date Due" style="font-size: 12pt;"></vaadin-date-picker>
+  <vaadin-date-picker label="Date Assigned" placeholder="Default: Today" style="font-size: 12pt;" id="dateAssigned"></vaadin-date-picker>
+  <vaadin-date-picker label="Date Due" style="font-size: 12pt;" id="dateDue"></vaadin-date-picker>
  </vaadin-horizontal-layout>
- <vaadin-combo-box style="padding-left: var(--lumo-space-m);" label="Assign To"></vaadin-combo-box>
+ <vaadin-combo-box style="padding-left: var(--lumo-space-m);" label="Assign To" id="possibleMembers"></vaadin-combo-box>
  <vaadin-checkbox-group label="Priority" style="padding: var(--lumo-space-m);">
-  <vaadin-checkbox>
+  <vaadin-checkbox id="lowPriority">
     Low 
   </vaadin-checkbox>
-  <vaadin-checkbox>
+  <vaadin-checkbox id="medPriority">
     Medium 
   </vaadin-checkbox>
-  <vaadin-checkbox>
+  <vaadin-checkbox id="highPriority">
     High 
   </vaadin-checkbox>
  </vaadin-checkbox-group>
- <vaadin-checkbox-group label="Status" style="padding: var(--lumo-space-m);">
-  <vaadin-checkbox>
+ <vaadin-checkbox-group label="Status" style="padding: var(--lumo-space-m);" id="status">
+  <vaadin-checkbox id="todoStatus">
     To Do 
   </vaadin-checkbox>
-  <vaadin-checkbox>
+  <vaadin-checkbox id="inProgressStatus">
     In Progress 
   </vaadin-checkbox>
-  <vaadin-checkbox>
+  <vaadin-checkbox id="completedStatus">
     Completed 
   </vaadin-checkbox>
  </vaadin-checkbox-group>

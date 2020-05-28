@@ -1,7 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
 import java.util.ArrayList;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Ticket {
@@ -12,8 +12,8 @@ public class Ticket {
 	private StatusEnum status;
 	private ArrayList<User> assignees;
 	private String description;
-	private LocalDateTime assigned;
-	private LocalDateTime dueDate;
+	private LocalDate assigned;
+	private LocalDate dueDate;
 	
 
 	public Ticket() {
@@ -63,17 +63,17 @@ public class Ticket {
 	
 	public void setDescription(String description) {this.description = description;}
 	
-	public LocalDateTime getAssigned() {return this.assigned;}
+	public LocalDate getAssigned() {return this.assigned;}
 	
-	public void setAssigned(LocalDateTime dt) {
+	public void setAssigned(LocalDate dt) {
 		// likely will be replaced with string parameter (or what comes 
 		// out of Vaadin component input processing
 		this.assigned = dt;
 	}
 	
-	public LocalDateTime getDueDate() {return this.dueDate;}
+	public LocalDate getDueDate() {return this.dueDate;}
 	
-	public void setDueDate(LocalDateTime dt) {
+	public void setDueDate(LocalDate dt) {
 		// see setAssigned
 		this.dueDate = dt;
 	}

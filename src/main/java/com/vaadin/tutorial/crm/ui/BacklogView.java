@@ -14,6 +14,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 //import com.vaadin.flow.component.button.Button;
 //import com.vaadin.tutorial.crm.ui.SidebarComponent;
+import com.vaadin.tutorial.crm.ui.AddBacklogComponent;
 
 /**
  * A Designer generated component for the backlog-view template.
@@ -30,6 +31,8 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 	private SidebarComponent sidebar;
 	@Id("header")
 	private HeaderComponent header;
+	@Id("addComponent")
+	private AddBacklogComponent addComponent;
 
 	/**
      * Creates a new BacklogView.
@@ -39,7 +42,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
     	sidebar.setNavButtons();
     	header.setLogo();
     	header.setUserButton();
-  
+    	addComponent.setNavButtons();
     }
 
     /**

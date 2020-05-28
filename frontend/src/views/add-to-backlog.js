@@ -24,29 +24,29 @@ class AddToBacklog extends PolymerElement {
  </vaadin-button>
  <vaadin-form-item style="margin: var(--lumo-space-m); align-self: flex-start;">
   <label slot="label" style="font-size: 12pt; ">Title</label>
-  <vaadin-text-field class="full-width" has-value style="flex-grow: 1;" required></vaadin-text-field>
+  <vaadin-text-field class="full-width" has-value style="flex-grow: 1;" required id="title"></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-form-item style="margin: var(--lumo-space-m);">
   <label slot="label" style="font-size: 12pt;">Description</label>
-  <vaadin-text-field class="full-width" has-value placeholder="(optional)"></vaadin-text-field>
+  <vaadin-text-field class="full-width" has-value placeholder="(optional)" id="description"></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-button style="background-color: #FFFFFF; color: hsla(214, 42%, 18%, 0.72); margin: var(--lumo-space-xs);" disabled tabindex="">
    Priority 
  </vaadin-button>
- <vaadin-radio-group theme="horizontal" value="on" style="padding-left: var(--lumo-space-xl);">
-  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);">
+ <vaadin-radio-group theme="horizontal" value="on" style="padding-left: var(--lumo-space-xl);" id="prioritySelection">
+  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);" id="lowPriority">
    <b>Low</b>
    <div>
      Non-vital work 
    </div>
   </vaadin-radio-button>
-  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);" tabindex="-1">
+  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);" tabindex="-1" id="medPriority">
    <b>Medium</b>
    <div>
      Essential 
    </div>
   </vaadin-radio-button>
-  <vaadin-radio-button checked>
+  <vaadin-radio-button checked id="highPriority" tabindex="-1">
    <b>High</b>
    <div>
      Essential and time-sensitive 
