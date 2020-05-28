@@ -24,14 +24,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
     @Id("header")
 	private HeaderComponent header;
-	@Id("nameField")
-	private HorizontalLayout nameField;
-	@Id("roleField")
-	private HorizontalLayout roleField;
-	@Id("emailField")
-	private HorizontalLayout emailField;
-	@Id("phoneField")
-	private HorizontalLayout phoneField;
 	@Id("editProfileButton")
 	private Button editProfileButton;
 	@Id("projectListBox")
@@ -44,6 +36,14 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	private Button toTicketsButton;
 	@Id("notesField")
 	private HorizontalLayout notesField;
+	@Id("name")
+	private Button name;
+	@Id("role")
+	private Button role;
+	@Id("email")
+	private Button email;
+	@Id("userProfilePic")
+	private HorizontalLayout userProfilePic;
 	/**
      * Creates a new UserDashboard.
      */
