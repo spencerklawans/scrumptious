@@ -6,12 +6,12 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-//import com.vaadin.tutorial.crm.ui.HeaderComponent;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
-import com.vaadin.tutorial.crm.backend.entity.Database;
+import com.vaadin.tutorial.crm.oauth.data.UserSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * A Designer generated component for the user-dashboard template.
@@ -23,6 +23,8 @@ import com.vaadin.tutorial.crm.backend.entity.Database;
 @JsModule("./src/views/user-dashboard.js")
 @Route(value = "dashboard")
 public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardModel> {
+
+
 
     @Id("header")
 	private HeaderComponent header;
@@ -47,7 +49,10 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	@Id("userProfilePic")
 	private Button userProfilePic;
 
-	Database data = new Database();
+
+	@Autowired
+	UserSession userSession = new UserSession();
+
 	/**
      * Creates a new UserDashboard.
      */
@@ -65,8 +70,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
-    	name.setText(data.getCurrUser().getFirstName() + " " + data.getCurrUser().getLastName());
-		Image icon = new Image(data.getCurrUser().getPic(),"UserIcon");
+    	name.setText(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
+		Image icon = new Image(userSession.getUser().getPicture(),"UserIcon");
 		icon.setHeight("150px");
 		icon.setWidth("150px");
 		userProfilePic.setIcon(icon);
