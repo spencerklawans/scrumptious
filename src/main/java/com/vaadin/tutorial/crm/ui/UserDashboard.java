@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -10,6 +11,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.tutorial.crm.backend.entity.Database;
 
 /**
  * A Designer generated component for the user-dashboard template.
@@ -43,7 +45,9 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	@Id("email")
 	private Button email;
 	@Id("userProfilePic")
-	private HorizontalLayout userProfilePic;
+	private Button userProfilePic;
+
+	Database data = new Database();
 	/**
      * Creates a new UserDashboard.
      */
@@ -61,6 +65,11 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
+    	name.setText(data.getCurrUser().getFirstName() + " " + data.getCurrUser().getLastName());
+		Image icon = new Image(data.getCurrUser().getPic(),"UserIcon");
+		icon.setHeight("150px");
+		icon.setWidth("150px");
+		userProfilePic.setIcon(icon);
     	toProjectsButton.addClickListener(e ->
     		toProjectsButton.getUI().ifPresent(ui -> ui.navigate("projects"))
     	);

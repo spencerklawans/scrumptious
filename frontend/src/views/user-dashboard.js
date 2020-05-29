@@ -25,19 +25,25 @@ class UserDashboard extends PolymerElement {
    <vaadin-button style="background-color: rgba(210, 209, 213, 0.5); color: #000000; font-size: 16pt; padding: var(--lumo-space-xs);" disabled tabindex="">
      User Dashboard 
    </vaadin-button>
-   <vaadin-vertical-layout style="width: 100%; height: 90%; background-color: #009FB7; margin-top: var(--lumo-space-xs); border-radius: 15px;">
-    <vaadin-horizontal-layout style="width: 100%; height: 50%; padding: var(--lumo-space-l);" id="userProfilePic"></vaadin-horizontal-layout>
-    <vaadin-vertical-layout style="height: 60%; width: 100%; flex-direction: column;">
+   <vaadin-vertical-layout style="width: 100%; height: 90%; background-color: #009FB7; margin-top: var(--lumo-space-xs); border-radius: 15px; justify-content: space-around;">
+    <vaadin-vertical-layout style="height: 60%; width: 100%; flex-direction: column; justify-content: space-around;">
+     <vaadin-horizontal-layout style="width: 100%;" id="profilePicField">
+      <vaadin-button id="userProfilePic" style="width: 100%; height: 100%; border-radius: 50%; background-color: transparent; flex-grow: 0; flex-shrink: 1; align-self: center; padding-top: var(--lumo-space-s);"></vaadin-button>
+     </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="nameField">
-      <vaadin-button id="name" style="width: 100%; background-color: #009FB7; " disabled> 
-      </vaadin-button>
+      <vaadin-button id="name" style="width: 100%; background-color: #009FB7; color: #000000; font-size: 14pt;" disabled tabindex=""></vaadin-button>
      </vaadin-horizontal-layout>
-     <vaadin-horizontal-layout style="width: 100%;" id="roleField">
-      <vaadin-button id="role" style="width: 100%; background-color: #009FB7; "> 
+     <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="roleField">
+      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
+       Role:
       </vaadin-button>
+      <vaadin-button id="role" style="background-color: #009FB7; font-size: 10pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
      </vaadin-horizontal-layout>
-     <vaadin-horizontal-layout style="width: 100%;" id="emailField">
-      <vaadin-button id="email" style="width: 100%; background-color: #009FB7; "></vaadin-button>
+     <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="emailField">
+      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
+       Email:
+      </vaadin-button>
+      <vaadin-button id="email" style="background-color: #009FB7; font-size: 14pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="phoneField"></vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: center;">
@@ -51,7 +57,7 @@ class UserDashboard extends PolymerElement {
   <vaadin-vertical-layout style="width: 70%;">
    <vaadin-horizontal-layout style="width: 100%; height: 50%; justify-content: space-between; padding-top: var(--lumo-space-xl);">
     <vaadin-vertical-layout style="width: 45%; margin-top: var(--lumo-space-l); margin-left: var(--lumo-space-xs); background-color: #009FB7; border-radius: 15px;">
-     <vaadin-button style="background-color: #009FB7; color: #FFFFFF; font-size: 14pt; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);" disabled>
+     <vaadin-button style="background-color: #009FB7; color: #FFFFFF; font-size: 14pt; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);" disabled tabindex="">
        Current Projects 
      </vaadin-button>
      <vaadin-horizontal-layout style="width: 90%; align-self: center; background-color: #FFFFFF; border-radius: 15px; height: 50%;">
