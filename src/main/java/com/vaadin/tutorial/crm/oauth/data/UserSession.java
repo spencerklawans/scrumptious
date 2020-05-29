@@ -12,6 +12,8 @@ import java.io.Serializable;
 @SessionScope
 public class UserSession implements Serializable {
 
+    public Long pid;
+
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext()
                 .getAuthentication();
@@ -23,9 +25,11 @@ public class UserSession implements Serializable {
                 principal.getAttribute("picture"));
     }
 
+
     public boolean isLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext()
                 .getAuthentication();
         return authentication != null;
     }
+
 }

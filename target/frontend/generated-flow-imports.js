@@ -93,6 +93,7 @@ import 'Frontend/src/views/backlog-mini-component.js';
 import 'Frontend/src/views/backlog-view.js';
 import 'Frontend/src/views/calendar-main.js';
 import 'Frontend/src/views/header-component.js';
+import 'Frontend/src/views/login-screen.js';
 import 'Frontend/src/views/new-ticket-main.js';
 import 'Frontend/src/views/new-ticket.js';
 import 'Frontend/src/views/project-mini-component.js';

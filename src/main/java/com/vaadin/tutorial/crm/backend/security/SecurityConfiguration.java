@@ -21,9 +21,10 @@ import java.util.stream.Stream;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String LOGIN_URL = "/login";
+    private static final String LOGIN_URL = "/";
     private static final String LOGOUT_URL = "/logout";
-    private static final String LOGOUT_SUCCESS_URL = "/dashboard";
+    private static final String LOGOUT_SUCCESS_URL = "/";
+    private static final String LOGIN_SUCCESS_URL = "/dashboard"; 
 
     /**
      * Registers our UserDetailsService and the password encoder to be used on
@@ -47,8 +48,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logout().logoutUrl(LOGOUT_URL).logoutSuccessUrl(LOGOUT_SUCCESS_URL)
 
             // Configure the login page.
-            .and().oauth2Login().loginPage(LOGIN_URL).permitAll();
+            .and().oauth2Login().loginPage(LOGIN_URL).permitAll()
+
         // @formatter:on
+        	.defaultSuccessUrl(LOGIN_SUCCESS_URL);
+
+        http.headers().frameOptions().disable();
     }
 
     /**
