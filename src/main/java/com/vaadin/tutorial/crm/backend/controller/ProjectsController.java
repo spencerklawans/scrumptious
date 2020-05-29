@@ -4,11 +4,12 @@ import java.time.LocalDate;
 
 import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.User;
+import com.vaadin.tutorial.crm.backend.entity.Database;
 
 public class ProjectsController {
 	
 	User user;
-	DatabaseController dbc;
+	Database dbc;
 	
 	public ProjectsController(User user) {
 		this.user = user;
