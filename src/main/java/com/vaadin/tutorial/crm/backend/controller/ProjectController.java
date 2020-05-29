@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.tutorial.crm.backend.entity.Project;
+import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.entity.User;
 import com.vaadin.tutorial.crm.ui.ProjectMiniComponent;
 
@@ -95,6 +97,11 @@ public class ProjectController {
     public void addCollaborator(User user){
         //should be more fleshed out -- Use return value (member count) for frontend rendering?
         this.currentProject.addMember(user);
+    }
+    
+    public List<Ticket> getTickets(StatusEnum status){
+    	//this.currentProject.getTicketsBy(status);
+    	return new ArrayList<>();
     }
 
 }

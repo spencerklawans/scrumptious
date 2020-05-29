@@ -13,6 +13,7 @@ public class Project {
 	final private LocalDate dateCreated;
 	private List<User> admins;
 	private List<User> team;
+	private List<Ticket> tickets;
 
 	public Project() {
 		this.id = 0;
@@ -80,5 +81,18 @@ public class Project {
 			}
 		}
 		return false;
+	}
+	
+	public List<Ticket> getTicketsBy(StatusEnum status){
+		// Returns a list of tickets having status 'status'
+		
+		List<Ticket> retTickets = new ArrayList();
+		for (Ticket ticket : this.tickets) {
+			if (ticket.getStatus() == status) {
+				retTickets.add(ticket);
+			}
+		}
+		
+		return retTickets;
 	}
 }
