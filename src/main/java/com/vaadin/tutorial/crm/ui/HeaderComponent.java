@@ -55,7 +55,7 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
     
     public void setUserButton() {
 		this.user = dbc.getCurrUser();
-    	Image icon = new Image(user.getPic(),"UserIcon");
+    	Image icon = new Image(user.getPic(),"UserIcon"); //should not execute unless user signed in
 		icon.setHeight("50px");
 		icon.setWidth("50px");
     	userDashButton.setIcon(icon);
