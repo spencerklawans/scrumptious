@@ -7,7 +7,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.tutorial.crm.backend.controller.DatabaseController;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
@@ -38,7 +37,7 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     /**
      * Creates a new TicketsByStatus.
      */
-    public TicketsByStatus(DatabaseController dbc) {
+    public TicketsByStatus() {
         // You can initialise any data required for the connected UI components here.
     }
 
