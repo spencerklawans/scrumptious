@@ -17,10 +17,10 @@ class TicketComponent extends PolymerElement {
 <vaadin-vertical-layout style="border: 2px solid #000000; background-color: #FFFFFF; justify-content: space-between;">
  <vaadin-button id="title" style="width: 100%; background-color: rgba(255, 255, 255); font-size: 14pt; flex-grow: 0;"></vaadin-button>
  <vaadin-horizontal-layout style="width: 100%; justify-content: space-between; padding-right: var(--lumo-space-m); padding-left: var(--lumo-space-m);">
-  <vaadin-button id="assignedUser" style="background-color: #FFFFFF; font-size: 8pt;" disabled>
+  <vaadin-button id="assignedUser" style="background-color: #FFFFFF; font-size: 8pt;" disabled tabindex="">
    <iron-icon icon="lumo:user" slot="prefix" style="color: #FED766;"></iron-icon>
   </vaadin-button>
-  <vaadin-button id="priority" style="font-size: 8pt; color: #000000; background-color: #FFFFFF;" disabled></vaadin-button>
+  <vaadin-button id="priority" style="font-size: 8pt; color: #000000; background-color: #FFFFFF;" disabled tabindex=""></vaadin-button>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 `;
