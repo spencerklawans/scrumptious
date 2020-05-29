@@ -8,7 +8,7 @@ import com.vaadin.tutorial.crm.backend.entity.User;
 public class ProjectsController {
 	
 	User user;
-	DatabaseController dbc;
+//	Database dbc;
 	
 	public ProjectsController(User user) {
 		this.user = user;

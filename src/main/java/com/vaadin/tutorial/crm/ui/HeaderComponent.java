@@ -9,8 +9,11 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.tutorial.crm.backend.controller.DatabaseController;
+import com.vaadin.tutorial.crm.backend.entity.Database;
+import com.vaadin.tutorial.crm.oauth.data.UserSession;
+
 import com.vaadin.tutorial.crm.backend.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -28,9 +31,9 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
 	@Id("userDashButton")
 	private Button userDashButton;
 
+	@Autowired
+	UserSession userSession;
 
-	private static DatabaseController dbc = new DatabaseController();
-	private User user;
 	/**
      * Creates a new HeaderComponent.
      */
@@ -54,8 +57,7 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
     }
     
     public void setUserButton() {
-		this.user = dbc.getCurrUser();
-    	Image icon = new Image(user.getPic(),"UserIcon"); //should not execute unless user signed in
+    	Image icon = new Image(userSession.getUser().getPicture(),"UserIcon"); //should not execute unless user signed in
 		icon.setHeight("50px");
 		icon.setWidth("50px");
     	userDashButton.setIcon(icon);

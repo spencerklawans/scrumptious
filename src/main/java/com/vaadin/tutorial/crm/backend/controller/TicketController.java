@@ -1,6 +1,5 @@
 package com.vaadin.tutorial.crm.backend.controller;
 
-import com.vaadin.tutorial.crm.backend.entity.Database;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 
 public class TicketController {
@@ -12,12 +11,10 @@ public class TicketController {
 		//TODO: Make this work.
         // should query database and fill new ticket with boilerplate info from database
 
-        Database db = Database.getInstance();
 
         Ticket ticket = new Ticket(name);
         ticket.setDescription("This is a test");
 
-        db.update(ticket, "testdata");
 
         return ticket;
     }
@@ -27,7 +24,6 @@ public class TicketController {
 		//TODO: this needs to be fixed
 
         //query database for info
-        Database db = Database.getInstance();
 
         //fill a ticket
         Ticket ticket = getNewTicket(reference);
