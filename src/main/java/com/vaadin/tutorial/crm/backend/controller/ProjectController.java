@@ -76,6 +76,11 @@ public class ProjectController {
     	return teamList; 		
     }
 
+    public Project findPid(Long pid)
+	{
+		return projectRepository.findById(pid).get();
+	}
+
     public List<ProjectMiniComponent> buildProjComponents() {
     	ArrayList<ProjectMiniComponent> miniComponents = new ArrayList<>(); 
     	for (Long projectId : udc.getFromEmail(usc.getEmail()).getProjects()) {
@@ -84,7 +89,8 @@ public class ProjectController {
     		projComponent.setName(project.getName());
     		projComponent.setDate(project.getDateCreated());
     		projComponent.setOwner(project.getCreator());
-    		projComponent.getElement().addEventListener("click", e -> { 
+    		projComponent.getElement().addEventListener("click", e -> {
+    			usc.setPid(project.getId());
     			projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));
     			});
     		miniComponents.add(projComponent); 
