@@ -49,6 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             // Configure the login page.
             .and().oauth2Login().loginPage(LOGIN_URL).permitAll();
         // @formatter:on
+        http.headers().frameOptions().disable();
     }
 
     /**
