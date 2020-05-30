@@ -3,11 +3,14 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 import org.aspectj.weaver.ast.Not;
+import org.vaadin.stefan.fullcalendar.CalendarView;
+import org.vaadin.stefan.fullcalendar.CalendarViewImpl;
 import org.vaadin.stefan.fullcalendar.FullCalendar;
 import org.vaadin.stefan.fullcalendar.Entry;
 import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
 
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -41,10 +44,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -77,6 +82,8 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
     
     private Calendar service;
+	@Id("viewWrapper")
+	private HorizontalLayout viewWrapper;
 
 	/**
      * Creates a new CalendarMain.
@@ -113,7 +120,11 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     
     public void setCalendar() {
     	FullCalendar calendar = FullCalendarBuilder.create().build();
-    	
+
+    	calendar.setWeekNumbersVisible(false);
+    	calendarWrapper.add(calendar);
+    	calendarWrapper.setFlexGrow(1, calendar);
+
     	// get next 10 events
     	//TODO Configure this to show dynamic number of events
     	List<Event> events= this.getCalendarEvents(10); 
@@ -155,16 +166,33 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 			// For debugging:
 			//Notification.show("Upcoming event: " + event.getDescription());
 		}
+		
     	// Tests for Vaadin calendar event adding:
 		//TODO: Replace these with GCal events, eventually delete
 		LocalDateTime now = LocalDateTime.now();
 		calendar.addEntry(newCalendarEntry("Hello World", now.plusHours(1), now.plusHours(2), false,  "Test1"));
 		calendar.addEntry(newCalendarEntry("Hello World2", now.plusHours(3), now.plusHours(4), false, "Test2"));
-    	
-    	calendarWrapper.add(calendar);
-    	calendarWrapper.setFlexGrow(1, calendar);
-    	
-    	
+		
+		//select which view to display 
+		ComboBox<CalendarView> viewBox = new ComboBox<>("", CalendarViewImpl.values()); 
+	   	viewBox.addValueChangeListener(e -> {
+    		CalendarView value = e.getValue(); 
+    		calendar.changeView(value == null ? CalendarViewImpl.DAY_GRID_MONTH : value); 
+	  	});
+		    	
+		viewBox.setValue(CalendarViewImpl.DAY_GRID_MONTH);
+	   	viewBox.getStyle().set("background-color", "#FED766");
+    	viewWrapper.add(viewBox);
+    	calendar.addDatesRenderedListener(e -> {
+	   		LocalDate intervalStart = e.getIntervalStart(); 
+    		CalendarView cView = viewBox.getValue(); 
+    	});
+		    	
+    	//set timezone 
+	   	calendar.addBrowserTimezoneObtainedListener(e -> {
+	  		calendar.setTimezone(e.getTimezone());
+    	});
+
     }
     
     private static Credential getCredentials(final NetHttpTransport httpTrans) throws IOException {
