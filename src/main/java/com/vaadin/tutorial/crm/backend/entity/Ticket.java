@@ -10,7 +10,7 @@ public class Ticket {
 	private String title;
 	private PriorityEnum priority;
 	private StatusEnum status;
-	private ArrayList<User> assignees;
+	private ArrayList<String> assigneeEmails;
 	private String description;
 	private LocalDate assigned;
 	private LocalDate dueDate;
@@ -41,22 +41,15 @@ public class Ticket {
 	
 	public void setStatus(StatusEnum newStatus) {this.status = newStatus;}
 	
-	public List<User> getAssignees() {return this.assignees;}
+	public List<String> getAssignees() {return this.assigneeEmails;}
 	
-	public void addAssignee(User user) {
-		this.assignees.add(user);
+	public void addAssignee(String user) {
+		this.assigneeEmails.add(user);
 	}
 	
-	public Boolean removeAssignee(User user) {
+	public void removeAssignee(String user) {
 		// Returns boolean whether user was removed from assignees
-		for (int i = 0; i <= this.assignees.size(); i++) {
-			if (this.assignees.get(i).equals(user)) {
-				this.assignees.remove(i);
-				return true;
-				
-			}
-		}
-		return false;
+		assigneeEmails.remove(user);
 	}
 	
 	public String getDescription() {return this.description;}
