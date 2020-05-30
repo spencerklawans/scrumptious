@@ -11,6 +11,9 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.tutorial.crm.backend.controller.UserDataController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -52,16 +55,25 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	private Button userProfilePic;
 
 
-	@Autowired
-	UserSession userSession = new UserSession();
+	UserSessionController usc;
+	
+	UserDataController udc;
 
 	/**
      * Creates a new UserDashboard.
      */
-    public UserDashboard() {
+    public UserDashboard(UserDataController udc, UserSessionController usc) {
         // You can initialise any data required for the connected UI components here.
+    	this.udc = udc;
+    	this.usc = usc;
     	setPageButtons(); 
     	header.setLogo();
+    	if (udc.getFromEmail(usc.getEmail()) == null)
+    	{
+    		udc.addUser(usc.getEmail());
+    	}
+    	for (Long project_id : udc.getFromEmail(usc.getEmail()).getProjects())
+    		System.out.println((project_id.toString()));
     }
 
     /**
@@ -72,9 +84,9 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
-		userSession.pid = hash(userSession.getUser().getFirstName());
-    	name.setText(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
-		Image icon = new Image(userSession.getUser().getPicture(),"UserIcon");
+		usc.setPid(hash(usc.getFirstName()));
+    	name.setText(usc.getFullName());
+		Image icon = new Image(usc.getPicUrl(),"UserIcon");
 		icon.setHeight("150px");
 		icon.setWidth("150px");
 		userProfilePic.setIcon(icon);
@@ -85,8 +97,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	toTicketsButton.addClickListener(e ->
     		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
     	);
-    	System.out.println("PID: " + userSession.pid);
-    	String p = Long.toString(userSession.pid);
+    	System.out.println("PID: " + usc.getPid());
+    	String p = Long.toString(usc.getPid());
     	editProfileButton.addClickListener(event -> Notification.show(p));
     	
     }
