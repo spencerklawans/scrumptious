@@ -13,14 +13,14 @@ class BacklogMiniComponent extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="background: #FFFFFF; border: 5px solid #009FB7; box-shadow: var(--lumo-box-shadow-s); border-radius: 10px; flex-direction: column;">
- <vaadin-button style="width: 100%; background-color: rgba(255, 255, 255); font-size: 14pt; line-height: 28px; color: #000000; height: 80%;" disabled tabindex="">
+ <vaadin-button style="width: 100%; background-color: rgba(255, 255, 255); font-size: 14pt; line-height: 28px; color: #000000; height: 80%;" disabled tabindex="" id="title">
    Backlog Item Title 
  </vaadin-button>
  <vaadin-button style="background: rgba(232, 184, 14, 0.6); border-radius: 2px; align-self: flex-end; margin: var(--lumo-space-l);
 font-size: 10pt;
 line-height: 16px;
 
-color: #000000;" disabled tabindex="">
+color: #000000;" disabled tabindex="" id="priority">
    Priority Level 
  </vaadin-button>
 </vaadin-vertical-layout>

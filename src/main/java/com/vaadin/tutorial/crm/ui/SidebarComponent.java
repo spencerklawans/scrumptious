@@ -17,8 +17,6 @@ import com.vaadin.flow.component.polymertemplate.Id;
 @JsModule("./src/views/sidebar-component.js")
 public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarComponentModel> {
 
-    @Id("toBacklog")
-	private Button toBacklog;
 	@Id("toCalendar")
 	private Button toCalendar;
 	@Id("toTickets")
@@ -27,6 +25,10 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	private Button toTeam;
 	@Id("toProjectPage")
 	private Button toProjectPage;
+	@Id("projectName")
+	private Button projectName;
+	@Id("toBacklog")
+	private Button toBacklog;
 
 	/**
      * Creates a new SidebarComponent.

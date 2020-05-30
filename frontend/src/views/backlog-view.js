@@ -4,7 +4,6 @@ import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import './header-component.js';
 import './sidebar-component.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
-import './backlog-mini-component.js';
 import './add-backlog-component.js';
 
 class BacklogView extends PolymerElement {
@@ -30,16 +29,9 @@ class BacklogView extends PolymerElement {
      Backlog 
    </vaadin-button>
    <vaadin-horizontal-layout style="width: 100%; flex-grow: 1;">
-    <vaadin-vertical-layout style="width: 33%;" theme="spacing">
-     <backlog-mini-component style="align-self: center;"></backlog-mini-component>
-     <backlog-mini-component style="align-self: center;"></backlog-mini-component>
-    </vaadin-vertical-layout>
-    <vaadin-vertical-layout style="width: 33%;">
-     <backlog-mini-component style="align-self: center;"></backlog-mini-component>
-    </vaadin-vertical-layout>
-    <vaadin-vertical-layout style="width: 33%;">
-     <backlog-mini-component style="align-self: center;"></backlog-mini-component>
-    </vaadin-vertical-layout>
+    <vaadin-vertical-layout style="width: 33%;" theme="spacing" id="columnOne"></vaadin-vertical-layout>
+    <vaadin-vertical-layout style="width: 33%;" id="columnTwo"></vaadin-vertical-layout>
+    <vaadin-vertical-layout style="width: 33%;" id="columnThree"></vaadin-vertical-layout>
    </vaadin-horizontal-layout>
    <vaadin-horizontal-layout style="width: 30%; align-self: flex-end; padding-bottom: var(--lumo-space-m); padding-right: var(--lumo-space-m); justify-content: flex-end;">
     <add-backlog-component id="addComponent" style="width: 100%;"></add-backlog-component>
