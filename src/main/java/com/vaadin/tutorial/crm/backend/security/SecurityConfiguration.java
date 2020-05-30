@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_URL = "/";
     private static final String LOGOUT_URL = "/logout";
     private static final String LOGOUT_SUCCESS_URL = "/";
-    private static final String LOGIN_SUCCESS_URL = "/dashboard"; 
+    private static final String LOGIN_SUCCESS_URL = "/projects"; 
 
     /**
      * Registers our UserDetailsService and the password encoder to be used on
