@@ -13,14 +13,14 @@ class LoginScreen extends PolymerElement {
                 }
             </style>
 <vaadin-horizontal-layout style="width: 100%; height: 100%; background-color: rgba(210, 209, 213); justify-content: center;">
- <vaadin-vertical-layout style="width: 40%; height: 40%; align-self: center; background-color: #FFFFFF; align-items: center;">
-  <vaadin-horizontal-layout id="logoWrapper" style="align-self: stretch; margin: var(--lumo-space-l); margin-top: var(--lumo-space-l); margin-bottom: var(--lumo-space-m); align-items: center; justify-content: center;"></vaadin-horizontal-layout>
-  <vaadin-horizontal-layout>
+ <vaadin-vertical-layout style="width: 40%; height: 30%; align-self: center; background-color: #FFFFFF; align-items: center; justify-content: center;">
+  <vaadin-horizontal-layout id="logoWrapper" style="align-self: stretch; margin: var(--lumo-space-l); margin-top: var(--lumo-space-l); margin-bottom: var(--lumo-space-m); align-items: center; justify-content: center; height: 20%;"></vaadin-horizontal-layout>
+  <vaadin-horizontal-layout style="height: 30%; justify-content: center; margin-top: var(--lumo-space-m);">
    <div style="font-size: 10pt; padding-left: var(--lumo-space-l); padding-right: var(--lumo-space-l); text-align: center; width: 100%;">
      A lightweight ticket management system for new developers. 
    </div>
   </vaadin-horizontal-layout>
-  <vaadin-horizontal-layout id="signInWrapper" style="margin: var(--lumo-space-l); border-radius: 10px; background-color: #FED766; box-shadow: var(--lumo-box-shadow-s); padding: var(--lumo-space-s); align-self: center; justify-content: center; align-items: center;"></vaadin-horizontal-layout>
+  <vaadin-horizontal-layout id="signInWrapper" style="margin: var(--lumo-space-l); border-radius: 10px; background-color: #FED766; box-shadow: var(--lumo-box-shadow-s); padding: var(--lumo-space-s); align-self: center; justify-content: center; align-items: center; height: 20%;"></vaadin-horizontal-layout>
  </vaadin-vertical-layout>
 </vaadin-horizontal-layout>
 `;

@@ -3,9 +3,9 @@ import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import './header-component.js';
 import './sidebar-component.js';
-import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-radio-button/src/vaadin-radio-group.js';
 import '@vaadin/vaadin-radio-button/src/vaadin-radio-button.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class CalendarMain extends PolymerElement {
 
@@ -29,7 +29,8 @@ class CalendarMain extends PolymerElement {
    <vaadin-button style="margin-top: var(--lumo-space-l); margin-left: var(--lumo-space-m); background-color: #FFFFFF; color: #000000; font-size: 16pt;" disabled tabindex="">
      Calendar 
    </vaadin-button>
-   <vaadin-horizontal-layout id="calendarWrapper" style="width: 100%; height: 70%; padding: var(--lumo-space-s);"></vaadin-horizontal-layout>
+   <vaadin-horizontal-layout id="viewWrapper" style="width: 100%; align-self: flex-end; justify-content: flex-end; padding-right: var(--lumo-space-m);"></vaadin-horizontal-layout>
+   <vaadin-horizontal-layout id="calendarWrapper" style="width: 100%; height: 70%; padding: var(--lumo-space-m);"></vaadin-horizontal-layout>
    <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: space-between; flex-grow: 1;">
     <vaadin-radio-group value="foo" style="padding-left: var(--lumo-space-l);" label="Now Viewing">
      <vaadin-radio-button name="foo">
@@ -42,9 +43,6 @@ class CalendarMain extends PolymerElement {
        Custom 
      </vaadin-radio-button>
     </vaadin-radio-group>
-    <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; align-self: center; flex-grow: 0; margin-right: var(--lumo-space-l); flex-shrink: 0;">
-      Export to Google Calendar 
-    </vaadin-button>
    </vaadin-horizontal-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
