@@ -1,6 +1,7 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -12,6 +13,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  * A Designer generated component for the user-dashboard template.
@@ -70,6 +72,7 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
+		userSession.pid = hash(userSession.getUser().getFirstName());
     	name.setText(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
 		Image icon = new Image(userSession.getUser().getPicture(),"UserIcon");
 		icon.setHeight("150px");
@@ -82,10 +85,23 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	toTicketsButton.addClickListener(e ->
     		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
     	);
+    	System.out.println("PID: " + userSession.pid);
+    	String p = Long.toString(userSession.pid);
+    	editProfileButton.addClickListener(event -> Notification.show(p));
     	
     }
     
     public void addToNotes() {
     }
+
+	public static long hash(String string) {
+		long h = 1125899906842597L; // prime
+		int len = string.length();
+
+		for (int i = 0; i < len; i++) {
+			h = 31*h + string.charAt(i);
+		}
+		return h;
+	}
     
 }

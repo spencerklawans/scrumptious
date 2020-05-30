@@ -49,8 +49,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
             // Configure the login page.
             .and().oauth2Login().loginPage(LOGIN_URL).permitAll()
+
         // @formatter:on
-        	.defaultSuccessUrl(LOGIN_SUCCESS_URL); 
+        	.defaultSuccessUrl(LOGIN_SUCCESS_URL);
+
+        http.headers().frameOptions().disable();
     }
 
     /**

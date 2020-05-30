@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Project {
 	
-	final private int id;
+	private final int id;
 	private String name;
 	//private ArrayList<User> users; is needed??
 	private String description;
-	final private LocalDate dateCreated;
+	private final LocalDate dateCreated;
 	private List<User> admins;
 	private List<User> team;
 	private List<Ticket> tickets;
@@ -86,7 +86,7 @@ public class Project {
 	public List<Ticket> getTicketsBy(StatusEnum status){
 		// Returns a list of tickets having status 'status'
 		
-		List<Ticket> retTickets = new ArrayList();
+		List<Ticket> retTickets = new ArrayList<Ticket>();
 		for (Ticket ticket : this.tickets) {
 			if (ticket.getStatus() == status) {
 				retTickets.add(ticket);

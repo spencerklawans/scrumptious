@@ -4,6 +4,7 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 
 import org.aspectj.weaver.ast.Not;
 import org.vaadin.stefan.fullcalendar.FullCalendar;
+import org.vaadin.stefan.fullcalendar.Entry;
 import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
 
 import com.vaadin.flow.component.Tag;
@@ -15,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 //import com.vaadin.tutorial.crm.ui.SidebarComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+
 
 //added for Gcalendar
 import com.google.api.client.auth.oauth2.Credential;
@@ -31,6 +33,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
 
 import java.io.FileNotFoundException;
@@ -38,6 +41,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -93,6 +100,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	header.setLogo();
     	header.setUserButton();
     	sidebar.setNavButtons();
+    	//TODO: Add buttons (???) to navigate between months
     	
     }
 
@@ -105,20 +113,66 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     
     public void setCalendar() {
     	FullCalendar calendar = FullCalendarBuilder.create().build();
+    	
+    	// get next 10 events
+    	//TODO Configure this to show dynamic number of events
+    	List<Event> events= this.getCalendarEvents(10); 
+
+    	LocalDateTime startLDT, endLDT;
+    	// by default, events are not all day.
+    	boolean eventIsAllDay = false;
+    	
+		//TODO: decompose this loop to `parseGCalEntry`
+		for (Event event : events) {
+			//Adds upcoming events from Signed In User's Google Calendar to calendar
+			
+			String title = event.getSummary();
+			//System.out.println(title);
+			
+			EventDateTime start = event.getStart();
+			//System.out.println(start);
+			try {
+				startLDT = parseLDTFromGoogleEvent(start);
+			}catch (Exception e) {
+				System.err.println(e.getMessage() + title);
+				continue;
+			}	
+			
+			EventDateTime end = event.getEnd();
+			//System.out.println(end);
+			try {
+				endLDT = parseLDTFromGoogleEvent(end);
+			}catch (Exception e) {
+				System.err.println(e.getMessage() + title);
+				continue;
+			}
+			
+			eventIsAllDay = isAllDay(startLDT, endLDT);
+			String description = event.getDescription();
+			
+			calendar.addEntry(newCalendarEntry(title, startLDT, endLDT, eventIsAllDay, description));
+			
+			// For debugging:
+			//Notification.show("Upcoming event: " + event.getDescription());
+		}
+    	// Tests for Vaadin calendar event adding:
+		//TODO: Replace these with GCal events, eventually delete
+		LocalDateTime now = LocalDateTime.now();
+		calendar.addEntry(newCalendarEntry("Hello World", now.plusHours(1), now.plusHours(2), false,  "Test1"));
+		calendar.addEntry(newCalendarEntry("Hello World2", now.plusHours(3), now.plusHours(4), false, "Test2"));
+    	
     	calendarWrapper.add(calendar);
     	calendarWrapper.setFlexGrow(1, calendar);
     	
-    	List<Event> events= this.getCalendarEvents(10); // get next 10 events
-		
-		for (Event event : events) {
-			// Temporarily show via notification, the events upcoming
-			//Replace with populate calendar
-			
-			Notification.show("Upcoming event: " + event.getDescription());
-		}
+    	
     }
     
-    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    private static Credential getCredentials(final NetHttpTransport httpTrans) throws IOException {
+    	/** API Code for Google Calendar 
+    	 * 
+    	 * @_DO_NOT_MODIFY
+    	 **/
+    	
         // Load client secrets.
         InputStream in = CalendarMain.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
@@ -128,7 +182,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+                httpTrans, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
@@ -138,11 +192,12 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     
     private void setService() throws IOException, GeneralSecurityException{
     	//GCalendar
-    	final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        this.service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+    	final NetHttpTransport httpTrans = GoogleNetHttpTransport.newTrustedTransport();
+        this.service = new Calendar.Builder(httpTrans, JSON_FACTORY, getCredentials(httpTrans))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
+    
     
     private List<Event> getCalendarEvents(int numEvents){
     	/**
@@ -154,7 +209,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	// Shows events after time.now
     	DateTime now = new DateTime(System.currentTimeMillis()); 
         Events events = null;
-        List<Event> items = new ArrayList<Event>();
+        List<Event> items = new ArrayList<>();
         
 		try {
 			//Get events
@@ -176,4 +231,85 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 		return items;
     }
     
+    
+    private static boolean isAllDay(LocalDateTime start, LocalDateTime end) {
+    	/**
+    	 * @params: start time and end time of an event
+    	 * @return: if the event spans all day or multiple days (duration is divisible by 86400 seconds)
+    	 * */
+    	return start.until(end, ChronoUnit.SECONDS) % 86400 == 0;
+    }
+    
+    
+    private static Entry newCalendarEntry(String title, 
+    							   LocalDateTime start, 
+    							   LocalDateTime end, 
+    							   boolean allDay,
+    							   String description) {
+    	/**
+    	 * @params: title of event, start time, end time, description
+    	 * @return: a new Vaadin Entry for the calendar display
+    	 * TODO: de-randomize(?) color
+    	 * */
+    	
+    	Entry entry = new Entry(String.valueOf(title.hashCode()));
+    	String color = randomColor();
+    	
+    	entry.setAllDay(allDay);
+    	entry.setColor(color);
+    	entry.setTitle(title);
+    	entry.setEnd(end);
+    	entry.setStart(start);
+    	entry.setDescription(description);
+    	
+    	return entry;
+    }
+    
+    private static String randomColor() {
+    	/** Generates a random color string to be used when populating calendar.
+    	 * @return A CSS color string from a random selection
+    	 **/
+    	
+    	// Add or remove string items of this list to update color combinations
+    	ArrayList<String> colors = new ArrayList<>();
+    	
+    	colors.add("red"); colors.add("orange"); colors.add("Gold");
+    	colors.add("green"); colors.add("blue"); colors.add("purple");
+    	colors.add("MediumOrchid"); colors.add("DarkTurquoise"); colors.add("crimson");
+    	colors.add("silver"); colors.add("MediumAquaMarine");
+    	colors.add("MidnightBlue");
+    	
+    	// pick a random element of colors
+    	int choice = (int)(Math.random() * colors.size());
+    	
+    	return colors.get(choice);
+    }
+    
+    private static LocalDateTime parseLDTFromGoogleEvent(EventDateTime dt) throws Exception {
+    	/**
+    	 * @param Google EventDateTime
+    	 * @return LocalDateTime used by Vaadin FullCalendar
+    	 * @throws an ~exception~ if the input could not be parsed
+    	 */
+    	DateTime edt;
+    	String edtString;
+    	
+    	if ((edt = dt.getDateTime()) != null) {
+			//DateTime: event has a start time and end time
+			edtString = edt.toString();
+			return LocalDateTime.parse(edtString, DateTimeFormatter.ISO_ZONED_DATE_TIME);
+			
+		}else if ((edt = dt.getDate()) != null) {
+			//Date: event is all day/multiple days
+			//AtStartOfDay operator creates LocalDateTime starting at beginning of Date
+			edtString = edt.toString();
+			return LocalDate.parse(edtString, DateTimeFormatter.ISO_DATE).atStartOfDay();
+			
+		}else {
+			// Error - Don't show the event, log an error message
+			//TODO: update this exception to a more descriptive Exception
+			throw new Exception("Error parsing start-date for event ");
+		}
+    }
+
 }
