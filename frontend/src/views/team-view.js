@@ -2,7 +2,6 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
-import './user-component.js';
 
 class TeamView extends PolymerElement {
 
@@ -19,12 +18,9 @@ class TeamView extends PolymerElement {
    Team 
  </vaadin-button>
  <vaadin-horizontal-layout class="content" style="width: 100%; height: 100%;">
-  <vaadin-vertical-layout style="height: 100%; width: 33%;" id="1st Column">
-   <user-component style="align-self: stretch;"></user-component>
-   <user-component style="align-self: stretch;"></user-component>
-  </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="height: 100%; width: 33%;" id="2nd column"></vaadin-vertical-layout>
-  <vaadin-vertical-layout style="width: 33%;" id="3rd Column"></vaadin-vertical-layout>
+  <vaadin-vertical-layout style="height: 100%; width: 33%;" id="columnOne"></vaadin-vertical-layout>
+  <vaadin-vertical-layout style="height: 100%; width: 33%;" id="columnTwo"></vaadin-vertical-layout>
+  <vaadin-vertical-layout style="width: 33%;" id="columnThree"></vaadin-vertical-layout>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%;">
   <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin: var(--lumo-space-l);">

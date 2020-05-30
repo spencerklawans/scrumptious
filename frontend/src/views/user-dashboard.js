@@ -1,10 +1,10 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import './header-component.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-list-box/src/vaadin-list-box.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-item/src/vaadin-item.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-list-box/src/vaadin-list-box.js';
+import '@vaadin/vaadin-item/src/vaadin-item.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 class UserDashboard extends PolymerElement {
 
@@ -35,13 +35,13 @@ class UserDashboard extends PolymerElement {
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="roleField">
       <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
-       Role:
+        Role: 
       </vaadin-button>
       <vaadin-button id="role" style="background-color: #009FB7; font-size: 10pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="emailField">
       <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
-       Email:
+        Email: 
       </vaadin-button>
       <vaadin-button id="email" style="background-color: #009FB7; font-size: 14pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
      </vaadin-horizontal-layout>
