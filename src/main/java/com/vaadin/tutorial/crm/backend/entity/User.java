@@ -1,6 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -80,7 +81,7 @@ public class User extends AbstractEntity implements Cloneable {
     	return firstName; 
     }
     
-public ArrayList<Project> getProjects(){return this.projects;}
+public List<Project> getProjects(){return this.projects;}
 	
 	public void addProject(Project project, boolean override) throws DuplicateProjectException {
 		// warns (via raising a custom exception) user project already exists in projects. 
@@ -99,7 +100,7 @@ public ArrayList<Project> getProjects(){return this.projects;}
 		}
 	}
 	
-	public ArrayList<Ticket> getTickets(){return this.tickets;}
+	public List<Ticket> getTickets(){return this.tickets;}
 	
 	public void addTicket(Ticket ticket, boolean override) throws DuplicateTicketException {
 		// warns (via raising a custom exception) user ticket already exists in tickets. 
@@ -127,7 +128,7 @@ public ArrayList<Project> getProjects(){return this.projects;}
 		//userRepository.save(this);
 	}
 	
-	public ArrayList<String> getNotes(){return this.notes;}
+	public List<String> getNotes(){return this.notes;}
 	
 	public void addNote(String note) {
 		this.notes.add(note);
@@ -144,8 +145,7 @@ public ArrayList<Project> getProjects(){return this.projects;}
 	}
 
 	@Override
-	public Object clone() throws CloneNotSupportedException{
-		User clone = (User)super.clone();
-		return clone;
+	public Object clone() throws CloneNotSupportedException {
+		return (User) super.clone();
 	}
 }

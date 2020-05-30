@@ -167,7 +167,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	
     }
     
-    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    private static Credential getCredentials(final NetHttpTransport httpTrans) throws IOException {
     	/** API Code for Google Calendar 
     	 * 
     	 * @_DO_NOT_MODIFY
@@ -182,7 +182,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+                httpTrans, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
@@ -192,8 +192,8 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     
     private void setService() throws IOException, GeneralSecurityException{
     	//GCalendar
-    	final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        this.service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+    	final NetHttpTransport httpTrans = GoogleNetHttpTransport.newTrustedTransport();
+        this.service = new Calendar.Builder(httpTrans, JSON_FACTORY, getCredentials(httpTrans))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
@@ -209,7 +209,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	// Shows events after time.now
     	DateTime now = new DateTime(System.currentTimeMillis()); 
         Events events = null;
-        List<Event> items = new ArrayList<Event>();
+        List<Event> items = new ArrayList<>();
         
 		try {
 			//Get events
@@ -271,7 +271,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	 **/
     	
     	// Add or remove string items of this list to update color combinations
-    	ArrayList<String> colors = new ArrayList<String>();
+    	ArrayList<String> colors = new ArrayList<>();
     	
     	colors.add("red"); colors.add("orange"); colors.add("Gold");
     	colors.add("green"); colors.add("blue"); colors.add("purple");
@@ -297,15 +297,13 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	if ((edt = dt.getDateTime()) != null) {
 			//DateTime: event has a start time and end time
 			edtString = edt.toString();
-			LocalDateTime eventldt = LocalDateTime.parse(edtString, DateTimeFormatter.ISO_ZONED_DATE_TIME);
-			return eventldt;
+			return LocalDateTime.parse(edtString, DateTimeFormatter.ISO_ZONED_DATE_TIME);
 			
 		}else if ((edt = dt.getDate()) != null) {
 			//Date: event is all day/multiple days
 			//AtStartOfDay operator creates LocalDateTime starting at beginning of Date
 			edtString = edt.toString();
-			LocalDateTime eventldt = LocalDate.parse(edtString, DateTimeFormatter.ISO_DATE).atStartOfDay();
-			return eventldt;
+			return LocalDate.parse(edtString, DateTimeFormatter.ISO_DATE).atStartOfDay();
 			
 		}else {
 			// Error - Don't show the event, log an error message
@@ -313,5 +311,5 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 			throw new Exception("Error parsing start-date for event ");
 		}
     }
-    
+
 }
