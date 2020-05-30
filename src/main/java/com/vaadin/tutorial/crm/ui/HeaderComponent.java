@@ -9,10 +9,9 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.tutorial.crm.backend.entity.Database;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 
-import com.vaadin.tutorial.crm.backend.entity.User;
+import com.vaadin.tutorial.crm.oauth.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

@@ -4,34 +4,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.vaadin.tutorial.crm.backend.entity.Project;
-import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
-import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import com.vaadin.tutorial.crm.backend.entity.User;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
+import com.vaadin.tutorial.crm.backend.repository.ProjectRepository;
+import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
+import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import com.vaadin.tutorial.crm.ui.ProjectMiniComponent;
 
+@Service
 public class ProjectController {
 	
 	//TODO Add LoginController interaction for constructor
-	private ArrayList<Project> projectList; 
-	
-    private Project currentProject;
-
-    public ProjectController() {
-    	//replace this with a call to the db, i.e. get projects by user id
-    	projectList = new ArrayList<>(); 
-    	
-    	//sample project to test display functionality
-    	Project p = new Project(LocalDate.now()); 
-    	p.setDescription("hi");
-    	p.setName("project name");
-    	p.setTeam(buildTeam(""));
-    	p.setAdmins(buildTeam(""));
-    	projectList.add(p);
-    	
-    }
+//	private ArrayList<Project> projectList; 
+	    
+    @Autowired
+    ProjectRepository projectRepository;
     
-    public void addProject(String name, String description, LocalDate date, String team) {
+    @Autowired
+    UserDataController udc = new UserDataController();
+    
+    @Autowired
+    UserSessionController usc = new UserSessionController();
+           
+    public boolean addProject(String name, String description, LocalDate date, String team) {
     	Project p; 
     	if (date == null) {
     		p = new Project(); 
@@ -41,43 +39,59 @@ public class ProjectController {
     	}
     	p.setName(name);
     	p.setDescription(description);
-    	p.setTeam(buildTeam(team));
-    	p.setAdmins(buildTeam(team));
-    	
-    	projectList.add(p); 
+    	p.setCreator(usc.getFullName());
+    	ArrayList<String> userEmailList = buildTeam(team);
+    	userEmailList.add(usc.getEmail());
+    	for (int i = 0; i < userEmailList.size(); i++)
+    	{
+    		System.out.println(userEmailList.get(i));
+    	}
+    	p.setUserEmails(userEmailList);
+    	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
+    		return false;
+    	pushProject(p);
+    	for (String email : userEmailList)
+    	{
+    		UserData currUser = udc.getFromEmail(email);
+    		if (currUser == null)
+    		{
+    			udc.addUser(email);
+    			currUser = udc.getFromEmail(email);
+    		}
+    		p = projectRepository.findByNameAndDescription(p.getName(), p.getDescription());
+    		currUser.addProjectId(p.getId());
+    		udc.saveUser(currUser);
+    	}
+    	return true;
     }
     
     //replace with call to db that finds user associated with email
-    public List<User> buildTeam(String team) {
+    public ArrayList<String> buildTeam(String team) {
     	String[] names = team.split(","); 
-    	ArrayList<User> teamList = new ArrayList<>(); 
+    	ArrayList<String> teamList = new ArrayList<>(); 
     	for (String name : names) {
-    		User user = new User(name, null, null, null, null); 
-    		teamList.add(user); 
+    		name = name.trim();
+    		teamList.add(name); 
     	}
     	return teamList; 		
     }
-    
-    public String ownerList(List<User> admins) {
-    	String owners = ""; 
-    	for (int i = 0; i < admins.size() - 1; i++) {
-    		owners += admins.get(i).getFirstName() + ", ";
-    	}
-    	owners+= admins.get(admins.size() - 1).getFirstName(); 
-    	return owners; 
-    }
 
+    public Project findPid(Long pid)
+	{
+		return projectRepository.findById(pid).get();
+	}
 
     public List<ProjectMiniComponent> buildProjComponents() {
     	ArrayList<ProjectMiniComponent> miniComponents = new ArrayList<>(); 
-    	for (Project project : projectList) {
-    		ProjectMiniComponent projComponent = new ProjectMiniComponent(); 
+    	for (Long projectId : udc.getFromEmail(usc.getEmail()).getProjects()) {
+   		ProjectMiniComponent projComponent = new ProjectMiniComponent();
+   			Project project = projectRepository.findById(projectId).get();
     		projComponent.setName(project.getName());
     		projComponent.setDate(project.getDateCreated());
-    		projComponent.setOwner(ownerList(project.getAdmins()));
-    		projComponent.getElement().addEventListener("click", e -> { 
+    		projComponent.setOwner(project.getCreator());
+    		projComponent.getElement().addEventListener("click", e -> {
+    			usc.setPid(project.getId());
     			projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));
-    			this.currentProject = project;
     			});
     		miniComponents.add(projComponent); 
     	}
@@ -85,23 +99,15 @@ public class ProjectController {
     	return miniComponents;
     }
     
-    
-//    public Project buildProject(String name){
-//        return new Project(name);
-//    }
 
     public void createNewTicket(){
         //Calls on TicketController to create a ticket and update the database with the info.
         // adds ticket to currentProject.tickets
     }
-    public void addCollaborator(User user){
-        //should be more fleshed out -- Use return value (member count) for frontend rendering?
-        this.currentProject.addMember(user);
-    }
-    
-    public List<Ticket> getTickets(StatusEnum status){
-    	//this.currentProject.getTicketsBy(status);
-    	return new ArrayList<>();
+   	
+	
+    public void pushProject(Project p) {
+    	projectRepository.save(p);
     }
 
 }

@@ -8,9 +8,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import com.vaadin.tutorial.crm.backend.entity.User;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
 
 import java.util.ArrayList;
 
@@ -32,13 +33,17 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     private VerticalLayout inProgress;
     @Id("completed")
     private VerticalLayout completed;
-    private ProjectController projectController = new ProjectController();
+    
+    private ProjectController projectController;
+    private UserDataController userDataController;
 
     /**
      * Creates a new TicketsByStatus.
      */
-    public TicketsByStatus() {
+    public TicketsByStatus(ProjectController projectController, UserDataController userDataController) {
         // You can initialise any data required for the connected UI components here.
+    	this.projectController = projectController;
+    	this.userDataController = userDataController;
     }
 
     /**
@@ -71,11 +76,13 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     public TicketComponent generateTicketComponent(Ticket ticket) {
         TicketComponent ticketComponent = new TicketComponent();
 //        This will only hold one for the list as of right now
-        for (User assignee:
-                ticket.getAssignees()) {
-            ticketComponent.setAssignedUser(assignee.getFirstName());
-        }
-        ticketComponent.setAssignedUser(ticket.getAssignees().get(0).getFirstName());
+        
+//        for (String assignee:
+//                ticket.getAssignees()) {
+//        	UserData curr = userDataController.getFromEmail(assignee);
+//            ticketComponent.setAssignedUser(curr.getEmail());
+//        }
+        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
         ticketComponent.setTitle(ticket.getTitle());
         return ticketComponent;
     }

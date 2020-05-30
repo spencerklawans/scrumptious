@@ -1,6 +1,7 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.templatemodel.TemplateModel;
@@ -18,10 +19,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 @JsModule("./src/views/user-component.js")
 public class UserComponent extends PolymerTemplate<UserComponent.UserComponentModel> {
 
-    @Id("userIcon")
-    private Element userIcon;
     @Id("userButton")
     private Button userButton;
+    @Id("UserIcon")
+    private Button userIcon;
 
     /**
      * Creates a new UserComponent.
@@ -39,4 +40,10 @@ public class UserComponent extends PolymerTemplate<UserComponent.UserComponentMo
     public void setDetails(String name) {
         userButton.setText(name);
     }
+    public void setIcon(Image icon) {
+        icon.setHeight("40px");
+        icon.setWidth("40px");
+        userIcon.setIcon(icon);
+    }
+
 }

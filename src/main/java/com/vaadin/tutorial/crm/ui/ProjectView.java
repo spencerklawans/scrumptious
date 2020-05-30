@@ -14,6 +14,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 //import com.vaadin.tutorial.crm.ui.AddProjectComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.tutorial.crm.backend.controller.UserDataController;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.management.Notification;
 
 /**
  * A Designer generated component for the main-project-view template.
@@ -32,12 +36,15 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 	private AddProjectComponent addButton;
 	@Id("topLayout")
 	private HorizontalLayout topLayout;
-	private ProjectController projectController = new ProjectController(); 
+	
+	private ProjectController projectController;
+
 	/**
      * Creates a new MainProjectView.
      */
-    public ProjectView() {
+    public ProjectView(ProjectController projectController) {
         // You can initialise any data required for the connected UI components here.
+    	this.projectController = projectController;
     	header.setLogo();
     	header.setUserButton();
     	addButton.setNavButton();

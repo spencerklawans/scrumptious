@@ -12,6 +12,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.textfield.TextField;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * A Designer generated component for the add-project template.
@@ -38,6 +39,8 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
 	private TextField descriptionField;
 	@Id("teamField")
 	private TextField teamField;
+	
+	@Autowired
 	private ProjectController projectController; 
 
 	/**
@@ -45,7 +48,6 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
      */
     public AddProject() {
         // You can initialise any data required for the connected UI components here.
-    	projectController = new ProjectController(); 
     	header.setLogo();
     	header.setUserButton();
     	setNavButtons(); 
