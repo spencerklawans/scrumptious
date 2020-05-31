@@ -74,8 +74,6 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         }
         return 0;
     }
-    public void setNavButtons() {
-    }
 
     /**
      * This model binds properties between TeamView and team-view

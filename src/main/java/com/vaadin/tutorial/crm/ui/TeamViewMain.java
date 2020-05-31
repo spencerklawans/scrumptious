@@ -32,7 +32,6 @@ public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel
         // You can initialise any data required for the connected UI components here.
         header.setLogo();
         sidebar.setNavButtons();
-        teamView.setNavButtons();
         header.setUserButton();
 
     }

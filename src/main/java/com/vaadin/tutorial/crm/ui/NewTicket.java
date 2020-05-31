@@ -3,16 +3,12 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-//import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
@@ -20,7 +16,6 @@ import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.PriorityEnum;
 import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import org.springframework.stereotype.Component;
 import org.vaadin.gatanaso.MultiselectComboBox;
 
 import java.util.ArrayList;
@@ -34,7 +29,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
  */
 @Tag("new-ticket")
 @JsModule("./src/views/new-ticket.js")
-//@Component
 public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 
     @Id("cancelButton")
@@ -81,7 +75,7 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	status.setLabel("Status");
     	status.setItems("To Do", "In Progress", "Completed");
     	
-    	possibleMembers = new MultiselectComboBox<String>(); 
+    	possibleMembers = new MultiselectComboBox<>(); 
     	possibleMembers.setLabel("Add Assignees");
     	possibleMembers.setItems(pc.getUsers(usc.getPid()));
     	comboWrapper.add(possibleMembers);
@@ -108,29 +102,46 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 
     public void parseTicket()
 	{
-		StatusEnum se = StatusEnum.TODO;
-		PriorityEnum pe = PriorityEnum.LOW;
+		StatusEnum se;
+		PriorityEnum pe;
 
 		switch (status.getValue())
 		{
 			case "To Do":
 				se = StatusEnum.TODO;
+				break;
+				
 			case "In Progress":
 				se = StatusEnum.INPROGRESS;
+				break;
+				
 			case "Completed":
 				se = StatusEnum.DONE;
+				break;
+				
+			default:
+				se = StatusEnum.TODO; 
+				
 		}
 		switch (priority.getValue())
 		{
 			case "Low":
 				pe = PriorityEnum.LOW;
+				break;
+				
 			case "Medium":
 				pe = PriorityEnum.MEDIUM;
+				break;
+				
 			case "High":
 				pe = PriorityEnum.HIGH;
+				break;
+				
+			default: 
+				pe = PriorityEnum.LOW; 
 		}
 
-		ArrayList<String> emails = new ArrayList<String>();
+		ArrayList<String> emails = new ArrayList<>();
 		for (String name : possibleMembers.getValue())
 		{
 			emails.add(udc.getFromDisplay(name).getEmail());

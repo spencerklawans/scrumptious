@@ -19,6 +19,7 @@ import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
 import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,12 +99,11 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     public void addListeners()
 	{
 		saveNotesButton.addClickListener(e -> {
+			UserData currUser = udc.getFromEmail(usc.getEmail());
 			udc.getFromEmail(usc.getEmail()).setNotes(noteField.getValue());
-			Notification.show("UPDATED!");
-			Notification.show(noteField.getValue()); 
-			udc.saveUser(udc.getFromEmail(usc.getEmail()));
-			Notification.show(udc.getFromEmail(usc.getEmail()).getFullName()); 
-			Notification.show(udc.getFromEmail(usc.getEmail()).getNotes()); 
+			currUser.setNotes(noteField.getValue());
+			udc.saveUser(currUser);
+			Notification.show("Notes saved!");
 		});
 	}
 
