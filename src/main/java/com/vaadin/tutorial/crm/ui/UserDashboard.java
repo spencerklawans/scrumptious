@@ -1,6 +1,8 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.ListItem;
+import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
@@ -11,11 +13,16 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.Project;
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 
 /**
@@ -36,11 +43,11 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	@Id("editProfileButton")
 	private Button editProfileButton;
 	@Id("projectListBox")
-	private Element projectListBox;
+	private ListBox<String> projectListBox;
 	@Id("toProjectsButton")
 	private Button toProjectsButton;
 	@Id("ticketListBox")
-	private Element ticketListBox;
+	private ListBox<String> ticketListBox;
 	@Id("toTicketsButton")
 	private Button toTicketsButton;
 	@Id("notesField")
@@ -59,14 +66,18 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	
 	UserDataController udc;
 
+	ProjectController pc;
+
 	/**
      * Creates a new UserDashboard.
      */
-    public UserDashboard(UserDataController udc, UserSessionController usc) {
+    public UserDashboard(UserDataController udc, UserSessionController usc, ProjectController pc) {
         // You can initialise any data required for the connected UI components here.
     	this.udc = udc;
     	this.usc = usc;
-    	setPageButtons(); 
+    	this.pc = pc;
+    	setPageButtons();
+    	populatePage();
     	header.setLogo();
     	if (udc.getFromEmail(usc.getEmail()) == null)
     	{
@@ -76,6 +87,25 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     		System.out.println((project_id.toString()));
 
     }
+
+    public void populatePage()
+	{
+		for(Long pid : udc.getFromEmail(usc.getEmail()).getProjects()) {
+			ListItem item = new ListItem();
+			item.setText(pc.findPid(pid).getName());
+			projectListBox.add(item);
+			for(Ticket t : pc.findPid(pid).getTickets())
+			{
+				if(t.getAssignees().contains(usc.getEmail()))
+				{
+					ListItem newTicket = new ListItem();
+					newTicket.setText(t.getTitle());
+					ticketListBox.add(newTicket);
+				}
+			}
+		}
+
+	}
 
     /**
      * This model binds properties between UserDashboard and user-dashboard
