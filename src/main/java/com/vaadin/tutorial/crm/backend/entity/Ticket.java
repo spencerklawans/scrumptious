@@ -1,10 +1,11 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Ticket {
+public class Ticket implements Serializable {
 	
 	private static final int ID = 0; // placeholder int
 	private String title;
