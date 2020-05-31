@@ -12,7 +12,7 @@ import java.io.Serializable;
 @SessionScope
 public class UserSession implements Serializable {
 
-    public Long pid;
+    public Long pid = -1L;
 
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext()

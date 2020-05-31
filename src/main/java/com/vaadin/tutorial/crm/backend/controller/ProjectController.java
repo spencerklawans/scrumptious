@@ -55,7 +55,6 @@ public class ProjectController {
     	pushProject(p);
     	for (String email : userEmailList)
     	{
-
     		UserData currUser = udc.getFromEmail(email);
     		if (currUser == null)
     		{
