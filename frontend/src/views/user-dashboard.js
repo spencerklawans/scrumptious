@@ -64,7 +64,7 @@ class UserDashboard extends PolymerElement {
       <vaadin-list-box id="projectListBox" style="width: 100%; padding: var(--lumo-space-xs);"></vaadin-list-box>
      </vaadin-horizontal-layout>
      <vaadin-button id="toProjectsButton" style="background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; align-self: center; margin-top: var(--lumo-space-s);">
-      Go to Projects Page
+       Go to Projects Page 
      </vaadin-button>
     </vaadin-vertical-layout>
     <vaadin-vertical-layout style="width: 45%; margin-top: var(--lumo-space-l); background-color: #009FB7; border-radius: 15px; margin-right: var(--lumo-space-m);">
@@ -84,7 +84,10 @@ class UserDashboard extends PolymerElement {
      <vaadin-button style="background-color: #009FB7; color: #FFFFFF; font-size: 14pt; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);">
        Notes 
      </vaadin-button>
-     <vaadin-text-area label="" placeholder="" id="noteField" style="width: 90%; background: #FFFFFF; height: 70%; align-self: center; padding: var(--lumo-space-s); border-radius: 15px;" has-value></vaadin-text-area>
+     <vaadin-text-area label="" placeholder="" id="noteField" style="width: 90%; background: #FFFFFF; height: 55%; align-self: center; padding: var(--lumo-space-s); border-radius: 15px;" has-value></vaadin-text-area>
+     <vaadin-button id="saveNotesButton" style="align-self: flex-end; margin-right: var(--lumo-space-l); background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin-top: var(--lumo-space-s);">
+      Save Notes
+     </vaadin-button>
     </vaadin-vertical-layout>
    </vaadin-horizontal-layout>
   </vaadin-vertical-layout>

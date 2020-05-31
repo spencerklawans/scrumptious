@@ -20,8 +20,8 @@ class TicketByStatusMain extends PolymerElement {
   <header-component style="flex-grow: 1; flex-shrink: 0;" id="header"></header-component>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; flex-grow: 1; flex-shrink: 1; flex-basis: auto; height: 90%; align-self: stretch;">
-  <vaadin-vertical-layout class="sidebar" style="width: 20%; flex-grow: 1; height: 100%; align-self: stretch;">
-   <sidebar-component style="align-self: stretch; " id="sidebar"></sidebar-component>
+  <vaadin-vertical-layout class="sidebar" style="width: 20%; flex-grow: 1; height: 100%; align-self: stretch; flex-shrink: 0;">
+   <sidebar-component style="align-self: stretch; flex-shrink: 0; flex-grow: 1;" id="sidebar"></sidebar-component>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout class="content" style="width: 80%; flex-grow: 1; align-self: stretch; height: 100%;">
    <tickets-by-status style="width: 100%; flex-shrink: 0;" id="ticketStatusView"></tickets-by-status>

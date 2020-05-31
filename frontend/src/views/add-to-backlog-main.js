@@ -20,7 +20,7 @@ class AddToBacklogMain extends PolymerElement {
   <header-component style="flex-grow: 1;" id="header"></header-component>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; flex-grow: 1; flex-shrink: 1; flex-basis: auto; height: 90%;">
-  <vaadin-vertical-layout style="width: 20%; height: 100%;">
+  <vaadin-vertical-layout style="width: 20%; height: 100%; align-self: stretch; flex-shrink: 0; flex-grow: 1;">
    <sidebar-component style="flex-shrink: 1; flex-grow: 0; align-self: stretch;" id="sidebar"></sidebar-component>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout style="flex-grow: 0; width: 80%; height: 100%; flex-shrink: 1;">
