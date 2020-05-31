@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
 
@@ -66,8 +67,12 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     	});
     	
     	createButton.addClickListener(e -> {
-    		projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue());
-    		createButton.getUI().ifPresent(ui -> ui.navigate("projects")); 
+    		if (nameField.isEmpty())
+    			Notification.show("Name field cannot be empty");
+    		else {
+				projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue());
+				createButton.getUI().ifPresent(ui -> ui.navigate("projects"));
+			}
     	});
     }
 }

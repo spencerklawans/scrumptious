@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,8 +68,10 @@ public class ProjectController {
     
     //replace with call to db that finds user associated with email
     public ArrayList<String> buildTeam(String team) {
+		ArrayList<String> teamList = new ArrayList<>();
+		if (team == null)
+    		return teamList;
     	String[] names = team.split(","); 
-    	ArrayList<String> teamList = new ArrayList<>(); 
     	for (String name : names) {
     		name = name.trim();
     		teamList.add(name); 
@@ -109,5 +112,11 @@ public class ProjectController {
     public void pushProject(Project p) {
     	projectRepository.save(p);
     }
+
+	public void addTicket(Long pid, Ticket t)
+	{
+		findPid(pid).addTicket(t);
+		pushProject(findPid(pid));
+	}
 
 }

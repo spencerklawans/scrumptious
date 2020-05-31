@@ -12,6 +12,8 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 
 /**
  * A Designer generated component for the new-ticket template.
@@ -53,8 +55,14 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 	/**
      * Creates a new NewTicket.
      */
-    public NewTicket() {
+
+	TicketController tc;
+	UserSessionController usc;
+
+    public NewTicket(TicketController tc, UserSessionController usc) {
         // You can initialise any data required for the connected UI components here.
+    	this.tc = tc;
+    	this.usc = usc;
     }
 
     /**
@@ -68,9 +76,15 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	cancelButton.addClickListener(e ->
     		cancelButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
     	);
-    	
-    	createButton.addClickListener(e ->
-    		createButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
-    	);
+
+		createButton.addClickListener(e -> {
+			parseTicket();
+			createButton.getUI().ifPresent(ui -> ui.navigate("projects"));
+		});
     }
+
+    public void parseTicket()
+	{
+//		possibleMembers.get
+	}
 }
