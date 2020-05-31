@@ -7,9 +7,12 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 //import com.vaadin.tutorial.crm.ui.TicketsByStatus;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.notification.Notification;
+import org.springframework.beans.factory.annotation.Autowired;
 
 //import com.vaadin.flow.dom.Element;
 
@@ -31,19 +34,26 @@ public class TicketByStatusMain extends PolymerTemplate<TicketByStatusMain.Ticke
 	@Id("sidebar")
 	private SidebarComponent sidebar;
 
+	TicketController tc;
 
-	private UserSessionController usc;
+	UserSessionController usc;
+	ProjectController pc;
+	UserDataController udc;
 
 	/**
      * Creates a new TicketByStatusMain.
      */
-    public TicketByStatusMain(UserSessionController usc) {
+    public TicketByStatusMain(UserSessionController usc, TicketController tc,
+							  ProjectController pc, UserDataController udc) {
         // You can initialise any data required for the connected UI components here.
     	ticketStatusView.setNavButtons();
     	header.setLogo();
     	header.setUserButton();
     	sidebar.setNavButtons();
+    	this.tc = tc;
     	this.usc = usc;
+    	this.udc = udc;
+    	this.pc = pc;
 		Notification.show(usc.getPid().toString());
     }
 

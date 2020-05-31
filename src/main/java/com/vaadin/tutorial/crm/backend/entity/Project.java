@@ -22,17 +22,19 @@ public class Project extends AbstractEntity implements Cloneable {
 	final private LocalDate dateCreated;
 	
 	private ArrayList<String> userEmails;
-	
+
 	private String creator;
 
 	private ArrayList<Ticket> tickets;
 
 	public Project() {
 		this.dateCreated = LocalDate.now();
+		this.tickets = new ArrayList<Ticket>();
 	}
 	
 	public Project(LocalDate date) {
 		this.dateCreated = date;//This should be replaced with paramter and database data
+		this.tickets = new ArrayList<Ticket>();
 		//TODO: project from database call constructor
 	}
 	
@@ -59,11 +61,16 @@ public class Project extends AbstractEntity implements Cloneable {
 		
 	public void addMember(String email) {
 		// returns updated count of team members on project
-		if (!(userEmails.contains(email)))
+		if (!(userEmails.contains(email))) {
 			userEmails.add(email);
+		}
 	}
 
 	public void addTicket(Ticket t) {
 		this.tickets.add(t);
+	}
+
+	public ArrayList<Ticket> getTickets() {
+		return tickets;
 	}
 }

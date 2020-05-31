@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
 import com.vaadin.tutorial.crm.ui.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class ProjectController {
     	pushProject(p);
     	for (String email : userEmailList)
     	{
+
     		UserData currUser = udc.getFromEmail(email);
     		if (currUser == null)
     		{
@@ -137,5 +139,20 @@ public class ProjectController {
     public void pushProject(Project p) {
     	projectRepository.save(p);
     }
+
+    public void addTicket(Long pid, Ticket t)
+	{
+		findPid(pid).addTicket(t);
+	}
+
+	public ArrayList<String> getUsers(Long pid)
+	{
+		ArrayList<String> returnList = new ArrayList<String>();
+		for (String email : findPid(pid).getUsers())
+		{
+			returnList.add(udc.getFromEmail(email).getDisplayName());
+		}
+		return returnList;
+	}
 
 }

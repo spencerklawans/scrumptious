@@ -10,6 +10,8 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
 
@@ -36,14 +38,19 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     
     private ProjectController projectController;
     private UserDataController userDataController;
+    private UserSessionController usc;
+    private TicketController tc;
 
     /**
      * Creates a new TicketsByStatus.
      */
-    public TicketsByStatus(ProjectController projectController, UserDataController userDataController) {
+    public TicketsByStatus(ProjectController projectController, UserDataController userDataController,
+    UserSessionController usc, TicketController tc) {
         // You can initialise any data required for the connected UI components here.
     	this.projectController = projectController;
     	this.userDataController = userDataController;
+    	this.usc = usc;
+    	this.tc = tc;
     }
 
     /**
@@ -59,29 +66,28 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	);
     }
     public void populateTickets() {
-//      filling in tickets based on db calls
-//        ArrayList<Ticket> todoTickets = projectController.getTickets("todo", this_project);
-//        for (Ticket ticket : todoTickets) {
-//            todo.add(ticket);
-//        }
-//        ArrayList<Ticket> inProgressTickets = projectController.getTickets("inProgress", this_project);
-//        for (Ticket ticket : inProgressTickets) {
-//            inProgress.add(ticket);
-//        }
-//        ArrayList<Ticket> completedTickets = projectController.getTickets("completed", this_project);
-//        for (Ticket ticket : completedTickets) {
-//            completed.add(ticket);
-//        }
+      //filling in tickets based on db calls
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets = projectController.findPid(usc.getPid()).getTickets();
+        for (Ticket ticket : tickets)
+        {
+            if (ticket.getStatus() == StatusEnum.TODO)
+                todo.add(generateTicketComponent(ticket));
+            if (ticket.getStatus() == StatusEnum.INPROGRESS)
+                inProgress.add(generateTicketComponent(ticket));
+            if (ticket.getStatus() == StatusEnum.DONE)
+                completed.add(generateTicketComponent(ticket));
+        }
     }
     public TicketComponent generateTicketComponent(Ticket ticket) {
         TicketComponent ticketComponent = new TicketComponent();
 //        This will only hold one for the list as of right now
         
-//        for (String assignee:
-//                ticket.getAssignees()) {
-//        	UserData curr = userDataController.getFromEmail(assignee);
-//            ticketComponent.setAssignedUser(curr.getEmail());
-//        }
+        for (String assignee:
+                ticket.getAssignees()) {
+        	UserData curr = userDataController.getFromEmail(assignee);
+            ticketComponent.setAssignedUser(curr.getEmail());
+        }
         ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
         ticketComponent.setTitle(ticket.getTitle());
         return ticketComponent;

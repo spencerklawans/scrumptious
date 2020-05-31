@@ -66,5 +66,4 @@ public class Ticket {
 		// see setAssigned
 		this.dueDate = dt;
 	}
-	
 }

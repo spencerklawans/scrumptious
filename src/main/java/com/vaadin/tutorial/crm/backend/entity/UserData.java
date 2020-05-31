@@ -14,22 +14,28 @@ public class UserData extends AbstractEntity implements Cloneable {
     @NotNull
     @NotEmpty
 	private String email;
-	
+
 	private String notes;
 
 	private String fullName;
+
+	private String displayName;
 	    
     public UserData(String email)
     {
     	this.email = email;
     	this.projects = new ArrayList<Long>();
+    	this.displayName = email;
     }
 
     public String getDisplayName()
 	{
-		if (fullName == null)
-			return email;
-		return fullName;
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName)
+	{
+		this.displayName = displayName;
 	}
 
     public UserData()
