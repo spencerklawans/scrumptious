@@ -15,6 +15,8 @@ import com.vaadin.flow.component.polymertemplate.Id;
 //import com.vaadin.tutorial.crm.ui.AddProjectComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.management.Notification;
@@ -39,16 +41,27 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 	
 	private ProjectController projectController;
 
+	UserSessionController usc;
+
+	UserDataController udc;
+
 	/**
      * Creates a new MainProjectView.
      */
-    public ProjectView(ProjectController projectController) {
+    public ProjectView(ProjectController projectController, UserSessionController usc, UserDataController udc) {
         // You can initialise any data required for the connected UI components here.
+
     	this.projectController = projectController;
+    	this.udc = udc;
+    	this.usc = usc;
+		if (udc.getFromEmail(usc.getEmail()) == null)
+		{
+			udc.addUser(usc.getEmail());
+		}
     	header.setLogo();
     	header.setUserButton();
     	addButton.setNavButton();
-    	generateDisplay(); 
+    	generateDisplay();
     }
 
     /**

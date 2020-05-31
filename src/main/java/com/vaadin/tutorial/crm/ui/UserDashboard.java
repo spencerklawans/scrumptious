@@ -74,6 +74,7 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	}
     	for (Long project_id : udc.getFromEmail(usc.getEmail()).getProjects())
     		System.out.println((project_id.toString()));
+
     }
 
     /**

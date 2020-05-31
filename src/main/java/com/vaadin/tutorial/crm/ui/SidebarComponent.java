@@ -6,6 +6,8 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 
 /**
  * A Designer generated component for the sidebar-component template.
@@ -17,8 +19,6 @@ import com.vaadin.flow.component.polymertemplate.Id;
 @JsModule("./src/views/sidebar-component.js")
 public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarComponentModel> {
 
-    @Id("toBacklog")
-	private Button toBacklog;
 	@Id("toCalendar")
 	private Button toCalendar;
 	@Id("toTickets")
@@ -27,13 +27,24 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	private Button toTeam;
 	@Id("toProjectPage")
 	private Button toProjectPage;
+	@Id("projectName")
+	private Button projectName;
+	@Id("toBacklog")
+	private Button toBacklog;
 
 	/**
      * Creates a new SidebarComponent.
      */
-    public SidebarComponent() {
+
+	UserSessionController usc;
+
+	private ProjectController projectController;
+
+    public SidebarComponent(UserSessionController usc, ProjectController projectController) {
         // You can initialise any data required for the connected UI components here.
-    	
+		this.usc = usc;
+		this.projectController = projectController;
+		projectName.setText(projectController.findPid(usc.getPid()).getName());
     }
 
     /**

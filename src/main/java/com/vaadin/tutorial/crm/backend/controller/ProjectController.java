@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
+import com.vaadin.tutorial.crm.ui.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,9 +98,35 @@ public class ProjectController {
     		miniComponents.add(projComponent); 
     	}
 
+
     	return miniComponents;
     }
-    
+	public List<UserComponent> buildUserComponents() {
+		ArrayList<UserComponent> miniComponents = new ArrayList<>();
+		Project project = projectRepository.findById(usc.getPid()).get();
+		for (String username : project.getUsers()) {
+			UserComponent userComponent = new UserComponent();
+
+			userComponent.setDetails(username);
+//			userComponent.getElement().addEventListener("click", e -> {
+//				usc.setPid(project.getId());
+//				projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));
+//			});
+			miniComponents.add(userComponent);
+		}
+		return miniComponents;
+	}
+//	TODO: cannot be done yet because no access to
+	public List<BacklogMiniComponent> buildBacklogComponents() {
+		ArrayList<BacklogMiniComponent> miniComponents = new ArrayList<>();
+		Project project = projectRepository.findById(usc.getPid()).get();
+
+//		for (String username : project.GET_TICKETS) {
+//			UserComponent userComponent = new UserComponent();
+//			miniComponents.add(userComponent);
+//		}
+		return miniComponents;
+	}
 
     public void createNewTicket(){
         //Calls on TicketController to create a ticket and update the database with the info.

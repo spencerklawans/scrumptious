@@ -6,6 +6,10 @@ import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.UserDataController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.component.html.Image;
@@ -22,32 +26,52 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
 
     @Id("root")
     private VerticalLayout root;
-    @Id("2nd column")
-    private VerticalLayout _2ndColumn;
 
-
-
-    @Id("3rd Column")
-    private VerticalLayout _3rdColumn;
-    @Id("1st Column")
-    private VerticalLayout _1stColumn;
     @Autowired
     UserSession userSession = new UserSession();
+    @Id("columnOne")
+    private VerticalLayout columnOne;
+    @Id("columnTwo")
+    private VerticalLayout columnTwo;
+    @Id("columnThree")
+    private VerticalLayout columnThree;
+    private ProjectController projectController;
+
     /**
      * Creates a new TeamView.
      */
-    public TeamView() {
+    public TeamView(ProjectController projectController) {
+        this.projectController = projectController;
         // You can initialise any data required for the connected UI components here.
 //        for each user in current project:
 //                add component showing them as below
-        UserComponent me = new UserComponent();
-        me.setDetails(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
-        me.setIcon(new Image(userSession.getUser().getPicture(),"UserIcon"));
-        _2ndColumn.add(me);
+
+//        UserComponent me = new UserComponent();
+//        me.setDetails(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
 //        _2ndColumn.add(new Image(userSession.getUser().getPicture(), "UserIcon"));
 
     }
-
+    public int populateTeam() {
+        int i = 0;
+        for (UserComponent userComponent:
+                projectController.buildUserComponents()) {
+            switch (i % 3){
+                case 0:
+                    columnOne.add(userComponent);
+                    break;
+                case 1:
+                    columnTwo.add(userComponent);
+                    break;
+                case 2:
+                    columnThree.add(userComponent);
+                    break;
+                default:
+                    return 1;
+            }
+            i += 1;
+        }
+        return 0;
+    }
     public void setNavButtons() {
     }
 
