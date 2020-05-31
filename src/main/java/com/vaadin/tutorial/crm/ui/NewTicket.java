@@ -75,7 +75,7 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	status.setLabel("Status");
     	status.setItems("To Do", "In Progress", "Completed");
     	
-    	possibleMembers = new MultiselectComboBox<String>(); 
+    	possibleMembers = new MultiselectComboBox<>(); 
     	possibleMembers.setLabel("Add Assignees");
     	possibleMembers.setItems(pc.getUsers(usc.getPid()));
     	comboWrapper.add(possibleMembers);
@@ -102,29 +102,46 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 
     public void parseTicket()
 	{
-		StatusEnum se = StatusEnum.TODO;
-		PriorityEnum pe = PriorityEnum.LOW;
+		StatusEnum se;
+		PriorityEnum pe;
 
 		switch (status.getValue())
 		{
 			case "To Do":
 				se = StatusEnum.TODO;
+				break;
+				
 			case "In Progress":
 				se = StatusEnum.INPROGRESS;
+				break;
+				
 			case "Completed":
 				se = StatusEnum.DONE;
+				break;
+				
+			default:
+				se = StatusEnum.TODO; 
+				
 		}
 		switch (priority.getValue())
 		{
 			case "Low":
 				pe = PriorityEnum.LOW;
+				break;
+				
 			case "Medium":
 				pe = PriorityEnum.MEDIUM;
+				break;
+				
 			case "High":
 				pe = PriorityEnum.HIGH;
+				break;
+				
+			default: 
+				pe = PriorityEnum.LOW; 
 		}
 
-		ArrayList<String> emails = new ArrayList<String>();
+		ArrayList<String> emails = new ArrayList<>();
 		for (String name : possibleMembers.getValue())
 		{
 			emails.add(udc.getFromDisplay(name).getEmail());
