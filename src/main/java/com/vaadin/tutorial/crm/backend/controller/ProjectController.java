@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
 import com.vaadin.tutorial.crm.ui.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,5 +138,11 @@ public class ProjectController {
     public void pushProject(Project p) {
     	projectRepository.save(p);
     }
+
+
+	public void addTicket(Long pid, Ticket t)
+	{
+		findPid(pid).addTicket(t);
+	}
 
 }

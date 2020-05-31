@@ -1,22 +1,24 @@
 package com.vaadin.tutorial.crm.backend.controller;
 
+import com.vaadin.tutorial.crm.backend.entity.PriorityEnum;
+import com.vaadin.tutorial.crm.backend.entity.Project;
+import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TicketController {
-	
-	private Ticket currentTicket;
-	
-	
-	public static Ticket getNewTicket(String name){
-		//TODO: Make this work.
-        // should query database and fill new ticket with boilerplate info from database
 
+	@Autowired
+	ProjectController pc = new ProjectController();
 
-        Ticket ticket = new Ticket(name);
-        ticket.setDescription("This is a test");
-
-
-        return ticket;
+    public void addTicket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
+                          String description, LocalDate assigned, LocalDate dueDate, Long pid)
+    {
+        Ticket t = new Ticket(title, pe, se, assigneeEmails, description, assigned, dueDate);
+        pc.addTicket(pid, t);
     }
 	
 	public void updateTicket(String reference){
@@ -26,7 +28,7 @@ public class TicketController {
         //query database for info
 
         //fill a ticket
-        Ticket ticket = getNewTicket(reference);
+//        Ticket ticket = getNewTicket(reference);
 
 
         //push data back to database

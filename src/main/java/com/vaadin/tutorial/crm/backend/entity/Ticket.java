@@ -16,19 +16,17 @@ public class Ticket {
 	private LocalDate dueDate;
 	
 
-	public Ticket() {
-		//TODO: id generator function
-		// id assignment should be replaced with a private (?static?) 
-						// function call.
+	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
+	String description, LocalDate assigned, LocalDate dueDate) {
+		this.title = title;
+		this.priority = pe;
+		this.status = se;
+		this.assigneeEmails = assigneeEmails;
+		this.description = description;
+		this.assigned = assigned;
+		this.dueDate = dueDate;
 	}
-	public Ticket(String placeholder) {
-		//TODO: a constructor that is used by a controller function that 
-		//populates a ticket from database info
-		
-	}
-	
-	// id getter function?? is there a need?
-	
+
 	public String getTitle() {return this.title;}
 	
 	public void setTitle(String newTitle) {this.title = newTitle;}
@@ -59,8 +57,6 @@ public class Ticket {
 	public LocalDate getAssigned() {return this.assigned;}
 	
 	public void setAssigned(LocalDate dt) {
-		// likely will be replaced with string parameter (or what comes 
-		// out of Vaadin component input processing
 		this.assigned = dt;
 	}
 	

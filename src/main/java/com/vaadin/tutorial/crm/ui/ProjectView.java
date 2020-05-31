@@ -58,6 +58,9 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 		{
 			udc.addUser(usc.getEmail());
 		}
+		UserData curr = udc.getFromEmail(usc.getEmail());
+		if (curr.getFullName() == null)
+			curr.setFullName(usc.getFullName());
     	header.setLogo();
     	header.setUserButton();
     	addButton.setNavButton();
