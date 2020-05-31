@@ -3,6 +3,7 @@ package com.vaadin.tutorial.crm.backend.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
@@ -51,6 +52,8 @@ public class ProjectController {
     	for (int i = 0; i < userEmailList.size(); i++)
     	{
     		System.out.println(userEmailList.get(i));
+    		if(!checkEmailStyle(userEmailList.get(i)))
+    			return false;
     	}
     	p.setUserEmails(userEmailList);
     	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
@@ -70,6 +73,19 @@ public class ProjectController {
     	}
     	return true;
     }
+
+    public boolean checkEmailStyle(String s)
+	{
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+				"[a-zA-Z0-9_+&*-]+)*@" +
+				"(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+				"A-Z]{2,7}$";
+
+		Pattern pat = Pattern.compile(emailRegex);
+		if (s == null)
+			return false;
+		return pat.matcher(s).matches();
+	}
     
     //replace with call to db that finds user associated with email
     public ArrayList<String> buildTeam(String team) {
