@@ -16,6 +16,7 @@ import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Designer generated component for the tickets-by-status template.
@@ -29,17 +30,16 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
 
     @Id("createButton")
 	private Button createButton;
-    @Id("todo")
-    private VerticalLayout todo;
-    @Id("inProgress")
-    private VerticalLayout inProgress;
-    @Id("completed")
-    private VerticalLayout completed;
-    
     private ProjectController projectController;
     private UserDataController userDataController;
     private UserSessionController usc;
     private TicketController tc;
+	@Id("todoWrapper")
+	private VerticalLayout todoWrapper;
+	@Id("progressWrapper")
+	private VerticalLayout progressWrapper;
+	@Id("completedWrapper")
+	private VerticalLayout completedWrapper;
 
     /**
      * Creates a new TicketsByStatus.
@@ -67,29 +67,30 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     }
     public void populateTickets() {
       //filling in tickets based on db calls
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets = projectController.findPid(usc.getPid()).getTickets();
-        for (Ticket ticket : tickets)
+        List<TicketComponent> ticketComponents = projectController.buildTicketComponents();
+        //tickets = projectController.findPid(usc.getPid()).getTickets();
+        for (TicketComponent tc : ticketComponents)
         {
-            if (ticket.getStatus() == StatusEnum.TODO)
-                todo.add(generateTicketComponent(ticket));
-            if (ticket.getStatus() == StatusEnum.INPROGRESS)
-                inProgress.add(generateTicketComponent(ticket));
-            if (ticket.getStatus() == StatusEnum.DONE)
-                completed.add(generateTicketComponent(ticket));
+            if (tc.getStatus() == "to do")
+                todoWrapper.add(tc);
+            if (tc.getStatus() == "in progress")
+                progressWrapper.add(tc);
+            if (tc.getStatus() == "done")
+                completedWrapper.add(tc);
         }
     }
-    public TicketComponent generateTicketComponent(Ticket ticket) {
-        TicketComponent ticketComponent = new TicketComponent();
-//        This will only hold one for the list as of right now
-        
-        for (String assignee:
-                ticket.getAssignees()) {
-        	UserData curr = userDataController.getFromEmail(assignee);
-            ticketComponent.setAssignedUser(curr.getEmail());
-        }
-        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
-        ticketComponent.setTitle(ticket.getTitle());
-        return ticketComponent;
-    }
+//    public TicketComponent generateTicketComponent(Ticket ticket) {
+//        TicketComponent ticketComponent = new TicketComponent();
+////        This will only hold one for the list as of right now
+//        
+//        for (String assignee:
+//                ticket.getAssignees()) {
+//        	UserData curr = userDataController.getFromEmail(assignee);
+//            ticketComponent.setAssignedUser(curr.getEmail());
+//        }
+//        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
+//        ticketComponent.setTitle(ticket.getTitle());
+//        return ticketComponent;
+//    }
+
 }

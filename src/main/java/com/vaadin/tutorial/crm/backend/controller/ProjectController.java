@@ -10,12 +10,15 @@ import com.vaadin.tutorial.crm.ui.UserComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vaadin.tutorial.crm.backend.entity.PriorityEnum;
 import com.vaadin.tutorial.crm.backend.entity.Project;
+import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
 import com.vaadin.tutorial.crm.backend.repository.ProjectRepository;
 import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import com.vaadin.tutorial.crm.ui.ProjectMiniComponent;
+import com.vaadin.tutorial.crm.ui.TicketComponent;
 
 @Service
 public class ProjectController {
@@ -88,7 +91,7 @@ public class ProjectController {
     	ArrayList<ProjectMiniComponent> miniComponents = new ArrayList<>(); 
     	for (Long projectId : udc.getFromEmail(usc.getEmail()).getProjects()) {
    		ProjectMiniComponent projComponent = new ProjectMiniComponent();
-   			Project project = projectRepository.findById(projectId).get();
+   			Project project = findPid(projectId);
     		projComponent.setName(project.getName());
     		projComponent.setDate(project.getDateCreated());
     		projComponent.setOwner(project.getCreator());
@@ -104,7 +107,7 @@ public class ProjectController {
     }
 	public List<UserComponent> buildUserComponents() {
 		ArrayList<UserComponent> miniComponents = new ArrayList<>();
-		Project project = projectRepository.findById(usc.getPid()).get();
+		Project project = findPid(usc.getPid());
 		for (String username : project.getUsers()) {
 			UserComponent userComponent = new UserComponent();
 
@@ -120,7 +123,7 @@ public class ProjectController {
 //	TODO: cannot be done yet because no access to
 	public List<BacklogMiniComponent> buildBacklogComponents() {
 		ArrayList<BacklogMiniComponent> miniComponents = new ArrayList<>();
-		Project project = projectRepository.findById(usc.getPid()).get();
+		Project project = findPid(usc.getPid());
 
 //		for (String username : project.GET_TICKETS) {
 //			UserComponent userComponent = new UserComponent();
@@ -136,13 +139,39 @@ public class ProjectController {
    	
 	
     public void pushProject(Project p) {
+    	System.out.println(p.getName()); 
+    	List<Ticket> tickets = p.getTickets(); 
+    	System.out.println(tickets.size()); 
+    	for (Ticket t : tickets) {
+    		System.out.println(t.getTitle()); 
+    	}
     	projectRepository.save(p);
     }
 
     public void addTicket(Long pid, Ticket t)
 	{
-		findPid(pid).addTicket(t);
+
+//		System.out.println(t.getTitle()); 
+//		System.out.println(t.getDescription());
+//		System.out.println(t.getDueDate()); 
+		Project p = findPid(pid); 
+		p.addTicket(t);
+		pushProject(p); 
 	}
+    
+    public List<TicketComponent> buildTicketComponents() {
+    	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
+    	Project project = findPid(usc.getPid());
+    	for (Ticket t : project.getTickets()) {
+    		TicketComponent tc = new TicketComponent(); 
+    		tc.setAssignedUser(getAssigneeNames(t.getAssignees()));
+    		tc.setTitle(t.getTitle());
+    		tc.setColor(getPriorityLevel(t));
+    		tc.setStatus(getStatus(t));
+    		ticketComponents.add(tc); 
+    	}
+    	return ticketComponents; 
+    }
 
 	public ArrayList<String> getUsers(Long pid)
 	{
@@ -152,6 +181,46 @@ public class ProjectController {
 			returnList.add(udc.getFromEmail(email).getDisplayName());
 		}
 		return returnList;
+	}
+	
+	public String getAssigneeNames(List<String> emails) {
+		String assignees = ""; 
+		ArrayList<String> assigneeList = new ArrayList<>(); 
+		for (String email : emails) {
+			assigneeList.add(udc.getFromEmail(email).getDisplayName()); 
+		}
+		assignees = String.join(", ", assigneeList); 
+		return assignees; 
+	}
+	
+	public String getPriorityLevel(Ticket t) {
+		if (t.getPriority() == PriorityEnum.HIGH) {
+			return "high"; 
+		}
+		
+		else if (t.getPriority() == PriorityEnum.MEDIUM) {
+			return "medium"; 
+		}
+		else {
+			return "low"; 
+		}	
+	}
+	
+	public String getStatus(Ticket t) {
+		String s; 
+		if (t.getStatus() == StatusEnum.TODO) {
+			s = "to do"; 
+		}
+		else if (t.getStatus() == StatusEnum.INPROGRESS) {
+			s = "in progress"; 
+		}
+		else if (t.getStatus() == StatusEnum.DONE) {
+			s = "done"; 
+		}
+		else {
+			s = ""; 
+		}
+		return s; 
 	}
 
 }
