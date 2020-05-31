@@ -15,7 +15,7 @@ public class UserData extends AbstractEntity implements Cloneable {
     @NotEmpty
 	private String email;
 	
-	private String notes;
+	private String notes = "";
 
 	private String fullName;
 	    

@@ -4,6 +4,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -50,8 +51,10 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	private ListBox<String> ticketListBox;
 	@Id("toTicketsButton")
 	private Button toTicketsButton;
-	@Id("notesField")
-	private HorizontalLayout notesField;
+
+	@Id("noteField")
+	private TextArea noteField;
+
 	@Id("name")
 	private Button name;
 	@Id("role")
@@ -86,7 +89,17 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	for (Long project_id : udc.getFromEmail(usc.getEmail()).getProjects())
     		System.out.println((project_id.toString()));
 
+    	addListeners();
+
     }
+
+    public void addListeners()
+	{
+		noteField.addCompositionEndListener(e -> {
+			udc.getFromEmail(usc.getEmail()).setNotes(noteField.getValue());
+			Notification.show("UPDATED!");
+		});
+	}
 
     public void populatePage()
 	{
@@ -104,6 +117,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 				}
 			}
 		}
+
+		noteField.setValue(udc.getFromEmail(usc.getEmail()).getNotes());
 
 	}
 
@@ -134,18 +149,14 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	editProfileButton.addClickListener(event -> Notification.show(p));
     	
     }
-    
-    public void addToNotes() {
-    }
 
 	public static long hash(String string) {
 		long h = 1125899906842597L; // prime
 		int len = string.length();
 
 		for (int i = 0; i < len; i++) {
-			h = 31*h + string.charAt(i);
+			h = 31 * h + string.charAt(i);
 		}
 		return h;
 	}
-    
 }
