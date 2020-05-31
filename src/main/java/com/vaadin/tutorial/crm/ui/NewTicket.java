@@ -3,6 +3,7 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.listbox.MultiSelectListBox;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 //import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Component;
 import org.vaadin.gatanaso.MultiselectComboBox;
 
 import java.util.ArrayList;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  * A Designer generated component for the new-ticket template.
@@ -47,25 +49,9 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 	private DatePicker dateAssigned;
 	@Id("dateDue")
 	private DatePicker dateDue;
-	@Id("possibleMembers")
+	
 	private MultiselectComboBox<String> possibleMembers;
-	@Id("priority")
-	private ComboBox<String> priority;
-	@Id("status")
-	private ComboBox<String> status;
-//	@Id("lowPriority")
-//	private Checkbox lowPriority;
-//	@Id("medPriority")
-//	private Checkbox medPriority;
-//	@Id("highPriority")
-//	private Checkbox highPriority;
-//	@Id("todoStatus")
-//	private Checkbox todoStatus;
-//	@Id("inProgressStatus")
-//	private Checkbox inProgressStatus;
-//	@Id("completedStatus")
-//	private Checkbox completedStatus;
-
+	
 	/**
      * Creates a new NewTicket.
      */
@@ -74,6 +60,12 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 	UserSessionController usc;
 	ProjectController pc;
 	UserDataController udc;
+	@Id("comboWrapper")
+	private HorizontalLayout comboWrapper;
+	@Id("status")
+	private ComboBox<String> status;
+	@Id("priority")
+	private ComboBox<String> priority;
 
 
 	public NewTicket(TicketController tc, UserSessionController usc, ProjectController pc,
@@ -88,8 +80,12 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	priority.setItems("Low", "Medium", "High");
     	status.setLabel("Status");
     	status.setItems("To Do", "In Progress", "Completed");
+    	
+    	possibleMembers = new MultiselectComboBox<String>(); 
     	possibleMembers.setLabel("Add Assignees");
     	possibleMembers.setItems(pc.getUsers(usc.getPid()));
+    	comboWrapper.add(possibleMembers);
+    	
     }
 
     /**
@@ -106,7 +102,7 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 
 		createButton.addClickListener(e -> {
 			parseTicket();
-			createButton.getUI().ifPresent(ui -> ui.navigate("projects"));
+			createButton.getUI().ifPresent(ui -> ui.navigate("tickets"));
 		});
     }
 

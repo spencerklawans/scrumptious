@@ -27,8 +27,6 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	private Button toTeam;
 	@Id("toProjectPage")
 	private Button toProjectPage;
-	@Id("projectName")
-	private Button projectName;
 	@Id("toBacklog")
 	private Button toBacklog;
 
@@ -39,6 +37,8 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	UserSessionController usc;
 
 	private ProjectController projectController;
+	@Id("projectName")
+	private Button projectName;
 
     public SidebarComponent(UserSessionController usc, ProjectController projectController) throws NullPointerException{
         // You can initialise any data required for the connected UI components here.
