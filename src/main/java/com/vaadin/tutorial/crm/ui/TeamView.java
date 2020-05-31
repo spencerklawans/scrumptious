@@ -46,12 +46,12 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
 //        for each user in current project:
 //                add component showing them as below
 
-        UserComponent me = new UserComponent();
-        me.setDetails(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
+//        UserComponent me = new UserComponent();
+//        me.setDetails(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
 //        _2ndColumn.add(new Image(userSession.getUser().getPicture(), "UserIcon"));
 
     }
-    public int populateBacklogTeam() {
+    public int populateTeam() {
         int i = 0;
         for (UserComponent userComponent:
                 projectController.buildUserComponents()) {

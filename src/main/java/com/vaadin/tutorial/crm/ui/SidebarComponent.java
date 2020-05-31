@@ -35,6 +35,7 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	/**
      * Creates a new SidebarComponent.
      */
+
 	UserSessionController usc;
 
 	private ProjectController projectController;
