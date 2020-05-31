@@ -78,7 +78,6 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     
     private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR_READONLY);
-    //TODO: Make new credentials.json
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
     
     private Calendar service;
@@ -107,7 +106,6 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	header.setLogo();
     	header.setUserButton();
     	sidebar.setNavButtons();
-    	//TODO: Add buttons (???) to navigate between months
     	
     }
 
@@ -125,53 +123,18 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	calendarWrapper.add(calendar);
     	calendarWrapper.setFlexGrow(1, calendar);
 
-    	// get next 10 events
+    	// get next 100 events
     	//TODO Configure this to show dynamic number of events
-    	List<Event> events= this.getCalendarEvents(10); 
+    	List<Event> events= this.getCalendarEvents(100); 
 
-    	LocalDateTime startLDT, endLDT;
-    	// by default, events are not all day.
-    	boolean eventIsAllDay = false;
-    	
-		//TODO: decompose this loop to `parseGCalEntry`
 		for (Event event : events) {
 			//Adds upcoming events from Signed In User's Google Calendar to calendar
 			
-			String title = event.getSummary();
-			//System.out.println(title);
+			Entry entry = getVaadinEntry(event);
 			
-			EventDateTime start = event.getStart();
-			//System.out.println(start);
-			try {
-				startLDT = parseLDTFromGoogleEvent(start);
-			}catch (Exception e) {
-				System.err.println(e.getMessage() + title);
-				continue;
-			}	
-			
-			EventDateTime end = event.getEnd();
-			//System.out.println(end);
-			try {
-				endLDT = parseLDTFromGoogleEvent(end);
-			}catch (Exception e) {
-				System.err.println(e.getMessage() + title);
-				continue;
-			}
-			
-			eventIsAllDay = isAllDay(startLDT, endLDT);
-			String description = event.getDescription();
-			
-			calendar.addEntry(newCalendarEntry(title, startLDT, endLDT, eventIsAllDay, description));
-			
-			// For debugging:
-			//Notification.show("Upcoming event: " + event.getDescription());
+			calendar.addEntry(entry);
 		}
 		
-    	// Tests for Vaadin calendar event adding:
-		//TODO: Replace these with GCal events, eventually delete
-		LocalDateTime now = LocalDateTime.now();
-		calendar.addEntry(newCalendarEntry("Hello World", now.plusHours(1), now.plusHours(2), false,  "Test1"));
-		calendar.addEntry(newCalendarEntry("Hello World2", now.plusHours(3), now.plusHours(4), false, "Test2"));
 		
 		//select which view to display 
 		ComboBox<CalendarView> viewBox = new ComboBox<>("", CalendarViewImpl.values()); 
@@ -218,8 +181,9 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
     
+    
     private void setService() throws IOException, GeneralSecurityException{
-    	//GCalendar
+    	// Google Calendar API configuration
     	final NetHttpTransport httpTrans = GoogleNetHttpTransport.newTrustedTransport();
         this.service = new Calendar.Builder(httpTrans, JSON_FACTORY, getCredentials(httpTrans))
                 .setApplicationName(APPLICATION_NAME)
@@ -267,31 +231,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	 * */
     	return start.until(end, ChronoUnit.SECONDS) % 86400 == 0;
     }
-    
-    
-    private static Entry newCalendarEntry(String title, 
-    							   LocalDateTime start, 
-    							   LocalDateTime end, 
-    							   boolean allDay,
-    							   String description) {
-    	/**
-    	 * @params: title of event, start time, end time, description
-    	 * @return: a new Vaadin Entry for the calendar display
-    	 * TODO: de-randomize(?) color
-    	 * */
-    	
-    	Entry entry = new Entry(String.valueOf(title.hashCode()));
-    	String color = randomColor();
-    	
-    	entry.setAllDay(allDay);
-    	entry.setColor(color);
-    	entry.setTitle(title);
-    	entry.setEnd(end);
-    	entry.setStart(start);
-    	entry.setDescription(description);
-    	
-    	return entry;
-    }
+
     
     private static String randomColor() {
     	/** Generates a random color string to be used when populating calendar.
@@ -305,7 +245,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	colors.add("green"); colors.add("blue"); colors.add("purple");
     	colors.add("MediumOrchid"); colors.add("DarkTurquoise"); colors.add("crimson");
     	colors.add("silver"); colors.add("MediumAquaMarine");
-    	colors.add("MidnightBlue");
+    	colors.add("MidnightBlue"); colors.add("#FF7F50");
     	
     	// pick a random element of colors
     	int choice = (int)(Math.random() * colors.size());
@@ -313,7 +253,8 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	return colors.get(choice);
     }
     
-    private static LocalDateTime parseLDTFromGoogleEvent(EventDateTime dt) throws Exception {
+    
+    private static LocalDateTime parseLDTFromGoogleEvent(EventDateTime dt) throws NoSuchFieldException {
     	/**
     	 * @param Google EventDateTime
     	 * @return LocalDateTime used by Vaadin FullCalendar
@@ -335,9 +276,58 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 			
 		}else {
 			// Error - Don't show the event, log an error message
-			//TODO: update this exception to a more descriptive Exception
-			throw new Exception("Error parsing start-date for event ");
+			throw new NoSuchFieldException("Error parsing start-date for event ");
 		}
+    }
+    
+    private static Entry getVaadinEntry(Event event) {
+    	/**
+    	 * @param event: a google calendar event
+    	 * @return a Vaadin calendar entry to be inserted into calendar
+    	 * */
+    	String title = event.getSummary();
+    	Entry entry = new Entry(String.valueOf(title.hashCode()));
+    	
+    	String color = randomColor();
+    	
+    	boolean eventIsAllDay;
+    	LocalDateTime startLDT, endLDT;
+    	
+		//Event start
+		EventDateTime start = event.getStart();
+		
+		try {
+			startLDT = parseLDTFromGoogleEvent(start);
+		}catch (NoSuchFieldException e) {
+			System.err.println(e.getMessage() + title);
+			//TODO: Log an error
+			return null;
+		}	
+		
+		//Event end
+		EventDateTime end = event.getEnd();
+		
+		try {
+			endLDT = parseLDTFromGoogleEvent(end);
+		}catch (NoSuchFieldException e) {
+			System.err.println(e.getMessage() + title);
+			//TODO: Log an error
+			return null;
+		}
+		
+		eventIsAllDay = isAllDay(startLDT, endLDT);
+		String description = event.getDescription();
+		
+		//Populate entry
+		entry.setAllDay(eventIsAllDay);
+    	entry.setColor(color);
+    	entry.setTitle(title);
+    	entry.setEnd(endLDT);
+    	entry.setStart(startLDT);
+    	entry.setDescription(description);
+    	
+    	
+    	return entry;
     }
 
 }

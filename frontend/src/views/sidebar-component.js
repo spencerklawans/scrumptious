@@ -15,6 +15,9 @@ class SidebarComponent extends PolymerElement {
 <vaadin-vertical-layout class="sidebar" style="background-color: rgba(210, 209, 213); margin-top: auto; justify-content: center; padding: var(--lumo-space-xs); align-items: flex-start; flex-shrink: 0; height: 100%;">
  <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); height: 20%;" disabled tabindex=""></vaadin-button>
  <vaadin-vertical-layout style="align-self: center; height: 70%; width: 100%; align-items: flex-start; justify-content: center;" theme="spacing">
+  <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); font-family: Roboto; font-style: normal; font-weight: bold; font-size: 36px; line-height: 56px; color: #000000; height: 100%;" id="projectName" disabled>
+   default project name
+  </vaadin-button>
   <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); color: #000000; " id="toBacklog">
     Backlog 
   </vaadin-button>

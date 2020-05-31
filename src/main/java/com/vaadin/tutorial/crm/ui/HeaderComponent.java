@@ -61,7 +61,8 @@ public class HeaderComponent extends PolymerTemplate<HeaderComponent.HeaderCompo
 		icon.setWidth("50px");
     	userDashButton.setIcon(icon);
     	userDashButton.addClickListener(e ->
-    		userDashButton.getUI().ifPresent(ui -> ui.navigate("dashboard"))
+    		userDashButton.getUI()
+    					  .ifPresent(ui -> ui.navigate("dashboard"))
     	);
     }
 }
