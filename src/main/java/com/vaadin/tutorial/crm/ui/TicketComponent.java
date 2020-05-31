@@ -26,6 +26,7 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
 	private Button assignedUser;
 	@Id("priority")
 	private Button priority;
+	private String status; 
 
 	/**
      * Creates a new TicketComponent.
@@ -62,5 +63,13 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
     
     public void setTitle(String name) {
     	title.setText(name);
+    }
+    
+    public void setStatus(String status) {
+    	this.status = status;
+    }
+    
+    public String getStatus() {
+    	return status; 
     }
 }
