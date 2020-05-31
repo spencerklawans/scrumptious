@@ -46,19 +46,27 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 	private VerticalLayout columnOne;
 
 	private ProjectController projectController;
+	UserSessionController usc;
 
+	UserDataController udc;
 	/**
      * Creates a new BacklogView.
      */
 
-    public BacklogView(ProjectController projectController) {
+    public BacklogView(ProjectController projectController, UserSessionController usc, UserDataController udc) {
         // You can initialise any data required for the connected UI components here.
 		this.projectController = projectController;
     	sidebar.setNavButtons();
     	header.setLogo();
     	header.setUserButton();
     	addComponent.setNavButtons();
-//    	add null check if there is no project associated w the session.
+
+		this.udc = udc;
+		this.usc = usc;
+		if(usc.getPid() == null) {
+	//    	add null check if there is no project associated w the session.
+
+		}
     	this.populateBacklog();
 
     }

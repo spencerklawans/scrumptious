@@ -34,8 +34,7 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
      * Creates a new SidebarComponent.
      */
     public SidebarComponent() {
-        // You can initialise any data required for the connected UI components here.
-    	
+        // You can initialise any data required for the connected UI components here
     }
 
     /**
