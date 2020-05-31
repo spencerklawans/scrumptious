@@ -148,16 +148,16 @@ public class ProjectController {
     	projectRepository.save(p);
     }
 
-    public void addTicket(Long pid, Ticket t)
-	{
-
-//		System.out.println(t.getTitle()); 
-//		System.out.println(t.getDescription());
-//		System.out.println(t.getDueDate()); 
-		Project p = findPid(pid); 
-		p.addTicket(t);
-		pushProject(p); 
-	}
+//    public void addTicket(Long pid, Ticket t)
+//	{
+//
+////		System.out.println(t.getTitle());
+////		System.out.println(t.getDescription());
+////		System.out.println(t.getDueDate());
+//		Project p = findPid(pid);
+//		p.addTicket(t);
+//		pushProject(p);
+//	}
     
     public List<TicketComponent> buildTicketComponents() {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 

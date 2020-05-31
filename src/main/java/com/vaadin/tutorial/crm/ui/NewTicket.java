@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -16,8 +17,10 @@ import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.PriorityEnum;
 import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
+import org.aspectj.weaver.ast.Not;
 import org.vaadin.gatanaso.MultiselectComboBox;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
@@ -95,8 +98,24 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	);
 
 		createButton.addClickListener(e -> {
-			parseTicket();
-			createButton.getUI().ifPresent(ui -> ui.navigate("tickets"));
+			if(title.isEmpty())
+				Notification.show("Ticket must have at title");
+			else if(description.isEmpty())
+				Notification.show("Ticket must have at description");
+			else if(dateDue.isEmpty())
+				Notification.show("Must have a due date");
+			else if(dateDue.getValue().isBefore(LocalDate.now()))
+				Notification.show("Due date must be in the future");
+			else if(status.isEmpty())
+				Notification.show("Ticket must have a status");
+			else if(priority.isEmpty())
+				Notification.show("Ticket must have a priority");
+			else if(possibleMembers.isEmpty())
+				Notification.show("Ticket must have at least one assignee");
+			else {
+				parseTicket();
+				createButton.getUI().ifPresent(ui -> ui.navigate("tickets"));
+			}
 		});
     }
 
@@ -146,8 +165,7 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 		{
 			emails.add(udc.getFromDisplay(name).getEmail());
 		}
-		Ticket t = new Ticket(title.getValue(), pe, se, emails, description.getValue(),
-				dateAssigned.getValue(), dateDue.getValue());
-		pc.addTicket(usc.getPid(), t);
+		tc.addTicket(title.getValue(), pe, se, emails, description.getValue(),
+				dateAssigned.getValue(), dateDue.getValue(), usc.getPid());
 	}
 }

@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
@@ -51,6 +52,14 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	this.userDataController = userDataController;
     	this.usc = usc;
     	this.tc = tc;
+    	testTickets();
+    }
+
+    public void testTickets()
+    {
+        List<Ticket> t = tc.findTicketsByPid(usc.getPid());
+        for(Ticket ticket : t)
+            Notification.show(ticket.getTitle());
     }
 
     /**
@@ -64,6 +73,8 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	createButton.addClickListener(e ->
     		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
     	);
+
+
     }
     public void populateTickets() {
       //filling in tickets based on db calls
