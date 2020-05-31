@@ -19,7 +19,7 @@ class AddToBacklog extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%; padding: var(--lumo-space-l);">
- <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; align-self: flex-start; flex-grow: 0; margin: var(--lumo-space-xs);" disabled tabindex="">
+ <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; align-self: flex-start; flex-grow: 0; margin: var(--lumo-space-xs); font-weight: bold;" disabled tabindex="">
    Add to Backlog 
  </vaadin-button>
  <vaadin-form-item style="margin: var(--lumo-space-m); align-self: flex-start;">

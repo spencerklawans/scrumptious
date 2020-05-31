@@ -58,8 +58,6 @@ public class Project extends AbstractEntity implements Cloneable {
 	public LocalDate getDateCreated() {return this.dateCreated;}
 			
 	public List<String> getUsers(){return this.userEmails;}
-
-	public List<Ticket> getTickets(){ return this.tickets;};
 		
 	public void addMember(String email) {
 		// returns updated count of team members on project

@@ -14,7 +14,7 @@ class TeamView extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;" id="root">
- <vaadin-button style="font-size: 16pt; color: #000000; margin-top: var(--lumo-space-l); margin-left: var(--lumo-space-m); align-self: flex-start; background-color: #FFFFFF;" disabled tabindex="">
+ <vaadin-button style="font-size: 16pt; color: #000000; margin-top: var(--lumo-space-l); margin-left: var(--lumo-space-m); align-self: flex-start; background-color: #FFFFFF; font-weight: bold;" disabled tabindex="">
    Team 
  </vaadin-button>
  <vaadin-horizontal-layout class="content" style="width: 100%; height: 100%;">

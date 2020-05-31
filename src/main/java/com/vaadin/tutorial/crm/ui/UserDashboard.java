@@ -22,6 +22,7 @@ import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.vaadin.flow.component.textfield.TextArea;
 
 import java.util.List;
 
@@ -51,7 +52,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	private ListBox<String> ticketListBox;
 	@Id("toTicketsButton")
 	private Button toTicketsButton;
-
 	@Id("noteField")
 	private TextArea noteField;
 
@@ -70,6 +70,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	UserDataController udc;
 
 	ProjectController pc;
+	@Id("saveNotesButton")
+	private Button saveNotesButton;
 
 	/**
      * Creates a new UserDashboard.
@@ -95,9 +97,13 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
     public void addListeners()
 	{
-		noteField.addCompositionEndListener(e -> {
+		saveNotesButton.addClickListener(e -> {
 			udc.getFromEmail(usc.getEmail()).setNotes(noteField.getValue());
 			Notification.show("UPDATED!");
+			Notification.show(noteField.getValue()); 
+			udc.saveUser(udc.getFromEmail(usc.getEmail()));
+			Notification.show(udc.getFromEmail(usc.getEmail()).getFullName()); 
+			Notification.show(udc.getFromEmail(usc.getEmail()).getNotes()); 
 		});
 	}
 

@@ -20,7 +20,7 @@ class NewTicketMain extends PolymerElement {
   <header-component style="flex-grow: 1;" id="header"></header-component>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; flex-grow: 1; flex-shrink: 1; flex-basis: auto; height: 100%; align-self: stretch;">
-  <vaadin-vertical-layout class="sidebar" style="flex-basis: calc(7*var(--lumo-size-s)); flex-shrink: 0; background-color: var(--lumo-contrast-5pct); width: 20%; height: 100%; flex-grow: 1;">
+  <vaadin-vertical-layout class="sidebar" style="flex-basis: calc(7*var(--lumo-size-s)); flex-shrink: 0; background-color: var(--lumo-contrast-5pct); width: 20%; height: 100%; flex-grow: 1; align-self: stretch;">
    <sidebar-component style="align-self: stretch; flex-grow: 1; flex-shrink: 1; height: 100%; width: 100%;" id="sidebar"></sidebar-component>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout style="flex-grow: 1; height: 100%; width: 80%;">
