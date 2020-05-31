@@ -40,11 +40,19 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 
 	private ProjectController projectController;
 
-    public SidebarComponent(UserSessionController usc, ProjectController projectController) {
+    public SidebarComponent(UserSessionController usc, ProjectController projectController) throws NullPointerException{
         // You can initialise any data required for the connected UI components here.
 		this.usc = usc;
 		this.projectController = projectController;
-		projectName.setText(projectController.findPid(usc.getPid()).getName());
+		try
+		{
+			projectName.setText(projectController.findPid(usc.getPid()).getName());
+		}
+		catch(NullPointerException e)
+		{
+			projectName.setText("Not Found");
+		}
+		catch(IllegalArgumentException e){}
     }
 
     /**

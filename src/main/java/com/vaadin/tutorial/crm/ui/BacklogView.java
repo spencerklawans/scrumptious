@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
@@ -65,9 +66,11 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 		this.usc = usc;
 		if(usc.getPid() == null) {
 	//    	add null check if there is no project associated w the session.
-
+			Notification.show("No project associated w/ session");
 		}
-    	this.populateBacklog();
+		else {
+			this.populateBacklog();
+		}
 
     }
     public int populateBacklog() {

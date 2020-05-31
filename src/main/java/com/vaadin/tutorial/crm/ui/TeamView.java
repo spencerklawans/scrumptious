@@ -55,20 +55,22 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         int i = 0;
         for (UserComponent userComponent:
                 projectController.buildUserComponents()) {
-            switch (i % 3){
-                case 0:
-                    columnOne.add(userComponent);
-                    break;
-                case 1:
-                    columnTwo.add(userComponent);
-                    break;
-                case 2:
-                    columnThree.add(userComponent);
-                    break;
-                default:
-                    return 1;
+            if(userComponent != null) {
+                switch (i % 3) {
+                    case 0:
+                        columnOne.add(userComponent);
+                        break;
+                    case 1:
+                        columnTwo.add(userComponent);
+                        break;
+                    case 2:
+                        columnThree.add(userComponent);
+                        break;
+                    default:
+                        return 1;
+                }
+                i += 1;
             }
-            i += 1;
         }
         return 0;
     }
