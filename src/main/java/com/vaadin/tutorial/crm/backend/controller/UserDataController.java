@@ -40,4 +40,9 @@ public class UserDataController {
     	if (user.getProjects().contains(projectId))
     		user.removeProjectId(projectId);
     }
+
+    public UserData getFromDisplay(String displayName)
+    {
+        return userDataRepository.findByDisplayName(displayName);
+    }
 }

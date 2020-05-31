@@ -5,10 +5,12 @@ import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+@Service
 public class TicketController {
 
 	@Autowired

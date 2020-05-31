@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface UserDataRepository extends CrudRepository<UserData, Long> {
     UserData findByEmail(String email);
+    UserData findByDisplayName(String displayName);
 }

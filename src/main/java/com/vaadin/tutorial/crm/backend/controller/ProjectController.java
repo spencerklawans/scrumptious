@@ -139,10 +139,19 @@ public class ProjectController {
     	projectRepository.save(p);
     }
 
-
-	public void addTicket(Long pid, Ticket t)
+    public void addTicket(Long pid, Ticket t)
 	{
 		findPid(pid).addTicket(t);
+	}
+
+	public ArrayList<String> getUsers(Long pid)
+	{
+		ArrayList<String> returnList = new ArrayList<String>();
+		for (String email : findPid(pid).getUsers())
+		{
+			returnList.add(udc.getFromEmail(email).getDisplayName());
+		}
+		return returnList;
 	}
 
 }
