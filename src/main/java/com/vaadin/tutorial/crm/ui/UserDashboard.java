@@ -91,7 +91,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 		icon.setWidth("150px");
 		userProfilePic.setIcon(icon);
     	toProjectsButton.addClickListener(e ->
-    		toProjectsButton.getUI().ifPresent(ui -> ui.navigate("projects"))
+    		toProjectsButton.getUI()
+    						.ifPresent(ui -> ui.navigate("projects"))
     	);
     	
     	toTicketsButton.addClickListener(e ->
