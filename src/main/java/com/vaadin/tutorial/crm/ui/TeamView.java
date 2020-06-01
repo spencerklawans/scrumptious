@@ -13,6 +13,7 @@ import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.button.Button;
 
 /**
  * A Designer generated component for the team-view template.
@@ -36,6 +37,9 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     @Id("columnThree")
     private VerticalLayout columnThree;
     private ProjectController projectController;
+
+	@Id("inviteMember")
+	private Button inviteMember;
 
 
     /**
