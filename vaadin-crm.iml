@@ -316,5 +316,6 @@
     <orderEntry type="library" name="Maven: io.opencensus:opencensus-api:0.24.0" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-context:1.22.1" level="project" />
     <orderEntry type="library" name="Maven: io.opencensus:opencensus-contrib-http-util:0.24.0" level="project" />
+    <orderEntry type="library" name="Maven: org.vaadin.gatanaso:multiselect-combo-box-flow:2.5.0.rc1" level="project" />
   </component>
 </module>

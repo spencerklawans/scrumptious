@@ -1,11 +1,13 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Ticket implements Serializable {
+@Entity
+public class Ticket extends AbstractEntity{
 	
 	private static final int ID = 0; // placeholder int
 	private String title;
@@ -15,10 +17,11 @@ public class Ticket implements Serializable {
 	private String description;
 	private LocalDate assigned;
 	private LocalDate dueDate;
+	private Long pid;
 	
 
 	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
-	String description, LocalDate assigned, LocalDate dueDate) {
+	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
 		this.title = title;
 		this.priority = pe;
 		this.status = se;
@@ -26,6 +29,12 @@ public class Ticket implements Serializable {
 		this.description = description;
 		this.assigned = assigned;
 		this.dueDate = dueDate;
+		this.pid = pid;
+	}
+
+	public Ticket()
+	{
+
 	}
 
 	public String getTitle() {return this.title;}

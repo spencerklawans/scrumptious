@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
@@ -51,6 +52,14 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	this.userDataController = userDataController;
     	this.usc = usc;
     	this.tc = tc;
+    	testTickets();
+    }
+
+    public void testTickets()
+    {
+        List<Ticket> t = tc.findTicketsByPid(usc.getPid());
+        for(Ticket ticket : t)
+            Notification.show(ticket.getTitle());
     }
 
     /**
@@ -64,33 +73,37 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	createButton.addClickListener(e ->
     		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
     	);
+
+
     }
     public void populateTickets() {
       //filling in tickets based on db calls
-        List<TicketComponent> ticketComponents = projectController.buildTicketComponents();
+        List<TicketComponent> ticketComponents = projectController.buildTicketComponents(usc.getPid());
         //tickets = projectController.findPid(usc.getPid()).getTickets();
         for (TicketComponent tc : ticketComponents)
         {
-            if (tc.getStatus() == "to do")
+            Notification.show(tc.getStatus());
+            if (tc.getStatus().equals("to do")) {
                 todoWrapper.add(tc);
-            if (tc.getStatus() == "in progress")
+            }
+            if (tc.getStatus().equals("in progress"))
                 progressWrapper.add(tc);
-            if (tc.getStatus() == "done")
+            if (tc.getStatus().equals("done"))
                 completedWrapper.add(tc);
         }
     }
-//    public TicketComponent generateTicketComponent(Ticket ticket) {
-//        TicketComponent ticketComponent = new TicketComponent();
-////        This will only hold one for the list as of right now
-//        
-//        for (String assignee:
-//                ticket.getAssignees()) {
-//        	UserData curr = userDataController.getFromEmail(assignee);
-//            ticketComponent.setAssignedUser(curr.getEmail());
-//        }
-//        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
-//        ticketComponent.setTitle(ticket.getTitle());
-//        return ticketComponent;
-//    }
+    public TicketComponent generateTicketComponent(Ticket ticket) {
+        TicketComponent ticketComponent = new TicketComponent();
+//        This will only hold one for the list as of right now
+
+        for (String assignee:
+                ticket.getAssignees()) {
+        	UserData curr = userDataController.getFromEmail(assignee);
+            ticketComponent.setAssignedUser(curr.getEmail());
+        }
+        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
+        ticketComponent.setTitle(ticket.getTitle());
+        return ticketComponent;
+    }
 
 }

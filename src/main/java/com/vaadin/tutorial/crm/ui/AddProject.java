@@ -67,12 +67,20 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     	});
     	
     	createButton.addClickListener(e -> {
-    		if (nameField.isEmpty())
-    			Notification.show("Name field cannot be empty");
-    		else {
-				projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue());
+    		if (nameField.isEmpty()) {
+				Notification.show("Name field cannot be empty");
+			}
+    		else if(descriptionField.isEmpty()) {
+				Notification.show("Description field cannot be empty");
+			}
+    		else if(teamField.isEmpty()) {
+				Notification.show("Must add at least one email");
+			}
+    		else if(projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue())){
 				createButton.getUI().ifPresent(ui -> ui.navigate("projects"));
 			}
+			else
+				Notification.show("One or more emails are not valid");
     	});
     }
 }

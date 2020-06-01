@@ -3,6 +3,7 @@ package com.vaadin.tutorial.crm.backend.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
@@ -34,6 +35,9 @@ public class ProjectController {
     
     @Autowired
     UserSessionController usc = new UserSessionController();
+
+    @Autowired
+	TicketController tc = new TicketController();
            
     public boolean addProject(String name, String description, LocalDate date, String team) {
     	Project p; 
@@ -51,6 +55,8 @@ public class ProjectController {
     	for (int i = 0; i < userEmailList.size(); i++)
     	{
     		System.out.println(userEmailList.get(i));
+    		if(!checkEmailStyle(userEmailList.get(i)))
+    			return false;
     	}
     	p.setUserEmails(userEmailList);
     	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
@@ -70,6 +76,19 @@ public class ProjectController {
     	}
     	return true;
     }
+
+    public boolean checkEmailStyle(String s)
+	{
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+				"[a-zA-Z0-9_+&*-]+)*@" +
+				"(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+				"A-Z]{2,7}$";
+
+		Pattern pat = Pattern.compile(emailRegex);
+		if (s == null)
+			return false;
+		return pat.matcher(s).matches();
+	}
     
     //replace with call to db that finds user associated with email
     public ArrayList<String> buildTeam(String team) {
@@ -148,27 +167,26 @@ public class ProjectController {
     	projectRepository.save(p);
     }
 
-    public void addTicket(Long pid, Ticket t)
-	{
-
-//		System.out.println(t.getTitle()); 
-//		System.out.println(t.getDescription());
-//		System.out.println(t.getDueDate()); 
-		Project p = findPid(pid); 
-		p.addTicket(t);
-		pushProject(p); 
-	}
+//    public void addTicket(Long pid, Ticket t)
+//	{
+//
+////		System.out.println(t.getTitle());
+////		System.out.println(t.getDescription());
+////		System.out.println(t.getDueDate());
+//		Project p = findPid(pid);
+//		p.addTicket(t);
+//		pushProject(p);
+//	}
     
-    public List<TicketComponent> buildTicketComponents() {
+    public List<TicketComponent> buildTicketComponents(Long pid) {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
-    	Project project = findPid(usc.getPid());
-    	for (Ticket t : project.getTickets()) {
+    	for (Ticket t : tc.findTicketsByPid(pid)) {
     		TicketComponent tc = new TicketComponent(); 
     		tc.setAssignedUser(getAssigneeNames(t.getAssignees()));
     		tc.setTitle(t.getTitle());
     		tc.setColor(getPriorityLevel(t));
     		tc.setStatus(getStatus(t));
-    		ticketComponents.add(tc); 
+    		ticketComponents.add(tc);
     	}
     	return ticketComponents; 
     }
