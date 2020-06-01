@@ -11,9 +11,6 @@ import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import com.vaadin.tutorial.crm.backend.entity.UserData;
-
-import java.util.ArrayList;
 
 /**
  * A Designer generated component for the tickets-by-status template.

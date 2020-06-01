@@ -13,10 +13,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
-import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
-import com.vaadin.tutorial.crm.oauth.data.UserSession;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 /**
  * A Designer generated component for the user-dashboard template.

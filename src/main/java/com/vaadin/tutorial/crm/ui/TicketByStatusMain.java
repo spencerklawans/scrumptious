@@ -7,7 +7,6 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 //import com.vaadin.tutorial.crm.ui.TicketsByStatus;
 import com.vaadin.flow.component.polymertemplate.Id;
-import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.notification.Notification;
 
