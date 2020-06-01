@@ -69,7 +69,7 @@ class UserDashboard extends PolymerElement {
     </vaadin-vertical-layout>
     <vaadin-vertical-layout style="width: 45%; margin-top: var(--lumo-space-l); background-color: #009FB7; border-radius: 15px; margin-right: var(--lumo-space-m);">
      <vaadin-button style="background-color: #009FB7; color: #FFFFFF; font-size: 14pt; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);" disabled tabindex="">
-       Today's Tickets 
+       All Tickets
      </vaadin-button>
      <vaadin-horizontal-layout style="width: 90%; align-self: center; background-color: #FFFFFF; border-radius: 15px; height: 50%;">
       <vaadin-list-box id="ticketListBox" style="width: 100%; padding: var(--lumo-space-s); overflow: auto;"></vaadin-list-box>

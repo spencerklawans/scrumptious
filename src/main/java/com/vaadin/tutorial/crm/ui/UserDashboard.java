@@ -15,9 +15,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Designer generated component for the user-dashboard template.
@@ -62,17 +67,22 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	UserDataController udc;
 
 	ProjectController pc;
+
+	TicketController tc;
+
 	@Id("saveNotesButton")
 	private Button saveNotesButton;
 
 	/**
      * Creates a new UserDashboard.
      */
-    public UserDashboard(UserDataController udc, UserSessionController usc, ProjectController pc) {
+    public UserDashboard(UserDataController udc, UserSessionController usc,
+						 ProjectController pc, TicketController tc) {
         // You can initialise any data required for the connected UI components here.
     	this.udc = udc;
     	this.usc = usc;
     	this.pc = pc;
+    	this.tc = tc;
     	setPageButtons();
     	populatePage();
     	header.setLogo();
@@ -98,23 +108,21 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
     public void populatePage()
 	{
-		for(Long pid : udc.getFromEmail(usc.getEmail()).getProjects()) {
+		ArrayList<Long> projects = udc.getFromEmail(usc.getEmail()).getProjects();
+		for (Long project : projects) {
 			ListItem item = new ListItem();
-			item.setText(pc.findPid(pid).getName());
+			item.setText(pc.findPid(project).getName());
 			projectListBox.add(item);
-//			for(Ticket t : pc.findPid(pid).getTickets())
-//			{
-//				if(t.getAssignees().contains(usc.getEmail()))
-//				{
-//					ListItem newTicket = new ListItem();
-//					newTicket.setText(t.getTitle());
-//					ticketListBox.add(newTicket);
-//				}
-//			}
+			List<Ticket> tickets = tc.findTicketsByPid(project);
+			for (Ticket ticket : tickets) {
+				if (ticket.getAssignees().contains(usc.getEmail())) {
+					ListItem newTicket = new ListItem();
+					newTicket.setText(ticket.getTitle());
+					ticketListBox.add(newTicket);
+				}
+			}
 		}
-
 		noteField.setValue(udc.getFromEmail(usc.getEmail()).getNotes());
-
 	}
 
     /**
