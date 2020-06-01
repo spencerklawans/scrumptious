@@ -54,7 +54,6 @@ public class ProjectController {
     	userEmailList.add(usc.getEmail());
     	for (int i = 0; i < userEmailList.size(); i++)
     	{
-    		System.out.println(userEmailList.get(i));
     		if(!checkEmailStyle(userEmailList.get(i)))
     			return false;
     	}
@@ -158,12 +157,7 @@ public class ProjectController {
    	
 	
     public void pushProject(Project p) {
-    	System.out.println(p.getName()); 
-    	List<Ticket> tickets = p.getTickets(); 
-    	System.out.println(tickets.size()); 
-    	for (Ticket t : tickets) {
-    		System.out.println(t.getTitle()); 
-    	}
+    	List<Ticket> tickets = p.getTickets();
     	projectRepository.save(p);
     }
 

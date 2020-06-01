@@ -89,8 +89,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	{
     		udc.addUser(usc.getEmail());
     	}
-    	for (Long project_id : udc.getFromEmail(usc.getEmail()).getProjects())
-    		System.out.println((project_id.toString()));
 
     	addListeners();
 
@@ -150,7 +148,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	toTicketsButton.addClickListener(e ->
     		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
     	);
-    	System.out.println("PID: " + usc.getPid());
     	String p = Long.toString(usc.getPid());
     	editProfileButton.addClickListener(event -> Notification.show(p));
     	

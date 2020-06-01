@@ -58,8 +58,6 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     public void testTickets()
     {
         List<Ticket> t = tc.findTicketsByPid(usc.getPid());
-        for(Ticket ticket : t)
-            Notification.show(ticket.getTitle());
     }
 
     /**
@@ -82,7 +80,6 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
         //tickets = projectController.findPid(usc.getPid()).getTickets();
         for (TicketComponent tc : ticketComponents)
         {
-            Notification.show(tc.getStatus());
             if (tc.getStatus().equals("to do")) {
                 todoWrapper.add(tc);
             }

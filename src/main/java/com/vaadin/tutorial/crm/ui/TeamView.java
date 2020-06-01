@@ -37,6 +37,7 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     private VerticalLayout columnThree;
     private ProjectController projectController;
 
+
     /**
      * Creates a new TeamView.
      */
