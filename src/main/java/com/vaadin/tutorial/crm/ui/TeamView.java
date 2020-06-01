@@ -119,7 +119,4 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     public interface TeamViewModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
-//    static get properties() {
-//        }
-//    }
 }

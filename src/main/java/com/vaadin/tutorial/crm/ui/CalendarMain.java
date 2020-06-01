@@ -213,7 +213,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 			
 		} catch (IOException e) {
 			Notification.show("Error getting Google Calendar Events.");
-			return null;
+			return Collections.emptyList();
 		}
 		if (events != null) {
 			// if events exist

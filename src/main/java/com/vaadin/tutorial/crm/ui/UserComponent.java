@@ -41,11 +41,4 @@ public class UserComponent extends PolymerTemplate<UserComponent.UserComponentMo
     public void setDetails(String name) {
         userButton.setText(name);
     }
-//    CANNOT put image inside button? w/ css we can make an image into a button, but cant put user icon inside of the button.
-//    public void setIcon(Image icon) {
-//        icon.setHeight("40px");
-//        icon.setWidth("40px");
-//        userIcon.setIcon(icon);
-//    }
-
 }

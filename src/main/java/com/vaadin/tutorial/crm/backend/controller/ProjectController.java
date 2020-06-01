@@ -162,26 +162,15 @@ public class ProjectController {
     	projectRepository.save(p);
     }
 
-//    public void addTicket(Long pid, Ticket t)
-//	{
-//
-////		System.out.println(t.getTitle());
-////		System.out.println(t.getDescription());
-////		System.out.println(t.getDueDate());
-//		Project p = findPid(pid);
-//		p.addTicket(t);
-//		pushProject(p);
-//	}
-    
     public List<TicketComponent> buildTicketComponents(Long pid) {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
     	for (Ticket t : tc.findTicketsByPid(pid)) {
-    		TicketComponent tc = new TicketComponent(); 
-    		tc.setAssignedUser(getAssigneeNames(t.getAssignees()));
-    		tc.setTitle(t.getTitle());
-    		tc.setColor(getPriorityLevel(t));
-    		tc.setStatus(getStatus(t));
-    		ticketComponents.add(tc);
+    		TicketComponent ticket = new TicketComponent();
+    		ticket.setAssignedUser(getAssigneeNames(t.getAssignees()));
+    		ticket.setTitle(t.getTitle());
+    		ticket.setColor(getPriorityLevel(t));
+    		ticket.setStatus(getStatus(t));
+    		ticketComponents.add(ticket);
     	}
     	return ticketComponents; 
     }

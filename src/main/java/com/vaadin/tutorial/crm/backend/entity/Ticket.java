@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 public class Ticket extends AbstractEntity{
-	
-	private static final int ID = 0; // placeholder int
+
 	private String title;
 	private PriorityEnum priority;
 	private StatusEnum status;
@@ -78,4 +77,6 @@ public class Ticket extends AbstractEntity{
 		// see setAssigned
 		this.dueDate = dt;
 	}
+
+	public Long getPid(){ return this.pid;}
 }

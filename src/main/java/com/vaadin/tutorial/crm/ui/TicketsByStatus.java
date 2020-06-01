@@ -52,12 +52,6 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	this.userDataController = userDataController;
     	this.usc = usc;
     	this.tc = tc;
-    	testTickets();
-    }
-
-    public void testTickets()
-    {
-        List<Ticket> t = tc.findTicketsByPid(usc.getPid());
     }
 
     /**
@@ -78,15 +72,14 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
       //filling in tickets based on db calls
         List<TicketComponent> ticketComponents = projectController.buildTicketComponents(usc.getPid());
         
-        for (TicketComponent tc : ticketComponents)
+        for (TicketComponent ticket : ticketComponents)
         {
-            if (tc.getStatus().equals("to do")) {
-                todoWrapper.add(tc);
-            }
-            if (tc.getStatus().equals("in progress"))
-                progressWrapper.add(tc);
-            if (tc.getStatus().equals("done"))
-                completedWrapper.add(tc);
+            if (ticket.getStatus().equals("to do"))
+                todoWrapper.add(ticket);
+            if (ticket.getStatus().equals("in progress"))
+                progressWrapper.add(ticket);
+            if (ticket.getStatus().equals("done"))
+                completedWrapper.add(ticket);
         }
     }
     public TicketComponent generateTicketComponent(Ticket ticket) {

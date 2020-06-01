@@ -13,8 +13,6 @@ import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.notification.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 
-//import com.vaadin.flow.dom.Element;
-
 /**
  * A Designer generated component for the ticket-by-status-main template.
  *
