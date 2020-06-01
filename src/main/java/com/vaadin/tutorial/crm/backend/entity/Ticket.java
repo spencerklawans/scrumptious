@@ -17,9 +17,6 @@ public class Ticket {
 	
 
 	public Ticket() {
-		//TODO: id generator function
-		// id assignment should be replaced with a private (?static?) 
-						// function call.
 	}
 	public Ticket(String placeholder) {
 		//TODO: a constructor that is used by a controller function that 
