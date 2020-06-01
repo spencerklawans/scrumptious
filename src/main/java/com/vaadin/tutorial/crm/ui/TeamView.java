@@ -1,7 +1,11 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -14,6 +18,7 @@ import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.button.Button;
+
 
 /**
  * A Designer generated component for the team-view template.
@@ -37,25 +42,40 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     @Id("columnThree")
     private VerticalLayout columnThree;
     private ProjectController projectController;
+    private UserSessionController usc;
 
 	@Id("inviteMember")
 	private Button inviteMember;
 
 
+
+
     /**
      * Creates a new TeamView.
      */
-    public TeamView(ProjectController projectController) {
+    public TeamView(ProjectController projectController, UserSessionController usc) {
         this.projectController = projectController;
-        // You can initialise any data required for the connected UI components here.
-//        for each user in current project:
-//                add component showing them as below
-
-//        UserComponent me = new UserComponent();
-//        me.setDetails(userSession.getUser().getFirstName() + " " + userSession.getUser().getLastName());
-//        _2ndColumn.add(new Image(userSession.getUser().getPicture(), "UserIcon"));
-
+        this.usc = usc;
+        generatePopup();
     }
+
+    public void generatePopup()
+    {
+        Dialog dialog = new Dialog();
+        Button add = new Button("Add Member");
+        TextField email = new TextField("enter email");
+        dialog.add(new Label("Add a team member"));
+        dialog.add(email);
+        dialog.add(add);
+
+        add.addClickListener(event -> {
+            projectController.addMember(email.getValue(), usc.getPid());
+            dialog.close();
+            UI.getCurrent().getPage().reload();
+        });
+        inviteMember.addClickListener(event -> dialog.open());
+    }
+
     public int populateTeam() {
         int i = 0;
         for (UserComponent userComponent:

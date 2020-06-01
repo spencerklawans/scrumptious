@@ -71,6 +71,12 @@ public class ProjectController {
     	return true;
     }
 
+    public void addMember(String email, long pid)
+	{
+		Project p = findPid(pid);
+		p.addMember(email);
+	}
+
     public boolean checkEmailStyle(String s)
 	{
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
