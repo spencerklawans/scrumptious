@@ -23,12 +23,9 @@ class TeamView extends PolymerElement {
   <vaadin-vertical-layout style="width: 33%;" id="columnThree"></vaadin-vertical-layout>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%;">
-  <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin: var(--lumo-space-l);">
-    Contact Team Member 
-  </vaadin-button>
   <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1;"></vaadin-horizontal-layout>
-  <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin: var(--lumo-space-l);">
-    Manage Team 
+  <vaadin-button style="border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin: var(--lumo-space-l);" id="inviteMember">
+   Invite Member
   </vaadin-button>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
