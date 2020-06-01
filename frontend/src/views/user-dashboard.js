@@ -34,16 +34,16 @@ class UserDashboard extends PolymerElement {
       <vaadin-button id="name" style="width: 100%; background-color: #009FB7; color: #000000; font-size: 14pt;" disabled tabindex=""></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="roleField">
-      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
+      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled tabindex="">
         Role: 
       </vaadin-button>
-      <vaadin-button id="role" style="background-color: #009FB7; font-size: 10pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
+      <vaadin-button id="role" style="background-color: #009FB7; font-size: 10pt; padding-right: var(--lumo-space-xs);" disabled tabindex=""></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start;" id="emailField">
-      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled>
+      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt;" disabled tabindex="">
         Email: 
       </vaadin-button>
-      <vaadin-button id="email" style="background-color: #009FB7; font-size: 14pt; padding-right: var(--lumo-space-xs);" disabled></vaadin-button>
+      <vaadin-button id="email" style="background-color: #009FB7; font-size: 14pt; padding-right: var(--lumo-space-xs);" disabled tabindex=""></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%;" id="phoneField"></vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: center;">
@@ -61,7 +61,7 @@ class UserDashboard extends PolymerElement {
        Current Projects 
      </vaadin-button>
      <vaadin-horizontal-layout style="width: 90%; align-self: center; background-color: #FFFFFF; border-radius: 15px; height: 50%;">
-      <vaadin-list-box id="projectListBox" style="width: 100%; padding: var(--lumo-space-xs);"></vaadin-list-box>
+      <vaadin-list-box id="projectListBox" style="width: 100%; padding: var(--lumo-space-s); overflow: auto;"></vaadin-list-box>
      </vaadin-horizontal-layout>
      <vaadin-button id="toProjectsButton" style="background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; align-self: center; margin-top: var(--lumo-space-s);">
        Go to Projects Page 
@@ -72,7 +72,7 @@ class UserDashboard extends PolymerElement {
        Today's Tickets 
      </vaadin-button>
      <vaadin-horizontal-layout style="width: 90%; align-self: center; background-color: #FFFFFF; border-radius: 15px; height: 50%;">
-      <vaadin-list-box id="ticketListBox" style="width: 100%; padding: var(--lumo-space-xs);"></vaadin-list-box>
+      <vaadin-list-box id="ticketListBox" style="width: 100%; padding: var(--lumo-space-s); overflow: auto;"></vaadin-list-box>
      </vaadin-horizontal-layout>
      <vaadin-button id="toTicketsButton" style="background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; align-self: center; margin-top: var(--lumo-space-s);">
        Go to Tickets Page 
@@ -84,9 +84,9 @@ class UserDashboard extends PolymerElement {
      <vaadin-button style="background-color: #009FB7; color: #FFFFFF; font-size: 14pt; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);">
        Notes 
      </vaadin-button>
-     <vaadin-text-area label="" placeholder="" id="noteField" style="width: 90%; background: #FFFFFF; height: 55%; align-self: center; padding: var(--lumo-space-s); border-radius: 15px;" has-value></vaadin-text-area>
+     <vaadin-text-area label="" placeholder="" id="noteField" style="width: 90%; background: #FFFFFF; height: 55%; align-self: center; padding: var(--lumo-space-s); border-radius: 15px; overflow: auto;" has-value></vaadin-text-area>
      <vaadin-button id="saveNotesButton" style="align-self: flex-end; margin-right: var(--lumo-space-l); background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; margin-top: var(--lumo-space-s);">
-      Save Notes
+       Save Notes 
      </vaadin-button>
     </vaadin-vertical-layout>
    </vaadin-horizontal-layout>

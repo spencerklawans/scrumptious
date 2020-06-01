@@ -13,7 +13,7 @@ class SidebarComponent extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout class="sidebar" style="background-color: rgba(210, 209, 213); margin-top: auto; justify-content: center; padding: var(--lumo-space-xs); align-items: flex-start; flex-shrink: 0; height: 100%;">
- <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); height: 20%; color: #000000; font-weight: bold; font-size: 24pt;" disabled tabindex="" id="projectName"></vaadin-button>
+ <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); height: 20%; color: #000000; font-weight: bold; font-size: 20pt; overflow: auto; flex-grow: 1;" disabled tabindex="" id="projectName"></vaadin-button>
  <vaadin-vertical-layout style="align-self: center; height: 70%; width: 100%; align-items: flex-start; justify-content: center;" theme="spacing">
   <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); color: #000000; " id="toBacklog">
     Backlog 

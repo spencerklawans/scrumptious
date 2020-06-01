@@ -1,10 +1,10 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import './header-component.js';
 import './sidebar-component.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 import './add-backlog-component.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 
 class BacklogView extends PolymerElement {
 
@@ -28,11 +28,7 @@ class BacklogView extends PolymerElement {
    <vaadin-button style="color: #000000; background-color: #FFFFFF; font-size: 16pt; margin: var(--lumo-space-l); font-weight: bold;" disabled tabindex="">
      Backlog 
    </vaadin-button>
-   <vaadin-horizontal-layout style="width: 100%; flex-grow: 1;">
-    <vaadin-vertical-layout style="width: 33%;" theme="spacing" id="columnOne"></vaadin-vertical-layout>
-    <vaadin-vertical-layout style="width: 33%;" id="columnTwo"></vaadin-vertical-layout>
-    <vaadin-vertical-layout style="width: 33%;" id="columnThree"></vaadin-vertical-layout>
-   </vaadin-horizontal-layout>
+   <vaadin-horizontal-layout style="width: 100%; flex-grow: 1; padding-left: var(--lumo-space-l); padding-right: var(--lumo-space-m); padding-bottom: var(--lumo-space-s); flex-wrap: wrap; align-content: flex-start; overflow: auto;" id="backlogWrapper"></vaadin-horizontal-layout>
    <vaadin-horizontal-layout style="width: 30%; align-self: flex-end; padding-bottom: var(--lumo-space-m); padding-right: var(--lumo-space-m); justify-content: flex-end;">
     <add-backlog-component id="addComponent" style="width: 100%;"></add-backlog-component>
    </vaadin-horizontal-layout>
