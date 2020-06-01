@@ -3,6 +3,8 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.textfield.TextField;
@@ -61,18 +63,29 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
 
     public void generatePopup()
     {
+        VerticalLayout layout = new VerticalLayout();
+        HorizontalLayout hLayout = new HorizontalLayout();
         Dialog dialog = new Dialog();
         Button add = new Button("Add Member");
-        TextField email = new TextField("enter email");
-        dialog.add(new Label("Add a team member"));
-        dialog.add(email);
-        dialog.add(add);
+        Button cancel = new Button("Cancel");
+        TextField email = new TextField();
+        email.setPlaceholder("Email");
+        layout.add(new Label("Add a Team Member"));
+        layout.add(email);
+        hLayout.add(cancel);
+        hLayout.add(add);
+        layout.add(hLayout);
+        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+        dialog.add(layout);
+        dialog.setWidth("900");
 
         add.addClickListener(event -> {
             projectController.addMember(email.getValue(), usc.getPid());
             dialog.close();
             UI.getCurrent().getPage().reload();
         });
+
+        cancel.addClickListener(event -> dialog.close());
         inviteMember.addClickListener(event -> dialog.open());
     }
 

@@ -74,7 +74,16 @@ public class ProjectController {
     public void addMember(String email, long pid)
 	{
 		Project p = findPid(pid);
+		UserData newMember = udc.getFromEmail(email);
+		if(newMember == null)
+		{
+			udc.addUser(email);
+			newMember = udc.getFromEmail(email);
+		}
+		newMember.addProjectId(pid);
+		udc.saveUser(newMember);
 		p.addMember(email);
+		pushProject(p);
 	}
 
     public boolean checkEmailStyle(String s)
