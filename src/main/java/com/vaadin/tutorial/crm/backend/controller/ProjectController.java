@@ -16,16 +16,11 @@ import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
 import com.vaadin.tutorial.crm.backend.repository.ProjectRepository;
-import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
-import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import com.vaadin.tutorial.crm.ui.ProjectMiniComponent;
 import com.vaadin.tutorial.crm.ui.TicketComponent;
 
 @Service
 public class ProjectController {
-	
-	//TODO Add LoginController interaction for constructor
-//	private ArrayList<Project> projectList; 
 	    
     @Autowired
     ProjectRepository projectRepository;
@@ -50,7 +45,7 @@ public class ProjectController {
     	p.setName(name);
     	p.setDescription(description);
     	p.setCreator(usc.getFullName());
-    	ArrayList<String> userEmailList = buildTeam(team);
+    	ArrayList<String> userEmailList = (ArrayList<String>) buildTeam(team);
     	userEmailList.add(usc.getEmail());
     	for (int i = 0; i < userEmailList.size(); i++)
     	{
@@ -90,7 +85,7 @@ public class ProjectController {
 	}
     
     //replace with call to db that finds user associated with email
-    public ArrayList<String> buildTeam(String team) {
+    public List<String> buildTeam(String team) {
     	String[] names = team.split(","); 
     	ArrayList<String> teamList = new ArrayList<>(); 
     	for (String name : names) {
@@ -130,10 +125,6 @@ public class ProjectController {
 			UserComponent userComponent = new UserComponent();
 
 			userComponent.setDetails(username);
-//			userComponent.getElement().addEventListener("click", e -> {
-//				usc.setPid(project.getId());
-//				projComponent.getUI().ifPresent(ui -> ui.navigate("tickets"));
-//			});
 			miniComponents.add(userComponent);
 		}
 		return miniComponents;
@@ -143,10 +134,6 @@ public class ProjectController {
 		ArrayList<BacklogMiniComponent> miniComponents = new ArrayList<>();
 		Project project = findPid(usc.getPid());
 
-//		for (String username : project.GET_TICKETS) {
-//			UserComponent userComponent = new UserComponent();
-//			miniComponents.add(userComponent);
-//		}
 		return miniComponents;
 	}
 

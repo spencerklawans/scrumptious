@@ -77,7 +77,7 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     public void populateTickets() {
       //filling in tickets based on db calls
         List<TicketComponent> ticketComponents = projectController.buildTicketComponents(usc.getPid());
-        //tickets = projectController.findPid(usc.getPid()).getTickets();
+        
         for (TicketComponent tc : ticketComponents)
         {
             if (tc.getStatus().equals("to do")) {

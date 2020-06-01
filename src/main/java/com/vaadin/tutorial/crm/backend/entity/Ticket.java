@@ -20,6 +20,7 @@ public class Ticket extends AbstractEntity{
 	private Long pid;
 	
 
+
 	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
 	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
 		this.title = title;
@@ -30,6 +31,7 @@ public class Ticket extends AbstractEntity{
 		this.assigned = assigned;
 		this.dueDate = dueDate;
 		this.pid = pid;
+
 	}
 
 	public Ticket()

@@ -1,6 +1,5 @@
 package com.vaadin.tutorial.crm.ui;
 
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -11,7 +10,6 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 
-import com.vaadin.tutorial.crm.oauth.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

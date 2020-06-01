@@ -4,15 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+
 
 @Entity
 public class Project extends AbstractEntity implements Cloneable {
@@ -25,17 +18,14 @@ public class Project extends AbstractEntity implements Cloneable {
 
 	private String creator;
 
-	private ArrayList<Ticket> tickets;
-
 	public Project() {
 		this.dateCreated = LocalDate.now();
-		this.tickets = new ArrayList<Ticket>();
 	}
 	
 	public Project(LocalDate date) {
-		this.dateCreated = date;//This should be replaced with paramter and database data
+		this.dateCreated = date;//This should be replaced with paramter and database dat
 		this.tickets = new ArrayList<Ticket>();
-		//TODO: project from database call constructor
+
 	}
 	
 	public void setUserEmails(ArrayList<String> userEmails)

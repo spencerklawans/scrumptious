@@ -15,9 +15,8 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
-//import com.vaadin.tutorial.crm.ui.HeaderComponent;
 import com.vaadin.flow.component.polymertemplate.Id;
-//import com.vaadin.tutorial.crm.ui.SidebarComponent;
+
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 
@@ -53,6 +52,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A Designer generated component for the calendar-main template.
@@ -124,7 +124,6 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	calendarWrapper.setFlexGrow(1, calendar);
 
     	// get next 100 events
-    	//TODO Configure this to show dynamic number of events
     	List<Event> events= this.getCalendarEvents(100); 
 
 		for (Event event : events) {
@@ -213,8 +212,8 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 			        .execute();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			Notification.show("IOE GCE: "+ e.getMessage());
+			Notification.show("Error getting Google Calendar Events.");
+			return null;
 		}
 		if (events != null) {
 			// if events exist
@@ -239,6 +238,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	 **/
     	
     	// Add or remove string items of this list to update color combinations
+    	Random rand = new Random();
     	ArrayList<String> colors = new ArrayList<>();
     	
     	colors.add("red"); colors.add("orange"); colors.add("Gold");
@@ -248,7 +248,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	colors.add("MidnightBlue"); colors.add("#FF7F50");
     	
     	// pick a random element of colors
-    	int choice = (int)(Math.random() * colors.size());
+    	int choice = (int)(rand.nextInt() * colors.size());
     	
     	return colors.get(choice);
     }
@@ -291,7 +291,8 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	String color = randomColor();
     	
     	boolean eventIsAllDay;
-    	LocalDateTime startLDT, endLDT;
+    	LocalDateTime startLDT;
+    	LocalDateTime endLDT;
     	
 		//Event start
 		EventDateTime start = event.getStart();
@@ -299,8 +300,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 		try {
 			startLDT = parseLDTFromGoogleEvent(start);
 		}catch (NoSuchFieldException e) {
-			System.err.println(e.getMessage() + title);
-			//TODO: Log an error
+			//Should add a log entry for an error
 			return null;
 		}	
 		
@@ -310,8 +310,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 		try {
 			endLDT = parseLDTFromGoogleEvent(end);
 		}catch (NoSuchFieldException e) {
-			System.err.println(e.getMessage() + title);
-			//TODO: Log an error
+			//Should add a log entry for an error
 			return null;
 		}
 		

@@ -17,16 +17,6 @@ import com.vaadin.flow.dom.Element;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
-import com.vaadin.tutorial.crm.backend.entity.Project;
-import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import com.vaadin.tutorial.crm.backend.entity.UserData;
-import com.vaadin.tutorial.crm.backend.repository.UserDataRepository;
-import com.vaadin.tutorial.crm.oauth.data.UserSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.vaadin.flow.component.textfield.TextArea;
-
-import java.util.List;
-
 
 /**
  * A Designer generated component for the user-dashboard template.
