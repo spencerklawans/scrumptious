@@ -14,6 +14,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 //import com.vaadin.tutorial.crm.ui.AddProjectComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.UserData;
@@ -45,10 +46,14 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 
 	UserDataController udc;
 
+	@Autowired
+	TicketController tc;
+
 	/**
      * Creates a new MainProjectView.
      */
-    public ProjectView(ProjectController projectController, UserSessionController usc, UserDataController udc) {
+    public ProjectView(ProjectController projectController, UserSessionController usc, UserDataController udc)
+	{
         // You can initialise any data required for the connected UI components here.
 
     	this.projectController = projectController;
@@ -58,6 +63,12 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
 		{
 			udc.addUser(usc.getEmail());
 		}
+		UserData curr = udc.getFromEmail(usc.getEmail());
+		if (curr.getFullName() == null) {
+			curr.setFullName(usc.getFullName());
+			curr.setDisplayName(usc.getFullName());
+		}
+		udc.saveUser(curr);
     	header.setLogo();
     	header.setUserButton();
     	addButton.setNavButton();

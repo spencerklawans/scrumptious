@@ -7,6 +7,10 @@ import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 //import com.vaadin.tutorial.crm.ui.NewTicket;
 import com.vaadin.flow.component.polymertemplate.Id;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserDataController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 //import com.vaadin.flow.dom.Element;
 
 /**
@@ -30,8 +34,18 @@ public class NewTicketMain extends PolymerTemplate<NewTicketMain.NewTicketMainMo
 	/**
      * Creates a new NewTicketMain.
      */
-    public NewTicketMain() {
+	TicketController tc;
+	UserSessionController usc;
+	ProjectController pc;
+	UserDataController udc;
+
+	public NewTicketMain(TicketController tc, UserSessionController usc, ProjectController pc,
+					 UserDataController udc) {
         // You can initialise any data required for the connected UI components here.
+		this.tc = tc;
+		this.usc = usc;
+		this.pc = pc;
+		this.udc = udc;
     	newTicketForm.setNavButtons();
     	header.setLogo();
     	header.setUserButton();

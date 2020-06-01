@@ -1,7 +1,10 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.ListItem;
+import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -11,6 +14,7 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 
@@ -32,15 +36,16 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	@Id("editProfileButton")
 	private Button editProfileButton;
 	@Id("projectListBox")
-	private Element projectListBox;
+	private ListBox<String> projectListBox;
 	@Id("toProjectsButton")
 	private Button toProjectsButton;
 	@Id("ticketListBox")
-	private Element ticketListBox;
+	private ListBox<String> ticketListBox;
 	@Id("toTicketsButton")
 	private Button toTicketsButton;
-	@Id("notesField")
-	private HorizontalLayout notesField;
+	@Id("noteField")
+	private TextArea noteField;
+
 	@Id("name")
 	private Button name;
 	@Id("role")
@@ -55,23 +60,61 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 	
 	UserDataController udc;
 
+	ProjectController pc;
+	@Id("saveNotesButton")
+	private Button saveNotesButton;
+
 	/**
      * Creates a new UserDashboard.
      */
-    public UserDashboard(UserDataController udc, UserSessionController usc) {
+    public UserDashboard(UserDataController udc, UserSessionController usc, ProjectController pc) {
         // You can initialise any data required for the connected UI components here.
     	this.udc = udc;
     	this.usc = usc;
-    	setPageButtons(); 
+    	this.pc = pc;
+    	setPageButtons();
+    	populatePage();
     	header.setLogo();
     	if (udc.getFromEmail(usc.getEmail()) == null)
     	{
     		udc.addUser(usc.getEmail());
     	}
-    	for (Long project_id : udc.getFromEmail(usc.getEmail()).getProjects())
-    		System.out.println((project_id.toString()));
+
+    	addListeners();
 
     }
+
+    public void addListeners()
+	{
+		saveNotesButton.addClickListener(e -> {
+			UserData currUser = udc.getFromEmail(usc.getEmail());
+			udc.getFromEmail(usc.getEmail()).setNotes(noteField.getValue());
+			currUser.setNotes(noteField.getValue());
+			udc.saveUser(currUser);
+			Notification.show("Notes saved!");
+		});
+	}
+
+    public void populatePage()
+	{
+		for(Long pid : udc.getFromEmail(usc.getEmail()).getProjects()) {
+			ListItem item = new ListItem();
+			item.setText(pc.findPid(pid).getName());
+			projectListBox.add(item);
+			for(Ticket t : pc.findPid(pid).getTickets())
+			{
+				if(t.getAssignees().contains(usc.getEmail()))
+				{
+					ListItem newTicket = new ListItem();
+					newTicket.setText(t.getTitle());
+					ticketListBox.add(newTicket);
+				}
+			}
+		}
+
+		noteField.setValue(udc.getFromEmail(usc.getEmail()).getNotes());
+
+	}
 
     /**
      * This model binds properties between UserDashboard and user-dashboard
@@ -95,13 +138,9 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	toTicketsButton.addClickListener(e ->
     		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
     	);
-    	System.out.println("PID: " + usc.getPid());
     	String p = Long.toString(usc.getPid());
     	editProfileButton.addClickListener(event -> Notification.show(p));
     	
-    }
-    
-    public void addToNotes() {
     }
 
 	public static long hash(String string) {
@@ -109,9 +148,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 		int len = string.length();
 
 		for (int i = 0; i < len; i++) {
-			h = 31*h + string.charAt(i);
+			h = 31 * h + string.charAt(i);
 		}
 		return h;
 	}
-    
 }

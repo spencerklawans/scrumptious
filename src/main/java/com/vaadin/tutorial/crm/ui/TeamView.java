@@ -13,6 +13,7 @@ import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.button.Button;
 
 /**
  * A Designer generated component for the team-view template.
@@ -37,6 +38,10 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
     private VerticalLayout columnThree;
     private ProjectController projectController;
 
+	@Id("inviteMember")
+	private Button inviteMember;
+
+
     /**
      * Creates a new TeamView.
      */
@@ -55,24 +60,24 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         int i = 0;
         for (UserComponent userComponent:
                 projectController.buildUserComponents()) {
-            switch (i % 3){
-                case 0:
-                    columnOne.add(userComponent);
-                    break;
-                case 1:
-                    columnTwo.add(userComponent);
-                    break;
-                case 2:
-                    columnThree.add(userComponent);
-                    break;
-                default:
-                    return 1;
+            if(userComponent != null) {
+                switch (i % 3) {
+                    case 0:
+                        columnOne.add(userComponent);
+                        break;
+                    case 1:
+                        columnTwo.add(userComponent);
+                        break;
+                    case 2:
+                        columnThree.add(userComponent);
+                        break;
+                    default:
+                        return 1;
+                }
+                i += 1;
             }
-            i += 1;
         }
         return 0;
-    }
-    public void setNavButtons() {
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
@@ -10,7 +11,13 @@ import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Designer generated component for the tickets-by-status template.
@@ -24,23 +31,33 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
 
     @Id("createButton")
 	private Button createButton;
-    @Id("todo")
-    private VerticalLayout todo;
-    @Id("inProgress")
-    private VerticalLayout inProgress;
-    @Id("completed")
-    private VerticalLayout completed;
-    
     private ProjectController projectController;
     private UserDataController userDataController;
+    private UserSessionController usc;
+    private TicketController tc;
+	@Id("todoWrapper")
+	private VerticalLayout todoWrapper;
+	@Id("progressWrapper")
+	private VerticalLayout progressWrapper;
+	@Id("completedWrapper")
+	private VerticalLayout completedWrapper;
 
     /**
      * Creates a new TicketsByStatus.
      */
-    public TicketsByStatus(ProjectController projectController, UserDataController userDataController) {
+    public TicketsByStatus(ProjectController projectController, UserDataController userDataController,
+    UserSessionController usc, TicketController tc) {
         // You can initialise any data required for the connected UI components here.
     	this.projectController = projectController;
     	this.userDataController = userDataController;
+    	this.usc = usc;
+    	this.tc = tc;
+    	testTickets();
+    }
+
+    public void testTickets()
+    {
+        List<Ticket> t = tc.findTicketsByPid(usc.getPid());
     }
 
     /**
@@ -54,33 +71,42 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	createButton.addClickListener(e ->
     		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
     	);
+
+
     }
     public void populateTickets() {
-//      filling in tickets based on db calls
-//        ArrayList<Ticket> todoTickets = projectController.getTickets("todo", this_project);
-//        for (Ticket ticket : todoTickets) {
-//            todo.add(ticket);
-//        }
-//        ArrayList<Ticket> inProgressTickets = projectController.getTickets("inProgress", this_project);
-//        for (Ticket ticket : inProgressTickets) {
-//            inProgress.add(ticket);
-//        }
-//        ArrayList<Ticket> completedTickets = projectController.getTickets("completed", this_project);
-//        for (Ticket ticket : completedTickets) {
-//            completed.add(ticket);
-//        }
+      //filling in tickets based on db calls
+        List<TicketComponent> ticketComponents = projectController.buildTicketComponents(usc.getPid());
+        
+        for (TicketComponent tc : ticketComponents)
+        {
+            if (tc.getStatus().equals("to do")) {
+                todoWrapper.add(tc);
+            }
+            if (tc.getStatus().equals("in progress"))
+                progressWrapper.add(tc);
+            if (tc.getStatus().equals("done"))
+                completedWrapper.add(tc);
+        }
     }
     public TicketComponent generateTicketComponent(Ticket ticket) {
         TicketComponent ticketComponent = new TicketComponent();
 //        This will only hold one for the list as of right now
-        
-//        for (String assignee:
-//                ticket.getAssignees()) {
-//        	UserData curr = userDataController.getFromEmail(assignee);
-//            ticketComponent.setAssignedUser(curr.getEmail());
-//        }
+
+        for (String assignee:
+                ticket.getAssignees()) {
+        	UserData curr = userDataController.getFromEmail(assignee);
+            ticketComponent.setAssignedUser(curr.getEmail());
+        }
         ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
         ticketComponent.setTitle(ticket.getTitle());
         return ticketComponent;
     }
+    
+    public void setWrapperStyle() {
+    	todoWrapper.getStyle().set("overflow", "auto"); 
+    	progressWrapper.getStyle().set("overflow", "auto"); 
+    	completedWrapper.getStyle().set("overflow", "auto"); 
+    }
+
 }

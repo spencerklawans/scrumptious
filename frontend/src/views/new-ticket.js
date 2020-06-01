@@ -4,10 +4,8 @@ import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-form-layout/src/vaadin-form-item.js';
 import '@vaadin/vaadin-date-picker/src/vaadin-date-picker.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
-import '@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js';
-import '@vaadin/vaadin-checkbox/src/vaadin-checkbox.js';
+import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 
 class NewTicket extends PolymerElement {
 
@@ -35,29 +33,10 @@ class NewTicket extends PolymerElement {
   <vaadin-date-picker label="Date Assigned" placeholder="Default: Today" style="font-size: 12pt;" id="dateAssigned"></vaadin-date-picker>
   <vaadin-date-picker label="Date Due" style="font-size: 12pt;" id="dateDue"></vaadin-date-picker>
  </vaadin-horizontal-layout>
- <vaadin-combo-box style="padding-left: var(--lumo-space-m);" label="Assign To" id="possibleMembers"></vaadin-combo-box>
- <vaadin-checkbox-group label="Priority" style="padding: var(--lumo-space-m);">
-  <vaadin-checkbox id="lowPriority">
-    Low 
-  </vaadin-checkbox>
-  <vaadin-checkbox id="medPriority">
-    Medium 
-  </vaadin-checkbox>
-  <vaadin-checkbox id="highPriority">
-    High 
-  </vaadin-checkbox>
- </vaadin-checkbox-group>
- <vaadin-checkbox-group label="Status" style="padding: var(--lumo-space-m);" id="status">
-  <vaadin-checkbox id="todoStatus">
-    To Do 
-  </vaadin-checkbox>
-  <vaadin-checkbox id="inProgressStatus">
-    In Progress 
-  </vaadin-checkbox>
-  <vaadin-checkbox id="completedStatus">
-    Completed 
-  </vaadin-checkbox>
- </vaadin-checkbox-group>
+ <vaadin-horizontal-layout id="comboWrapper" style="width: 100%;" theme="spacing-l">
+  <vaadin-combo-box id="status" style="padding-left: var(--lumo-space-m);" label="Status"></vaadin-combo-box>
+  <vaadin-combo-box id="priority" label="Priority"></vaadin-combo-box>
+ </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; align-self: center;">
   <vaadin-button style="margin: var(--lumo-space-l); border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt;" id="cancelButton">
     Cancel 

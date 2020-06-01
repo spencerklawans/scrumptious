@@ -27,8 +27,6 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	private Button toTeam;
 	@Id("toProjectPage")
 	private Button toProjectPage;
-	@Id("projectName")
-	private Button projectName;
 	@Id("toBacklog")
 	private Button toBacklog;
 
@@ -39,12 +37,22 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	UserSessionController usc;
 
 	private ProjectController projectController;
+	@Id("projectName")
+	private Button projectName;
 
-    public SidebarComponent(UserSessionController usc, ProjectController projectController) {
+    public SidebarComponent(UserSessionController usc, ProjectController projectController) throws NullPointerException{
         // You can initialise any data required for the connected UI components here.
 		this.usc = usc;
 		this.projectController = projectController;
-		projectName.setText(projectController.findPid(usc.getPid()).getName());
+		try
+		{
+			projectName.setText(projectController.findPid(usc.getPid()).getName());
+		}
+		catch(NullPointerException e)
+		{
+			projectName.setText("Not Found");
+		}
+		catch(IllegalArgumentException e){}
     }
 
     /**
@@ -76,6 +84,5 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"))
     	);
     }
-    public void setToBacklog() {
-	}
+    
 }

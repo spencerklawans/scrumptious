@@ -19,6 +19,8 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
 	private static final String HIGH = "#E80E0E"; 
 	private static final String MEDIUM = "#E8B80E"; 
 	private static final String LOW = "#12E80E"; 
+	
+	private static final String BACKGROUNDCOLOR = "background-color"; 
 
     @Id("title")
 	private Button title;
@@ -26,6 +28,7 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
 	private Button assignedUser;
 	@Id("priority")
 	private Button priority;
+	private String status; 
 
 	/**
      * Creates a new TicketComponent.
@@ -43,15 +46,15 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
     
     public void setColor(String priorityLevel) {
     	if (priorityLevel.equals("high")) {
-    		priority.getStyle().set("background-color", HIGH); 
+    		priority.getStyle().set(BACKGROUNDCOLOR, HIGH); 
     		priority.setText("HIGH");
     	}
     	else if (priorityLevel.equals("medium")) {
-    		priority.getStyle().set("background-color", MEDIUM); 
+    		priority.getStyle().set(BACKGROUNDCOLOR, MEDIUM); 
     		priority.setText("MEDIUM");
     	}
     	else if (priorityLevel.equals("low")) {
-    		priority.getStyle().set("background-color", LOW); 
+    		priority.getStyle().set(BACKGROUNDCOLOR, LOW); 
     		priority.setText("LOW");
     	}
     }
@@ -62,5 +65,13 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
     
     public void setTitle(String name) {
     	title.setText(name);
+    }
+    
+    public void setStatus(String status) {
+    	this.status = status;
+    }
+    
+    public String getStatus() {
+    	return status; 
     }
 }

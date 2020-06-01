@@ -1,5 +1,6 @@
 package com.vaadin.tutorial.crm.ui;
 
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
@@ -20,6 +21,7 @@ import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.AddBacklogComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  * A Designer generated component for the backlog-view template.
@@ -38,17 +40,13 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 	private HeaderComponent header;
 	@Id("addComponent")
 	private AddBacklogComponent addComponent;
-	@Id("columnThree")
-	private VerticalLayout columnThree;
-	@Id("columnTwo")
-	private VerticalLayout columnTwo;
-	@Id("columnOne")
-	private VerticalLayout columnOne;
 
 	private ProjectController projectController;
 	UserSessionController usc;
 
 	UserDataController udc;
+	@Id("backlogWrapper")
+	private HorizontalLayout backlogWrapper;
 	/**
      * Creates a new BacklogView.
      */
@@ -65,31 +63,34 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 		this.usc = usc;
 		if(usc.getPid() == null) {
 	//    	add null check if there is no project associated w the session.
-
+			Notification.show("No project associated w/ session");
 		}
-    	this.populateBacklog();
+		else {
+			this.populateBacklog();
+		}
 
     }
-    public int populateBacklog() {
-		int i = 0;
+    public void populateBacklog() {
+		//int i = 0;
 		for (BacklogMiniComponent backlogMiniComponent:
 				projectController.buildBacklogComponents()) {
-			switch (i % 3){
-				case 0:
-					columnOne.add(backlogMiniComponent);
-					break;
-				case 1:
-					columnTwo.add(backlogMiniComponent);
-					break;
-				case 2:
-					columnThree.add(backlogMiniComponent);
-					break;
-				default:
-					return 1;
-			}
-			i += 1;
+			backlogWrapper.add(backlogMiniComponent);
+//			switch (i % 3){
+//				case 0:
+//					columnOne.add(backlogMiniComponent);
+//					break;
+//				case 1:
+//					columnTwo.add(backlogMiniComponent);
+//					break;
+//				case 2:
+//					columnThree.add(backlogMiniComponent);
+//					break;
+//				default:
+//					return 1;
+//			}
+//			i += 1;
 		}
-    	return 0;
+    	//return 0;
 	}
 
     /**

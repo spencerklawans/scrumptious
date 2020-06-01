@@ -2,8 +2,8 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import './header-component.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import './add-project-component.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 class ProjectView extends PolymerElement {
 
@@ -24,9 +24,7 @@ class ProjectView extends PolymerElement {
     All Projects 
   </vaadin-button>
   <vaadin-vertical-layout style="width: 100%; height: 100%; justify-content: space-around;">
-   <vaadin-horizontal-layout id="topLayout" style="width: 100%; height: 25%; padding: var(--lumo-space-s); padding-right: var(--lumo-space-m); padding-left: var(--lumo-space-m);" theme="spacing"></vaadin-horizontal-layout>
-   <vaadin-horizontal-layout style="width: 100%; height: 25%; padding: var(--lumo-space-s); padding-right: var(--lumo-space-m); padding-left: var(--lumo-space-m);" theme="spacing"></vaadin-horizontal-layout>
-   <vaadin-horizontal-layout style="width: 100%; height: 25%; padding: var(--lumo-space-s); padding-left: var(--lumo-space-m); padding-right: var(--lumo-space-m);" theme="spacing"></vaadin-horizontal-layout>
+   <vaadin-horizontal-layout id="topLayout" style="width: 100%; height: 80%; padding: var(--lumo-space-s); padding-right: var(--lumo-space-m); padding-left: var(--lumo-space-m); flex-wrap: wrap; align-content: flex-start; overflow: auto;" theme="spacing"></vaadin-horizontal-layout>
    <vaadin-horizontal-layout style="width: 100%; align-self: flex-end; justify-content: flex-end; padding-right: var(--lumo-space-l);">
     <add-project-component id="addButton" style="width: 25%;"></add-project-component>
    </vaadin-horizontal-layout>

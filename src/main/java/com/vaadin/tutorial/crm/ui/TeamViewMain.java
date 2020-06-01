@@ -3,6 +3,7 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -24,17 +25,19 @@ public class TeamViewMain extends PolymerTemplate<TeamViewMain.TeamViewMainModel
     private SidebarComponent sidebar;
     @Id("teamView")
     private TeamView teamView;
+    
+    ProjectController projectController; 
 
     /**
      * Creates a new TeamViewMain.
      */
-    public TeamViewMain() {
+    public TeamViewMain(ProjectController pc) {
         // You can initialise any data required for the connected UI components here.
+    	this.projectController = pc; 
         header.setLogo();
         sidebar.setNavButtons();
-        teamView.setNavButtons();
         header.setUserButton();
-
+        teamView.populateTeam(); 
     }
 
     /**

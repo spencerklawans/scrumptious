@@ -1,10 +1,13 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Ticket {
+@Entity
+public class Ticket extends AbstractEntity{
 	
 	private static final int ID = 0; // placeholder int
 	private String title;
@@ -14,18 +17,28 @@ public class Ticket {
 	private String description;
 	private LocalDate assigned;
 	private LocalDate dueDate;
+	private Long pid;
 	
 
-	public Ticket() {
+
+	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
+	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
+		this.title = title;
+		this.priority = pe;
+		this.status = se;
+		this.assigneeEmails = assigneeEmails;
+		this.description = description;
+		this.assigned = assigned;
+		this.dueDate = dueDate;
+		this.pid = pid;
+
 	}
-	public Ticket(String placeholder) {
-		//TODO: a constructor that is used by a controller function that 
-		//populates a ticket from database info
-		
+
+	public Ticket()
+	{
+
 	}
-	
-	// id getter function?? is there a need?
-	
+
 	public String getTitle() {return this.title;}
 	
 	public void setTitle(String newTitle) {this.title = newTitle;}
@@ -56,8 +69,6 @@ public class Ticket {
 	public LocalDate getAssigned() {return this.assigned;}
 	
 	public void setAssigned(LocalDate dt) {
-		// likely will be replaced with string parameter (or what comes 
-		// out of Vaadin component input processing
 		this.assigned = dt;
 	}
 	
@@ -67,5 +78,4 @@ public class Ticket {
 		// see setAssigned
 		this.dueDate = dt;
 	}
-	
 }
