@@ -105,5 +105,11 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
         ticketComponent.setTitle(ticket.getTitle());
         return ticketComponent;
     }
+    
+    public void setWrapperStyle() {
+    	todoWrapper.getStyle().set("overflow", "auto"); 
+    	progressWrapper.getStyle().set("overflow", "auto"); 
+    	completedWrapper.getStyle().set("overflow", "auto"); 
+    }
 
 }
