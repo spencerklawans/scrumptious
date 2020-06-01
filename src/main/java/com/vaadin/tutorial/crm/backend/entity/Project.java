@@ -24,8 +24,6 @@ public class Project extends AbstractEntity implements Cloneable {
 	
 	public Project(LocalDate date) {
 		this.dateCreated = date;//This should be replaced with paramter and database dat
-		this.tickets = new ArrayList<Ticket>();
-
 	}
 	
 	public void setUserEmails(ArrayList<String> userEmails)
@@ -54,13 +52,5 @@ public class Project extends AbstractEntity implements Cloneable {
 		if (!(userEmails.contains(email))) {
 			userEmails.add(email);
 		}
-	}
-
-	public void addTicket(Ticket t) {
-		this.tickets.add(t);
-	}
-
-	public ArrayList<Ticket> getTickets() {
-		return tickets;
 	}
 }

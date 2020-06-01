@@ -150,7 +150,6 @@ public class ProjectController {
    	
 	
     public void pushProject(Project p) {
-    	List<Ticket> tickets = p.getTickets();
     	projectRepository.save(p);
     }
 

@@ -17,6 +17,7 @@ import com.vaadin.flow.dom.Element;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
+import com.vaadin.tutorial.crm.backend.entity.UserData;
 
 /**
  * A Designer generated component for the user-dashboard template.
@@ -101,15 +102,15 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 			ListItem item = new ListItem();
 			item.setText(pc.findPid(pid).getName());
 			projectListBox.add(item);
-			for(Ticket t : pc.findPid(pid).getTickets())
-			{
-				if(t.getAssignees().contains(usc.getEmail()))
-				{
-					ListItem newTicket = new ListItem();
-					newTicket.setText(t.getTitle());
-					ticketListBox.add(newTicket);
-				}
-			}
+//			for(Ticket t : pc.findPid(pid).getTickets())
+//			{
+//				if(t.getAssignees().contains(usc.getEmail()))
+//				{
+//					ListItem newTicket = new ListItem();
+//					newTicket.setText(t.getTitle());
+//					ticketListBox.add(newTicket);
+//				}
+//			}
 		}
 
 		noteField.setValue(udc.getFromEmail(usc.getEmail()).getNotes());
