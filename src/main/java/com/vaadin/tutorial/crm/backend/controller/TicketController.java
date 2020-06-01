@@ -17,7 +17,7 @@ import java.util.Optional;
 public class TicketController {
 
 	@Autowired
-	ProjectController pc = new ProjectController();
+	ProjectController pc;
 
 	@Autowired
     TicketRepository tr;

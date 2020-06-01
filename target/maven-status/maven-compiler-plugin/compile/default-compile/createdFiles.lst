@@ -44,6 +44,7 @@ com/vaadin/tutorial/crm/oauth/data/User.class
 com/vaadin/tutorial/crm/ui/BacklogMiniComponent$BacklogMiniComponentModel.class
 com/vaadin/tutorial/crm/ui/AddProjectComponent.class
 com/vaadin/tutorial/crm/ui/TicketByStatusMain$TicketByStatusMainModel.class
+com/vaadin/tutorial/crm/backend/repository/TicketRepository.class
 com/vaadin/tutorial/crm/ui/AddProject.class
 com/vaadin/tutorial/crm/ui/TicketByStatusMain.class
 com/vaadin/tutorial/crm/ui/AddToBacklogMain$AddToBacklogMainModel.class

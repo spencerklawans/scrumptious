@@ -9,6 +9,7 @@
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/BacklogView.java
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/ProjectView.java
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddToBacklog.java
+/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/repository/TicketRepository.java
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/LoginController.java
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TicketsByStatus.java
 /Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/UserDashboard.java

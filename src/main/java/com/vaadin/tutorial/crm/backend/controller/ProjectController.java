@@ -35,6 +35,9 @@ public class ProjectController {
     
     @Autowired
     UserSessionController usc = new UserSessionController();
+
+    @Autowired
+	TicketController tc = new TicketController();
            
     public boolean addProject(String name, String description, LocalDate date, String team) {
     	Project p; 
@@ -175,16 +178,15 @@ public class ProjectController {
 //		pushProject(p);
 //	}
     
-    public List<TicketComponent> buildTicketComponents() {
+    public List<TicketComponent> buildTicketComponents(Long pid) {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
-    	Project project = findPid(usc.getPid());
-    	for (Ticket t : project.getTickets()) {
+    	for (Ticket t : tc.findTicketsByPid(pid)) {
     		TicketComponent tc = new TicketComponent(); 
     		tc.setAssignedUser(getAssigneeNames(t.getAssignees()));
     		tc.setTitle(t.getTitle());
     		tc.setColor(getPriorityLevel(t));
     		tc.setStatus(getStatus(t));
-    		ticketComponents.add(tc); 
+    		ticketComponents.add(tc);
     	}
     	return ticketComponents; 
     }
