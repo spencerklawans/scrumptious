@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/spencerklawans/scrumptious.svg?branch=master)](https://travis-ci.org/spencerklawans/scrumptious)
+
 # Scrumptious
 
 This repository contains the source code for Scrumptious
