@@ -1,10 +1,12 @@
 package com.vaadin.tutorial.crm.ui;
 
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
@@ -12,11 +14,6 @@ import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
-import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
-import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import com.vaadin.tutorial.crm.backend.entity.UserData;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,32 +71,51 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
         
         for (TicketComponent ticket : ticketComponents)
         {
-            if (ticket.getStatus().equals("to do"))
-                todoWrapper.add(ticket);
-            if (ticket.getStatus().equals("in progress"))
-                progressWrapper.add(ticket);
-            if (ticket.getStatus().equals("done"))
-                completedWrapper.add(ticket);
+            if (ticket.getStatus().equals("to do")) {
+            	ticket.setPriority(e -> generatePopUp(ticket.getTicketNum()));
+            	todoWrapper.add(ticket);
+            }
+            if (ticket.getStatus().equals("in progress")) {
+            	ticket.setPriority(e -> generatePopUp(ticket.getTicketNum()));
+            	progressWrapper.add(ticket);
+            }
+            if (ticket.getStatus().equals("done")) {
+            	ticket.setPriority(e -> generatePopUp(ticket.getTicketNum()));
+            	completedWrapper.add(ticket);
+            }
         }
-    }
-    public TicketComponent generateTicketComponent(Ticket ticket) {
-        TicketComponent ticketComponent = new TicketComponent();
-//        This will only hold one for the list as of right now
-
-        for (String assignee:
-                ticket.getAssignees()) {
-        	UserData curr = userDataController.getFromEmail(assignee);
-            ticketComponent.setAssignedUser(curr.getEmail());
-        }
-        ticketComponent.setAssignedUser(ticket.getAssignees().get(0));
-        ticketComponent.setTitle(ticket.getTitle());
-        return ticketComponent;
     }
     
     public void setWrapperStyle() {
     	todoWrapper.getStyle().set("overflow", "auto"); 
     	progressWrapper.getStyle().set("overflow", "auto"); 
     	completedWrapper.getStyle().set("overflow", "auto"); 
+    }
+    
+    public void generatePopUp(int index) {
+    	EditTicket et = new EditTicket(projectController, usc, userDataController); 
+    	Long pid = usc.getPid(); 
+    	Dialog dialog = new Dialog(); 
+    	
+    	et.setDates(tc.getDateAssigned(index, pid), tc.getDateDue(index, pid));
+    	et.setTextDetails(tc.getTicketTitle(index, pid), tc.getTicketDescription(index, pid));
+    	et.setPriority(tc.getPriority(index, pid));
+    	et.setStatus(tc.getStatus(index, pid));
+    	et.setAssignees(tc.getAssignees(index, pid));
+    	
+    	et.getCancelButton().addClickListener(e -> {
+    		dialog.close(); 
+    	}); 
+    	
+    	et.getUpdateButton().addClickListener(e -> {
+    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getDateDue(), 
+    				et.getPriority(), et.getStatus(), et.getAssignees(), index, pid);
+    		dialog.close(); 
+    		UI.getCurrent().getPage().reload();
+    	});
+    	
+    	dialog.add(et);
+    	dialog.open(); 
     }
 
 }

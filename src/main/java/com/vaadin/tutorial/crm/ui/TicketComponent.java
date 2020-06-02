@@ -1,6 +1,8 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -29,6 +31,7 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
 	@Id("priority")
 	private Button priority;
 	private String status; 
+	private int ticketNum; 
 
 	/**
      * Creates a new TicketComponent.
@@ -73,5 +76,17 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
     
     public String getStatus() {
     	return status; 
+    }
+    
+    public int getTicketNum() {
+    	return ticketNum; 
+    }
+    
+    public void setTicketNum(int index) {
+    	ticketNum = index; 
+    }
+    
+    public void setPriority(ComponentEventListener<ClickEvent<Button>> listener) {
+    	priority.addClickListener(listener); 
     }
 }

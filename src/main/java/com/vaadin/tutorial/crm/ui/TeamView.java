@@ -13,12 +13,9 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
-import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
-import com.vaadin.tutorial.crm.backend.entity.Project;
 import com.vaadin.tutorial.crm.oauth.data.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.button.Button;
 
 
@@ -68,6 +65,8 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         Dialog dialog = new Dialog();
         Button add = new Button("Add Member");
         Button cancel = new Button("Cancel");
+        setButtonStyle(add); 
+        setButtonStyle(cancel); 
         TextField email = new TextField();
         email.setPlaceholder("Email");
         layout.add(new Label("Add a Team Member"));
@@ -111,6 +110,13 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
             }
         }
         return 0;
+    }
+    
+    public void setButtonStyle(Button b) {
+    	b.getStyle().set("background-color", "#FED766");
+    	b.getStyle().set("border-radius", "10px");
+    	b.getStyle().set("color", "#000000");
+    	b.getStyle().set("box-shadow", " var(--lumo-box-shadow-s)");
     }
 
     /**

@@ -16,8 +16,6 @@ import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.tutorial.crm.backend.entity.PriorityEnum;
 import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
-import com.vaadin.tutorial.crm.backend.entity.Ticket;
-import org.aspectj.weaver.ast.Not;
 import org.vaadin.gatanaso.MultiselectComboBox;
 
 import java.time.LocalDate;

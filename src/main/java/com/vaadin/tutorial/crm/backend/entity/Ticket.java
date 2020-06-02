@@ -79,4 +79,8 @@ public class Ticket extends AbstractEntity{
 	}
 
 	public Long getPid(){ return this.pid;}
+	
+	public void setAssigneeEmails(ArrayList<String> emails) {
+		assigneeEmails = emails;
+	}
 }

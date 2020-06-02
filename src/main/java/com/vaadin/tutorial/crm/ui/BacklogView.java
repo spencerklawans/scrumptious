@@ -58,7 +58,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 		else {
 			this.populateBacklog();
 		}
-
+		sidebar.setBacklogColor(); 
     }
     public void populateBacklog() {
 		//int i = 0;

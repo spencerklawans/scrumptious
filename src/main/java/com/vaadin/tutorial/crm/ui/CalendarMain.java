@@ -106,7 +106,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     	header.setLogo();
     	header.setUserButton();
     	sidebar.setNavButtons();
-    	
+    	sidebar.setCalendarColor();
     }
 
     /**

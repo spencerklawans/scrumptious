@@ -164,13 +164,16 @@ public class ProjectController {
 
     public List<TicketComponent> buildTicketComponents(Long pid) {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
+    	int index = 0; 
     	for (Ticket t : tc.findTicketsByPid(pid)) {
     		TicketComponent ticket = new TicketComponent();
     		ticket.setAssignedUser(getAssigneeNames(t.getAssignees()));
     		ticket.setTitle(t.getTitle());
     		ticket.setColor(getPriorityLevel(t));
     		ticket.setStatus(getStatus(t));
+    		ticket.setTicketNum(index);
     		ticketComponents.add(ticket);
+    		index++; 
     	}
     	return ticketComponents; 
     }

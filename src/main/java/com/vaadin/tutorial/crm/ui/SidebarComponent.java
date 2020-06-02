@@ -63,26 +63,41 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     }
     
     public void setNavButtons() {
-    	toBacklog.addClickListener(e ->
-    		toBacklog.getUI().ifPresent(ui -> ui.navigate("backlog"))
-    	);
+    	toBacklog.addClickListener(e -> {
+    		toBacklog.getUI().ifPresent(ui -> ui.navigate("backlog"));
+    	});
     	
-    	toProjectPage.addClickListener(e ->
-    		toProjectPage.getUI().ifPresent(ui -> ui.navigate("projects"))
-    	);
+    	toProjectPage.addClickListener(e -> {
+    		toProjectPage.getUI().ifPresent(ui -> ui.navigate("projects"));
+    	});
     	
-    	toTickets.addClickListener(e ->
-			toTickets.getUI().ifPresent(ui -> ui.navigate("tickets"))
-
-		);
-		toTeam.addClickListener(e ->
-			toTickets.getUI().ifPresent(ui -> ui.navigate("team"))
-
-		);
+    	toTickets.addClickListener(e -> {
+			toTickets.getUI().ifPresent(ui -> ui.navigate("tickets"));
+    	});
     	
-    	toCalendar.addClickListener(e ->
-    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"))
-    	);
+		toTeam.addClickListener(e -> {
+			toTeam.getUI().ifPresent(ui -> ui.navigate("team"));
+		});
+    	
+    	toCalendar.addClickListener(e -> {
+    		toCalendar.getUI().ifPresent(ui -> ui.navigate("calendar"));
+    	});
+    }
+    
+    public void setBacklogColor() {
+    	toBacklog.getStyle().set("background-color", "rgba(49, 188, 205, 0.8)"); 
+    }
+    
+    public void setCalendarColor() {
+    	toCalendar.getStyle().set("background-color", "rgba(49, 188, 205, 0.8)"); 
+    }
+    	
+    public void setTicketsColor() {
+    	toTickets.getStyle().set("background-color", "rgba(49, 188, 205, 0.8)"); 
+    }
+    
+    public void setTeamColor() {
+    	toTeam.getStyle().set("background-color", "rgba(49, 188, 205, 0.8)"); 
     }
     
 }

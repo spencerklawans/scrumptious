@@ -11,7 +11,6 @@ import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.notification.Notification;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * A Designer generated component for the ticket-by-status-main template.
@@ -54,6 +53,7 @@ public class TicketByStatusMain extends PolymerTemplate<TicketByStatusMain.Ticke
     	this.pc = pc;
 		Notification.show(usc.getPid().toString());
 		ticketStatusView.populateTickets();
+		sidebar.setTicketsColor();
     }
 
     /**
