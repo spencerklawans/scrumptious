@@ -149,7 +149,10 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
     	ArrayList<String> emails = new ArrayList<>();
 		for (String name : addAssignees.getValue())
 		{
-			emails.add(udc.getFromDisplay(name).getEmail());
+			if (name.contains("@"))	
+				emails.add(udc.getFromEmail(name).getEmail()); 
+			else
+				emails.add(udc.getFromDisplay(name).getEmail());
 		}
 		return emails; 
     }
