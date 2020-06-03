@@ -35,7 +35,7 @@ public class ProjectController {
 	TicketController tc = new TicketController();
            
     public boolean addProject(String name, String description, LocalDate date, String team) {
-    	Project p; 
+    	Project p;
     	if (date == null) {
     		p = new Project(); 
     	}

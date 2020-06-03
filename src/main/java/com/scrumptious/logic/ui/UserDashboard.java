@@ -74,20 +74,19 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     public UserDashboard(UserDataController udc, UserSessionController usc,
 						 ProjectController pc, TicketController tc) {
         // You can initialise any data required for the connected UI components here.
+
     	this.udc = udc;
     	this.usc = usc;
     	this.pc = pc;
     	this.tc = tc;
-    	setPageButtons();
+		if (udc.getFromEmail(usc.getEmail()) == null)
+		{
+			udc.addUser(usc.getEmail());
+		}
+		setPageButtons();
     	populatePage();
     	header.setLogo();
-    	if (udc.getFromEmail(usc.getEmail()) == null)
-    	{
-    		udc.addUser(usc.getEmail());
-    	}
-
     	addListeners();
-
     }
 
     public void addListeners()
@@ -133,7 +132,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 		//usc.setPid(hash(usc.getFirstName()));
     	name.setText(usc.getFullName());
     	email.setText(usc.getEmail());
-    	currProject.setText(pc.findPid(usc.getPid()).getName()); 
 		Image icon = new Image(usc.getPicUrl(),"UserIcon");
 		icon.setHeight("150px");
 		icon.setWidth("150px");
@@ -142,10 +140,22 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     		toProjectsButton.getUI()
     						.ifPresent(ui -> ui.navigate("projects"))
     	);
-    	
-    	toTicketsButton.addClickListener(e ->
-    		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
-    	); 	
+    	if (usc  == null)
+    	{
+			toTicketsButton.addClickListener(e ->
+					Notification.show("No Active Project"));
+		}
+    	else if (usc.getPid() == -1L)
+		{
+			toTicketsButton.addClickListener(e ->
+					Notification.show("No Active Project"));
+		}
+    	else
+		{
+			toTicketsButton.addClickListener(e ->
+					toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
+			);
+		}
     }
 
 	public static long hash(String string) {
