@@ -41,7 +41,8 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
 	@Id("projectName")
 	private Button projectName;
 
-	private static final String rgb = "rgba(49, 188, 205, 0.8)";
+	private static final String RGB = "rgba(49, 188, 205, 0.8)";
+	private static final String BG = "background-color";
 
     public SidebarComponent(UserSessionController usc, ProjectController projectController){
         // You can initialise any data required for the connected UI components here.
@@ -76,19 +77,19 @@ public class SidebarComponent extends PolymerTemplate<SidebarComponent.SidebarCo
     }
     
     public void setBacklogColor() {
-    	toBacklog.getStyle().set("background-color", rgb);
+    	toBacklog.getStyle().set(BG, RGB);
     }
     
     public void setCalendarColor() {
-    	toCalendar.getStyle().set("background-color", rgb);
+    	toCalendar.getStyle().set(BG, RGB);
     }
     	
     public void setTicketsColor() {
-    	toTickets.getStyle().set("background-color", rgb);
+    	toTickets.getStyle().set(BG, RGB);
     }
     
     public void setTeamColor() {
-    	toTeam.getStyle().set("background-color", rgb);
+    	toTeam.getStyle().set(BG,RGB);
     }
     
 }

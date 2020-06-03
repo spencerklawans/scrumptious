@@ -1,7 +1,6 @@
 package com.scrumptious.logic.backend.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
