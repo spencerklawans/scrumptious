@@ -1,5 +1,6 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class SidebarComponent extends PolymerElement {
@@ -13,7 +14,9 @@ class SidebarComponent extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout class="sidebar" style="background-color: rgba(210, 209, 213); margin-top: auto; justify-content: center; padding: var(--lumo-space-xs); align-items: flex-start; flex-shrink: 0; height: 100%;">
- <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); height: 20%; color: #000000; font-weight: bold; font-size: 20pt; overflow: auto; flex-grow: 1;" disabled tabindex="" id="projectName"></vaadin-button>
+ <vaadin-horizontal-layout style="width: 100%; align-self: flex-start; flex-wrap: wrap; align-content: flex-start; justify-content: flex-start; flex-grow: 0;">
+  <vaadin-button style="background-color: rgba(210, 209, 213, 0.75); color: #000000; font-weight: bold; font-size: 20pt; overflow: auto; flex-grow: 1; width: 100%; height: 100%;" disabled tabindex="" id="projectName"></vaadin-button>
+ </vaadin-horizontal-layout>
  <vaadin-vertical-layout style="align-self: center; height: 70%; width: 100%; align-items: flex-start; justify-content: center;" theme="spacing">
   <vaadin-button style="width: 100%; background-color: rgba(210, 209, 213, 0.75); color: #000000; " id="toBacklog">
     Backlog 
