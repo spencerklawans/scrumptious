@@ -7,6 +7,7 @@ import com.scrumptious.logic.backend.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,8 @@ public class TicketController {
         return tr.findByPid(pid);
     }
 
-	public void updateTicket(String title, String description, LocalDate dueDate, String priority, String status, 
-							List<String> emails, int ticketIndex, Long pid){
+	public void updateTicket(String title, String description, LocalDate dueDate, String priority, String status,
+							 ArrayList<String> emails, int ticketIndex, Long pid){
 		Ticket t = findTicketsByPid(pid).get(ticketIndex); 
 		t.setTitle(title);
 		t.setDescription(description);

@@ -80,7 +80,6 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
     	possibleMembers.setLabel("Add Assignees");
     	possibleMembers.setItems(pc.getUsers(usc.getPid()));
     	comboWrapper.add(possibleMembers);
-    	
     }
 
     /**

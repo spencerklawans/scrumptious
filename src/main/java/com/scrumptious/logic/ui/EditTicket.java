@@ -6,10 +6,7 @@ import com.scrumptious.logic.backend.controller.ProjectController;
 import com.scrumptious.logic.backend.controller.UserDataController;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -145,7 +142,7 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
     	addAssignees.setValue(assigneeSet);
     }
     
-    public List<String> getAssignees() {
+    public ArrayList<String> getAssignees() {
     	ArrayList<String> emails = new ArrayList<>();
 		for (String name : addAssignees.getValue())
 		{

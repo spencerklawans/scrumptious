@@ -1,9 +1,12 @@
 package com.scrumptious.logic.backend.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 
@@ -14,8 +17,7 @@ public class Project extends AbstractEntity{
 	private String description;
 	private final LocalDate dateCreated;
 
-	@Transient
-	private List<String> userEmails;
+	private ArrayList<String> userEmails;
 
 	private String creator;
 
@@ -27,7 +29,7 @@ public class Project extends AbstractEntity{
 		this.dateCreated = date;//This should be replaced with paramter and database dat
 	}
 	
-	public void setUserEmails(List<String> userEmails)
+	public void setUserEmails(ArrayList<String> userEmails)
 	{
 		this.userEmails = userEmails;
 	}

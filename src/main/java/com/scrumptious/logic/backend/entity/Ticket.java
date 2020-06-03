@@ -3,6 +3,7 @@ package com.scrumptious.logic.backend.entity;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +13,7 @@ public class Ticket extends AbstractEntity{
 	private PriorityEnum priority;
 	private StatusEnum status;
 
-	@Transient
-	private List<String> assigneeEmails;
+	private ArrayList<String> assigneeEmails;
 	private String description;
 	private LocalDate assigned;
 	private LocalDate dueDate;
@@ -21,7 +21,7 @@ public class Ticket extends AbstractEntity{
 	
 
 
-	public Ticket(String title, PriorityEnum pe, StatusEnum se, List<String> assigneeEmails,
+	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
 	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
 		this.title = title;
 		this.priority = pe;
@@ -81,7 +81,7 @@ public class Ticket extends AbstractEntity{
 
 	public Long getPid(){ return this.pid;}
 	
-	public void setAssigneeEmails(List<String> emails) {
+	public void setAssigneeEmails(ArrayList<String> emails) {
 		assigneeEmails = emails;
 	}
 }
