@@ -1,8 +1,5 @@
 package com.scrumptious.logic.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,9 +17,7 @@ public class Ticket extends AbstractEntity{
 	private LocalDate assigned;
 	private LocalDate dueDate;
 	private Long pid;
-	
 
-	@JsonCreator
 	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
 	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
 		this.title = title;

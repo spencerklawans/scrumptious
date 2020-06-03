@@ -1,6 +1,5 @@
 package com.scrumptious.logic.backend.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.scrumptious.logic.backend.entity.PriorityEnum;
 import com.scrumptious.logic.backend.entity.StatusEnum;
 import com.scrumptious.logic.backend.repository.TicketRepository;
@@ -21,7 +20,6 @@ public class TicketController {
 	@Autowired
 	TicketRepository tr;
 
-	@JsonCreator
     public void addTicket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
 						  String description, LocalDate assigned, LocalDate dueDate, Long pid)
     {
@@ -34,7 +32,6 @@ public class TicketController {
         return tr.findByPid(pid);
     }
 
-    @JsonCreator
 	public void updateTicket(String title, String description, LocalDate dueDate, String priority, String status,
 							 ArrayList<String> emails, int ticketIndex, Long pid){
 		Ticket t = findTicketsByPid(pid).get(ticketIndex); 
