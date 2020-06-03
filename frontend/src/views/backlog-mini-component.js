@@ -20,7 +20,7 @@ class BacklogMiniComponent extends PolymerElement {
 font-size: 10pt;
 line-height: 16px;
 
-color: #000000;" disabled tabindex="" id="priority">
+color: #000000;" tabindex="" id="priority">
    Priority Level 
  </vaadin-button>
 </vaadin-vertical-layout>
