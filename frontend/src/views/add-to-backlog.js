@@ -3,10 +3,9 @@ import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-form-layout/src/vaadin-form-item.js';
 import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-group.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-button.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-combo-box/src/vaadin-combo-box.js';
 
 class AddToBacklog extends PolymerElement {
 
@@ -30,29 +29,7 @@ class AddToBacklog extends PolymerElement {
   <label slot="label" style="font-size: 12pt;">Description</label>
   <vaadin-text-field class="full-width" has-value placeholder="(optional)" id="description"></vaadin-text-field>
  </vaadin-form-item>
- <vaadin-button style="background-color: #FFFFFF; color: hsla(214, 42%, 18%, 0.72); margin: var(--lumo-space-xs);" disabled tabindex="">
-   Priority 
- </vaadin-button>
- <vaadin-radio-group theme="horizontal" value="on" style="padding-left: var(--lumo-space-xl);" id="prioritySelection">
-  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);" id="lowPriority">
-   <b>Low</b>
-   <div>
-     Non-vital work 
-   </div>
-  </vaadin-radio-button>
-  <vaadin-radio-button checked style="margin: var(--lumo-space-xs);" tabindex="-1" id="medPriority">
-   <b>Medium</b>
-   <div>
-     Essential 
-   </div>
-  </vaadin-radio-button>
-  <vaadin-radio-button checked id="highPriority" tabindex="-1">
-   <b>High</b>
-   <div>
-     Essential and time-sensitive 
-   </div>
-  </vaadin-radio-button>
- </vaadin-radio-group>
+ <vaadin-combo-box id="priority" style="margin: var(--lumo-space-m); font-size: 12pt;" label="Priority"></vaadin-combo-box>
  <vaadin-checkbox-group></vaadin-checkbox-group>
  <vaadin-horizontal-layout style="width: 100%; padding: var(--lumo-space-s);">
   <vaadin-button style="flex-shrink: 0; border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt;" id="cancelButton">

@@ -1,9 +1,7 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-group.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-button.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 class TicketsByStatus extends PolymerElement {
 
@@ -46,17 +44,7 @@ color: #000000;">
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="flex-shrink: 0; margin: var(--lumo-space-m); width: 100%; justify-content: space-between; padding: var(--lumo-space-xs);">
-  <vaadin-radio-group label="Viewing By" value="on" style="padding-top: var(--lumo-space-s); align-self: flex-end; margin-top: var(--lumo-space-s);">
-   <vaadin-radio-button checked>
-     My Tickets 
-   </vaadin-radio-button>
-   <vaadin-radio-button checked>
-     Whole Project 
-   </vaadin-radio-button>
-   <vaadin-radio-button checked tabindex="-1">
-     Custom 
-   </vaadin-radio-button>
-  </vaadin-radio-group>
+  <vaadin-horizontal-layout id="radioWrapper" style="flex-grow: 1;"></vaadin-horizontal-layout>
   <vaadin-horizontal-layout style="align-self: flex-end; margin-right: var(--lumo-space-xl); padding-right: var(--lumo-space-s); padding: var(--lumo-space-s); align-items: center;">
    <vaadin-button style="width: 100%; height: 50%; border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt;" id="createButton">
      Create New Ticket 

@@ -17,8 +17,8 @@ class NewTicket extends PolymerElement {
                     height: 100%;
                 }
             </style>
-<vaadin-vertical-layout style="width: 100%; height: 100%; padding: var(--lumo-space-m);" theme="spacing-xs">
- <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; margin-top: var(--lumo-space-l);" disabled tabindex="">
+<vaadin-vertical-layout style="width: 100%; height: 100%; padding: var(--lumo-space-m); background-color: #FFFFFF;" theme="spacing-xs">
+ <vaadin-button style="background-color: #FFFFFF; color: #000000; font-size: 16pt; margin-top: var(--lumo-space-l); font-weight: bold; " disabled tabindex="">
    Create New Ticket 
  </vaadin-button>
  <vaadin-form-item style="margin: var(--lumo-space-m); ">
@@ -30,7 +30,7 @@ class NewTicket extends PolymerElement {
   <vaadin-text-field class="full-width" style="padding: var(--lumo-space-xs); padding-right: var(--lumo-space-l); flex-grow: 1;" has-value id="description"></vaadin-text-field>
  </vaadin-form-item>
  <vaadin-horizontal-layout theme="spacing-xl" style="margin: var(--lumo-space-m); justify-content: space-around;">
-  <vaadin-date-picker label="Date Assigned" placeholder="Default: Today" style="font-size: 12pt;" id="dateAssigned"></vaadin-date-picker>
+  <vaadin-date-picker label="Date Assigned" placeholder="Default: Today" style="font-size: 12pt; font-color: #000000;" id="dateAssigned"></vaadin-date-picker>
   <vaadin-date-picker label="Date Due" style="font-size: 12pt;" id="dateDue"></vaadin-date-picker>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout id="comboWrapper" style="width: 100%;" theme="spacing-l">
@@ -42,7 +42,7 @@ class NewTicket extends PolymerElement {
     Cancel 
   </vaadin-button>
   <vaadin-horizontal-layout theme="margin" style="flex-grow: 1;"></vaadin-horizontal-layout>
-  <vaadin-button style="margin: var(--lumo-space-l); border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt;" id="createButton">
+  <vaadin-button style="margin: var(--lumo-space-l); border-radius: 10px; background-color: #FED766; color: #000000; box-shadow: var(--lumo-box-shadow-s); font-size: 12pt; " id="createButton">
     Create 
   </vaadin-button>
  </vaadin-horizontal-layout>

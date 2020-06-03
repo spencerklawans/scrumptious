@@ -1,43 +1,42 @@
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/PriorityEnum.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/NewTicket.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/SidebarComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/Application.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TicketComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/HeaderComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/StatusEnum.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/AbstractEntity.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/BacklogView.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/ProjectView.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddToBacklog.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/repository/TicketRepository.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/LoginController.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TicketsByStatus.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/UserDashboard.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/NewTicketMain.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/UserSessionController.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/TicketController.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/BacklogMiniComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/Project.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddBacklogComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TicketByStatusMain.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/oauth/data/User.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/Ticket.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddToBacklogMain.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/ProjectMiniComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/ProjectController.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/CalendarMain.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/DuplicateProjectException.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TeamViewMain.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddProject.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/LoginScreen.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/TeamView.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/repository/ProjectRepository.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/UserComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/DuplicateTicketException.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/oauth/data/UserSession.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/ProjectsController.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/repository/UserDataRepository.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/ui/AddProjectComponent.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/security/SecurityConfiguration.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/entity/UserData.java
-/Users/kira/Desktop/scrumptious/src/main/java/com/vaadin/tutorial/crm/backend/controller/UserDataController.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\repository\ProjectRepository.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\TicketsByStatus.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\CalendarMain.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\TeamView.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\AddProjectComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\LoginScreen.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\DuplicateTicketException.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\AbstractEntity.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\SidebarComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\BacklogMiniComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\AddToBacklogMain.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\security\SecurityConfiguration.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\controller\UserDataController.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\controller\TicketController.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\controller\ProjectController.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\oauth\data\UserSession.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\ProjectMiniComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\oauth\data\User.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\UserData.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\NewTicket.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\DuplicateProjectException.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\AddToBacklog.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\PriorityEnum.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\repository\UserDataRepository.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\ProjectView.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\AddProject.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\repository\TicketRepository.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\HeaderComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\TicketComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\UserDashboard.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\Application.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\TeamViewMain.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\EditTicket.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\Ticket.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\BacklogView.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\controller\UserSessionController.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\UserComponent.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\Project.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\NewTicketMain.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\TicketByStatusMain.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\backend\entity\StatusEnum.java
+C:\Users\Spencer\Desktop\New folder (7)\trunk\src\main\java\com\scrumptious\logic\ui\AddBacklogComponent.java
