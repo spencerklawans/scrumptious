@@ -1,6 +1,8 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -24,12 +26,17 @@ public class AddToBacklogMain extends PolymerTemplate<AddToBacklogMain.AddToBack
 	private SidebarComponent sidebar;
 	@Id("addToBacklog")
 	private AddToBacklog addToBacklog;
+	
+	TicketController tc; 
+	UserSessionController usc; 
 
 	/**
      * Creates a new AddToBacklogMain.
      */
-    public AddToBacklogMain() {
+    public AddToBacklogMain(TicketController tc, UserSessionController usc) {
         // You can initialise any data required for the connected UI components here.
+    	this.tc = tc;
+    	this.usc = usc;
     	header.setLogo();
     	sidebar.setNavButtons();
     	addToBacklog.setNavButtons();

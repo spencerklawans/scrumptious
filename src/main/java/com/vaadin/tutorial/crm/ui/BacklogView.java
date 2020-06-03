@@ -3,12 +3,18 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -33,15 +39,17 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 
 	private ProjectController projectController;
 	UserSessionController usc;
-
 	UserDataController udc;
+	TicketController tc; 
+	
 	@Id("backlogWrapper")
 	private HorizontalLayout backlogWrapper;
 	/**
      * Creates a new BacklogView.
      */
 
-    public BacklogView(ProjectController projectController, UserSessionController usc, UserDataController udc) {
+    public BacklogView(ProjectController projectController, UserSessionController usc, UserDataController udc, 
+    		TicketController tc) {
         // You can initialise any data required for the connected UI components here.
 		this.projectController = projectController;
     	sidebar.setNavButtons();
@@ -51,6 +59,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 
 		this.udc = udc;
 		this.usc = usc;
+		this.tc = tc; 
 		if(usc.getPid() == null) {
 	//    	add null check if there is no project associated w the session.
 			Notification.show("No project associated w/ session");
@@ -61,26 +70,32 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 		sidebar.setBacklogColor(); 
     }
     public void populateBacklog() {
-		//int i = 0;
-		for (BacklogMiniComponent backlogMiniComponent:
-				projectController.buildBacklogComponents()) {
-			backlogWrapper.add(backlogMiniComponent);
-//			switch (i % 3){
-//				case 0:
-//					columnOne.add(backlogMiniComponent);
-//					break;
-//				case 1:
-//					columnTwo.add(backlogMiniComponent);
-//					break;
-//				case 2:
-//					columnThree.add(backlogMiniComponent);
-//					break;
-//				default:
-//					return 1;
-//			}
-//			i += 1;
+    	Long pid = usc.getPid(); 
+    	List<BacklogMiniComponent> fullBacklog = projectController.buildBacklogComponents(pid);
+    	List<BacklogMiniComponent> highPriority = fullBacklog.stream()
+    											.filter(bmc -> bmc.getPriority().equals("HIGH"))
+    											.collect(Collectors.toList());
+    	List<BacklogMiniComponent> medPriority = fullBacklog.stream()
+				.filter(bmc -> bmc.getPriority().equals("MEDIUM"))
+				.collect(Collectors.toList());
+    	List<BacklogMiniComponent> lowPriority = fullBacklog.stream()
+				.filter(bmc -> bmc.getPriority().equals("LOW"))
+				.collect(Collectors.toList());
+    	
+		for (BacklogMiniComponent bmc : highPriority) {
+			bmc.setPriorityListener(e -> generatePopUp(bmc.getTicketNum()));
+			backlogWrapper.add(bmc);
 		}
-    	//return 0;
+		
+		for (BacklogMiniComponent bmc : medPriority) {
+			bmc.setPriorityListener(e -> generatePopUp(bmc.getTicketNum()));
+			backlogWrapper.add(bmc);
+		}
+		
+		for (BacklogMiniComponent bmc : lowPriority) {
+			bmc.setPriorityListener(e -> generatePopUp(bmc.getTicketNum()));
+			backlogWrapper.add(bmc);
+		}
 	}
 
     /**
@@ -88,5 +103,28 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
      */
     public interface BacklogViewModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+    public void generatePopUp(int index) {
+    	EditTicket et = new EditTicket(projectController, usc, udc); 
+    	Long pid = usc.getPid(); 
+    	Dialog dialog = new Dialog(); 
+    	
+    	et.setTextDetails(tc.getTicketTitle(index, pid), tc.getTicketDescription(index, pid));
+    	et.setPriority(tc.getPriority(index, pid));
+    	
+    	et.getCancelButton().addClickListener(e -> {
+    		dialog.close(); 
+    	}); 
+    	
+    	et.getUpdateButton().addClickListener(e -> {
+    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getDateDue(), 
+    				et.getPriority(), et.getStatus(), et.getAssignees(), index, pid);
+    		dialog.close(); 
+    		UI.getCurrent().getPage().reload();
+    	});
+    	
+    	dialog.add(et);
+    	dialog.open(); 
     }
 }

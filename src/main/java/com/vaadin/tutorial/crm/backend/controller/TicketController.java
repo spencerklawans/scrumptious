@@ -44,6 +44,11 @@ public class TicketController {
 		tr.save(t); 
 	}
 	
+	public void addBacklog(String title, String description, String priority, Long pid) {
+		Ticket t = new Ticket(title, getPriorityEnum(priority), StatusEnum.BACKLOG, null, description, null, null, pid); 
+		tr.save(t); 
+	}
+	
 	public PriorityEnum getPriorityEnum(String priority) {
 		if (priority.equals("Low"))
 			return PriorityEnum.LOW; 

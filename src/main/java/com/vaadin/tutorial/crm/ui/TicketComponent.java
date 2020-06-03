@@ -31,7 +31,9 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
 	@Id("priority")
 	private Button priority;
 	private String status; 
-	private int ticketNum; 
+	private int ticketNum;
+	@Id("dateButton")
+	private Button dateButton; 
 
 	/**
      * Creates a new TicketComponent.
@@ -88,5 +90,17 @@ public class TicketComponent extends PolymerTemplate<TicketComponent.TicketCompo
     
     public void setPriority(ComponentEventListener<ClickEvent<Button>> listener) {
     	priority.addClickListener(listener); 
+    }
+    
+    public String getAssigned() {
+    	return assignedUser.getText(); 
+    }
+    
+    public void setDate(String date) {
+    	dateButton.setText(date); 
+    }
+    
+    public String getDate() {
+    	return dateButton.getText(); 
     }
 }

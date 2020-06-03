@@ -1,6 +1,8 @@
 package com.vaadin.tutorial.crm.ui;
 
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.tutorial.crm.backend.controller.TicketController;
+import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -8,6 +10,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
+import com.vaadin.flow.component.combobox.ComboBox;
 
 /**
  * A Designer generated component for the add-to-backlog template.
@@ -27,14 +30,20 @@ public class AddToBacklog extends PolymerTemplate<AddToBacklog.AddToBacklogModel
 	private TextField title;
 	@Id("description")
 	private TextField description;
-	@Id("prioritySelection")
-	private RadioButtonGroup<String> prioritySelection;
+	@Id("priority")
+	private ComboBox<String> priority;
+	
+	TicketController tc; 
+	UserSessionController usc; 
 
 	/**
      * Creates a new AddToBacklog.
      */
-    public AddToBacklog() {
+    public AddToBacklog(TicketController tc, UserSessionController usc) {
         // You can initialise any data required for the connected UI components here.
+    	this.tc = tc; 
+    	this.usc = usc; 
+    	priority.setItems("Low", "Medium", "High");
     }
 
     /**
@@ -49,8 +58,9 @@ public class AddToBacklog extends PolymerTemplate<AddToBacklog.AddToBacklogModel
     		cancelButton.getUI().ifPresent(ui -> ui.navigate("backlog"))
     	);
     	
-    	addButton.addClickListener(e ->
-    		addButton.getUI().ifPresent(ui -> ui.navigate("backlog"))
-    	);
+    	addButton.addClickListener(e -> {
+    		tc.addBacklog(title.getValue(), description.getValue(), priority.getValue(), usc.getPid());
+    		addButton.getUI().ifPresent(ui -> ui.navigate("backlog"));
+    	});
     }
 }

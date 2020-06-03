@@ -3,6 +3,8 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -17,11 +19,17 @@ import com.vaadin.tutorial.crm.backend.entity.StatusEnum;
 @Tag("backlog-mini-component")
 @JsModule("./src/views/backlog-mini-component.js")
 public class BacklogMiniComponent extends PolymerTemplate<BacklogMiniComponent.BacklogMiniComponentModel> {
-
+	private static final String HIGH = "#E80E0E"; 
+	private static final String MEDIUM = "#E8B80E"; 
+	private static final String LOW = "#12E80E"; 
+	
+	private static final String BACKGROUNDCOLOR = "background-color"; 
+	
     @Id("title")
     private Button title;
     @Id("priority")
     private Button priority;
+    private int ticketNum; 
 
     /**
      * Creates a new BacklogMiniComponent.
@@ -29,25 +37,46 @@ public class BacklogMiniComponent extends PolymerTemplate<BacklogMiniComponent.B
     public BacklogMiniComponent() {
         // You can initialise any data required for the connected UI components here.
     }
-    public BacklogMiniComponent(String title, StatusEnum status) {
-        this.title.setText(title);
-        this.priority.setText(status.name());
-
-    }
-
-    public void setTitle(String title) {
-        this.title.setText(title);
-    }
-
-    public void setPriority(StatusEnum status) {
-        this.priority.setText(status.name());
-//        TODO: change style to green / yellow / red
-    }
 
     /**
      * This model binds properties between BacklogMiniComponent and backlog-mini-component
      */
     public interface BacklogMiniComponentModel extends TemplateModel {
         // Add setters and getters for template properties here.
+    }
+    
+    public void setTitle(String title) {
+        this.title.setText(title);
+    }
+
+    public void setPriority(String priorityLevel) {
+        if (priorityLevel.equals("high")) {
+    		priority.getStyle().set(BACKGROUNDCOLOR, HIGH); 
+    		priority.setText("HIGH");
+    	}
+    	else if (priorityLevel.equals("medium")) {
+    		priority.getStyle().set(BACKGROUNDCOLOR, MEDIUM); 
+    		priority.setText("MEDIUM");
+    	}
+    	else if (priorityLevel.equals("low")) {
+    		priority.getStyle().set(BACKGROUNDCOLOR, LOW); 
+    		priority.setText("LOW");
+    	}
+    }
+    
+    public String getPriority() {
+    	return priority.getText(); 
+    }
+    
+    public int getTicketNum() {
+    	return ticketNum; 
+    }
+    
+    public void setIndex(int index) {
+    	ticketNum = index; 
+    }
+    
+    public void setPriorityListener(ComponentEventListener<ClickEvent<Button>> listener) {
+    	priority.addClickListener(listener); 
     }
 }

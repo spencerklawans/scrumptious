@@ -39,8 +39,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
     @Id("header")
 	private HeaderComponent header;
-	@Id("editProfileButton")
-	private Button editProfileButton;
 	@Id("projectListBox")
 	private ListBox<String> projectListBox;
 	@Id("toProjectsButton")
@@ -54,8 +52,6 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
 	@Id("name")
 	private Button name;
-	@Id("role")
-	private Button role;
 	@Id("email")
 	private Button email;
 	@Id("userProfilePic")
@@ -72,6 +68,8 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 
 	@Id("saveNotesButton")
 	private Button saveNotesButton;
+	@Id("currProject")
+	private Button currProject;
 
 	/**
      * Creates a new UserDashboard.
@@ -113,15 +111,17 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
 			ListItem item = new ListItem();
 			item.setText(pc.findPid(project).getName());
 			projectListBox.add(item);
-			List<Ticket> tickets = tc.findTicketsByPid(project);
-			for (Ticket ticket : tickets) {
-				if (ticket.getAssignees().contains(usc.getEmail())) {
-					ListItem newTicket = new ListItem();
-					newTicket.setText(ticket.getTitle());
-					ticketListBox.add(newTicket);
-				}
+		}
+		
+		List<Ticket> tickets = tc.findTicketsByPid(usc.getPid());
+		for (Ticket ticket : tickets) {
+			if (ticket.getAssignees().contains(usc.getEmail())) {
+				ListItem newTicket = new ListItem();
+				newTicket.setText(ticket.getTitle());
+				ticketListBox.add(newTicket);
 			}
 		}
+		
 		noteField.setValue(udc.getFromEmail(usc.getEmail()).getNotes());
 	}
 
@@ -133,8 +133,10 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     }
     
     public void setPageButtons() {
-		usc.setPid(hash(usc.getFirstName()));
+		//usc.setPid(hash(usc.getFirstName()));
     	name.setText(usc.getFullName());
+    	email.setText(usc.getEmail());
+    	currProject.setText(pc.findPid(usc.getPid()).getName()); 
 		Image icon = new Image(usc.getPicUrl(),"UserIcon");
 		icon.setHeight("150px");
 		icon.setWidth("150px");
@@ -146,10 +148,7 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     	
     	toTicketsButton.addClickListener(e ->
     		toTicketsButton.getUI().ifPresent(ui -> ui.navigate("tickets"))
-    	);
-    	String p = Long.toString(usc.getPid());
-    	editProfileButton.addClickListener(event -> Notification.show(p));
-    	
+    	); 	
     }
 
 	public static long hash(String string) {

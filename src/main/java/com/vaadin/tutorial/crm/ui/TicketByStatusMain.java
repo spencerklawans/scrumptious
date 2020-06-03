@@ -51,7 +51,6 @@ public class TicketByStatusMain extends PolymerTemplate<TicketByStatusMain.Ticke
     	this.usc = usc;
     	this.udc = udc;
     	this.pc = pc;
-		Notification.show(usc.getPid().toString());
 		ticketStatusView.populateTickets();
 		sidebar.setTicketsColor();
     }

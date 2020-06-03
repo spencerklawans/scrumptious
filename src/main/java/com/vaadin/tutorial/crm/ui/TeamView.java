@@ -34,17 +34,14 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
 
     @Autowired
     UserSession userSession = new UserSession();
-    @Id("columnOne")
-    private VerticalLayout columnOne;
-    @Id("columnTwo")
-    private VerticalLayout columnTwo;
-    @Id("columnThree")
-    private VerticalLayout columnThree;
     private ProjectController projectController;
     private UserSessionController usc;
 
 	@Id("inviteMember")
 	private Button inviteMember;
+
+	@Id("teamWrapper")
+	private HorizontalLayout teamWrapper;
 
 
 
@@ -88,28 +85,12 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
         inviteMember.addClickListener(event -> dialog.open());
     }
 
-    public int populateTeam() {
-        int i = 0;
+    public void populateTeam() {
         for (UserComponent userComponent:
                 projectController.buildUserComponents()) {
-            if(userComponent != null) {
-                switch (i % 3) {
-                    case 0:
-                        columnOne.add(userComponent);
-                        break;
-                    case 1:
-                        columnTwo.add(userComponent);
-                        break;
-                    case 2:
-                        columnThree.add(userComponent);
-                        break;
-                    default:
-                        return 1;
-                }
-                i += 1;
-            }
+            teamWrapper.add(userComponent);
+            
         }
-        return 0;
     }
     
     public void setButtonStyle(Button b) {

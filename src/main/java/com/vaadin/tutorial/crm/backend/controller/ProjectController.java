@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.vaadin.tutorial.crm.backend.entity.Ticket;
 import com.vaadin.tutorial.crm.ui.BacklogMiniComponent;
@@ -138,16 +139,29 @@ public class ProjectController {
 		Project project = findPid(usc.getPid());
 		for (String username : project.getUsers()) {
 			UserComponent userComponent = new UserComponent();
-
-			userComponent.setDetails(username);
+			if (udc.getFromEmail(username).getFullName() == null)
+				userComponent.setName("");
+			else
+				userComponent.setName(udc.getFromEmail(username).getFullName()); 
+			userComponent.setEmail(username);
 			miniComponents.add(userComponent);
 		}
 		return miniComponents;
 	}
 //	TODO: cannot be done yet because no access to
-	public List<BacklogMiniComponent> buildBacklogComponents() {
+	public List<BacklogMiniComponent> buildBacklogComponents(Long pid) {
 		ArrayList<BacklogMiniComponent> miniComponents = new ArrayList<>();
-		Project project = findPid(usc.getPid());
+		int index = 0; 
+		for (Ticket t : tc.findTicketsByPid(pid)) {
+			if (t.getStatus().equals(StatusEnum.BACKLOG)) {
+				BacklogMiniComponent bmc = new BacklogMiniComponent(); 
+				bmc.setTitle(t.getTitle());
+				bmc.setPriority(getPriorityLevel(t));
+				bmc.setIndex(index);
+				miniComponents.add(bmc); 
+			}
+			index++; 
+		}
 
 		return miniComponents;
 	}
@@ -166,13 +180,16 @@ public class ProjectController {
     	ArrayList<TicketComponent> ticketComponents = new ArrayList<>(); 
     	int index = 0; 
     	for (Ticket t : tc.findTicketsByPid(pid)) {
-    		TicketComponent ticket = new TicketComponent();
-    		ticket.setAssignedUser(getAssigneeNames(t.getAssignees()));
-    		ticket.setTitle(t.getTitle());
-    		ticket.setColor(getPriorityLevel(t));
-    		ticket.setStatus(getStatus(t));
-    		ticket.setTicketNum(index);
-    		ticketComponents.add(ticket);
+    		if (!(t.getStatus().equals(StatusEnum.BACKLOG))) {
+    			TicketComponent ticket = new TicketComponent();
+    			ticket.setAssignedUser(getAssigneeNames(t.getAssignees()));
+    			ticket.setTitle(t.getTitle());
+    			ticket.setColor(getPriorityLevel(t));
+    			ticket.setStatus(getStatus(t));
+    			ticket.setTicketNum(index);
+    			ticket.setDate(t.getDueDate().toString());
+    			ticketComponents.add(ticket);
+    		}
     		index++; 
     	}
     	return ticketComponents; 

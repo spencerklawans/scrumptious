@@ -9,12 +9,17 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.tutorial.crm.backend.controller.ProjectController;
 import com.vaadin.tutorial.crm.backend.controller.UserDataController;
 import com.vaadin.tutorial.crm.backend.controller.TicketController;
 import com.vaadin.tutorial.crm.backend.controller.UserSessionController;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  * A Designer generated component for the tickets-by-status template.
@@ -38,7 +43,9 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
 	private VerticalLayout progressWrapper;
 	@Id("completedWrapper")
 	private VerticalLayout completedWrapper;
-
+	@Id("radioWrapper")
+	private HorizontalLayout radioWrapper;
+	private RadioButtonGroup<String> nowViewing = new RadioButtonGroup<>(); 
     /**
      * Creates a new TicketsByStatus.
      */
@@ -49,6 +56,16 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	this.userDataController = userDataController;
     	this.usc = usc;
     	this.tc = tc;
+    	nowViewing.setItems("My Tickets", "Whole Project");
+    	nowViewing.setLabel("Now Viewing"); 
+    	nowViewing.setValue("Whole Project"); 
+    	nowViewing.addValueChangeListener(e -> {
+    		todoWrapper.removeAll();
+    		progressWrapper.removeAll();
+    		completedWrapper.removeAll(); 
+    		populateTickets(); 
+    	}); 
+    	radioWrapper.add(nowViewing);
     }
 
     /**
@@ -62,13 +79,16 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     	createButton.addClickListener(e ->
     		createButton.getUI().ifPresent(ui -> ui.navigate("create-ticket"))
     	);
-
-
     }
+    
     public void populateTickets() {
       //filling in tickets based on db calls
         List<TicketComponent> ticketComponents = projectController.buildTicketComponents(usc.getPid());
-        
+        if (nowViewing.getValue().equals("My Tickets")) {
+        	ticketComponents = ticketComponents.stream()
+        			.filter(t -> t.getAssigned().contains(usc.getFullName()))
+        			.collect(Collectors.toList()); 
+        }
         for (TicketComponent ticket : ticketComponents)
         {
             if (ticket.getStatus().equals("to do")) {

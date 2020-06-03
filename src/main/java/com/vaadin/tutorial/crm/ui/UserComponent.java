@@ -21,15 +21,14 @@ public class UserComponent extends PolymerTemplate<UserComponent.UserComponentMo
 
     @Id("userButton")
     private Button userButton;
+	@Id("emailButton")
+	private Button emailButton;
 
     /**
      * Creates a new UserComponent.
      */
     public UserComponent() {
         // You can initialise any data required for the connected UI components here.
-    }
-    public UserComponent(String name) {
-        userButton.setText(name);
     }
 
     /**
@@ -38,7 +37,11 @@ public class UserComponent extends PolymerTemplate<UserComponent.UserComponentMo
     public interface UserComponentModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
-    public void setDetails(String name) {
+    public void setName(String name) {
         userButton.setText(name);
+    }
+    
+    public void setEmail(String email) {
+    	emailButton.setText(email);
     }
 }

@@ -73,6 +73,8 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
     	addAssignees.setItems(pc.getUsers(usc.getPid()));
     	addAssignees.getStyle().set("margin-top", "S"); 
     	assigneeWrapper.add(addAssignees);
+    	status.setItems("To Do", "In Progress", "Completed");
+    	priority.setItems("Low", "Medium", "High");
     }
 
     /**
@@ -93,12 +95,10 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
     }
     
     public void setPriority(String priority) {
-    	this.priority.setItems("Low", "Medium", "High");
     	this.priority.setValue(priority);
     }
     
     public void setStatus(String status) {
-    	this.status.setItems("To Do", "In Progress", "Completed");
     	this.status.setValue(status);
     }
     
