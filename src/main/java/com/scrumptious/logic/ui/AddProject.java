@@ -75,7 +75,7 @@ public class AddProject extends PolymerTemplate<AddProject.AddProjectModel> {
     		else if(teamField.isEmpty()) {
 				Notification.show("Must add at least one email");
 			}
-    		else if(projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue())){
+    		else if(projectController.addProject(nameField.getValue(), descriptionField.getValue(), datePicked.getValue(), teamField.getValue()) != null){
 				createButton.getUI().ifPresent(ui -> ui.navigate("projects"));
 			}
 			else

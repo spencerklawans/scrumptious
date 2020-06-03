@@ -34,7 +34,7 @@ public class ProjectController {
     @Autowired
 	TicketController tc = new TicketController();
            
-    public boolean addProject(String name, String description, LocalDate date, String team) {
+    public Project addProject(String name, String description, LocalDate date, String team) {
     	Project p;
     	if (date == null) {
     		p = new Project(); 
@@ -47,14 +47,16 @@ public class ProjectController {
     	p.setCreator(usc.getFullName());
     	ArrayList<String> userEmailList = (ArrayList<String>) buildTeam(team);
     	userEmailList.add(usc.getEmail());
-    	for (int i = 0; i < userEmailList.size(); i++)
+		for (int i = 0; i < userEmailList.size(); i++)
     	{
-    		if(!checkEmailStyle(userEmailList.get(i)))
-    			return false;
+			if(!checkEmailStyle(userEmailList.get(i)))
+				return null;
     	}
     	p.setUserEmails(userEmailList);
+		if (projectRepository == null)
+			return p;
     	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
-    		return false;
+			return null;
     	pushProject(p);
     	for (String email : userEmailList)
     	{
@@ -68,7 +70,7 @@ public class ProjectController {
     		currUser.addProjectId(p.getId());
     		udc.saveUser(currUser);
     	}
-    	return true;
+    	return p;
     }
 
     public void addMember(String email, long pid)
@@ -105,7 +107,8 @@ public class ProjectController {
     	ArrayList<String> teamList = new ArrayList<>(); 
     	for (String name : names) {
     		name = name.trim();
-    		teamList.add(name); 
+    		if (name != "")
+    			teamList.add(name);
     	}
     	return teamList; 		
     }
@@ -236,5 +239,4 @@ public class ProjectController {
 		}
 		return s; 
 	}
-
 }

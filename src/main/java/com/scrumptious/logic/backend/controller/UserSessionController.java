@@ -1,4 +1,5 @@
 package com.scrumptious.logic.backend.controller;
+import com.scrumptious.logic.oauth.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.scrumptious.logic.oauth.data.UserSession;

@@ -78,6 +78,7 @@ public class ProjectView extends PolymerTemplate<ProjectView.ProjectViewModel> {
     }
     
     public void generateDisplay() {
+    	List<Long> projects = udc.getFromEmail(usc.getEmail()).getProjects();
     	List<ProjectMiniComponent> compList = projectController.buildProjComponents();
     	for (ProjectMiniComponent pmc : compList) {
     		topLayout.add(pmc);

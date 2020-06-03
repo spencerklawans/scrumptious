@@ -18,9 +18,7 @@ public class UserSession implements Serializable {
         Authentication authentication = SecurityContextHolder.getContext()
                 .getAuthentication();
         if (authentication == null)
-        {
-            return new User("testy", "test", "test", "test");
-        }
+            return new User("testy", "tester", "test@test.com", "testPic");
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication
                 .getPrincipal();
         return new User(principal.getAttribute("given_name"),

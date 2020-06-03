@@ -10,9 +10,9 @@ public class UserDataController {
 		
 	@Autowired
     UserDataRepository userDataRepository;
-    
+
     public void saveUser(UserData ud) {
-    	userDataRepository.save(ud);
+        userDataRepository.save(ud);
     }
     
     public void addUser(String email) {
