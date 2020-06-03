@@ -46,7 +46,7 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
 	private HorizontalLayout radioWrapper;
 	private RadioButtonGroup<String> nowViewing = new RadioButtonGroup<>();
 
-	private static final String overflow = "overflow";
+	private static final String OVERFLOW = "overflow";
     /**
      * Creates a new TicketsByStatus.
      */
@@ -108,9 +108,9 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     }
     
     public void setWrapperStyle() {
-    	todoWrapper.getStyle().set(overflow, "auto");
-    	progressWrapper.getStyle().set(overflow, "auto");
-    	completedWrapper.getStyle().set(overflow, "auto");
+    	todoWrapper.getStyle().set(OVERFLOW, "auto");
+    	progressWrapper.getStyle().set(OVERFLOW, "auto");
+    	completedWrapper.getStyle().set(OVERFLOW, "auto");
     }
     
     public void generatePopUp(int index) {
