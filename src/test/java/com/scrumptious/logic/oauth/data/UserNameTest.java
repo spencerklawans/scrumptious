@@ -2,7 +2,7 @@ package com.scrumptious.logic.oauth.data;
 
 import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class UserNameTest {
 

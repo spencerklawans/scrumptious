@@ -1,6 +1,5 @@
 package com.scrumptious.logic.backend.entity;
 
-import com.scrumptious.logic.backend.controller.ProjectController;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

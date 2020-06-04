@@ -3,11 +3,8 @@ package com.scrumptious.logic.backend.entity;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
 class ProjectTest {
