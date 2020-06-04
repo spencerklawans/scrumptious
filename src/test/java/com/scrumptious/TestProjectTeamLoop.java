@@ -1,5 +1,7 @@
+package com.scrumptious;
+
+import com.scrumptious.logic.Application;
 import com.scrumptious.logic.backend.controller.ProjectController;
-import com.scrumptious.logic.backend.controller.UserDataController;
 import com.scrumptious.logic.backend.entity.Project;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 // tests team loop under possible conditions and ensures there is no error and result is as expected
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class TestTeamLoop
+@SpringBootTest(classes = Application.class)
+public class TestProjectTeamLoop
 {
     ProjectController pc = new ProjectController();
 

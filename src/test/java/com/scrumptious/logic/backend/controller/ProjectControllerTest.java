@@ -6,15 +6,10 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import com.scrumptious.logic.backend.entity.Project;
-
-class ProjectControllerTest {
-
-    //TODO: decompose addProject into `Project generateProject()` and a repository/database update
-    //TODO: more tests when ProjC further decomposed
+public class ProjectControllerTest {
 
     @Test
-    void addProjectOne() {
+    public void addProjectOne() {
         //Generic add project test
         String name = "This is a test";
         String description = "This project is a dummy project for the purpose of unit testing.";
@@ -23,13 +18,13 @@ class ProjectControllerTest {
 
         ProjectController pc = new ProjectController();
 
-        assertEquals(new Project(), pc.addProject(name, description, date, team));
+        assertEquals(pc.addProject(name, description, date, team).getName(), name);
         
 
     }
 
     @Test
-    void addProjectTwo() {
+    public void addProjectTwo() {
         //No date test
         String name = "This is a test";
         String description = "This project is a dummy project for the purpose of unit testing.";
@@ -38,7 +33,7 @@ class ProjectControllerTest {
 
         ProjectController pc = new ProjectController();
 
-        assertEquals(new Project(), pc.addProject(name, description, null, team));
+        assertEquals(pc.addProject(name, description, null, team).getDescription(), description);
     }
 
 }

@@ -56,7 +56,7 @@ public class ProjectController {
 		if (projectRepository == null)
 			return p;
     	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
-			return null;
+    		return null;
     	pushProject(p);
     	for (String email : userEmailList)
     	{
@@ -136,9 +136,8 @@ public class ProjectController {
 
     	return miniComponents;
     }
-	public List<UserComponent> buildUserComponents() {
+	public List<UserComponent> buildUserComponents(Project project) {
 		ArrayList<UserComponent> miniComponents = new ArrayList<>();
-		Project project = findPid(usc.getPid());
 		for (String username : project.getUsers()) {
 			UserComponent userComponent = new UserComponent();
 			if (udc.getFromEmail(username).getFullName() == null)
@@ -238,5 +237,9 @@ public class ProjectController {
 			s = ""; 
 		}
 		return s; 
+	}
+
+	public void deletePid(Long pid) {
+    	projectRepository.deleteById(pid);
 	}
 }

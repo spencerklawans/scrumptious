@@ -44,4 +44,9 @@ public class UserDataController {
     {
         return userDataRepository.findByDisplayName(displayName);
     }
+
+    public void removeUser(String email)
+    {
+        userDataRepository.deleteByEmail(email);
+    }
 }
