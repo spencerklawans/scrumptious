@@ -1,7 +1,9 @@
-package com.scrumptious.logic.backend.entity;
+package com.scrumptious.logic.backend.controller;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import com.scrumptious.logic.backend.entity.Project;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
