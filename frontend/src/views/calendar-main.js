@@ -1,11 +1,9 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import './header-component.js';
 import './sidebar-component.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-group.js';
-import '@vaadin/vaadin-radio-button/src/vaadin-radio-button.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 class CalendarMain extends PolymerElement {
 
@@ -31,19 +29,6 @@ class CalendarMain extends PolymerElement {
    </vaadin-button>
    <vaadin-horizontal-layout id="viewWrapper" style="width: 100%; align-self: flex-end; justify-content: flex-end; padding-right: var(--lumo-space-m);"></vaadin-horizontal-layout>
    <vaadin-horizontal-layout id="calendarWrapper" style="width: 100%; height: 70%; padding: var(--lumo-space-m);"></vaadin-horizontal-layout>
-   <vaadin-horizontal-layout style="width: 100%; height: 20%; justify-content: space-between; flex-grow: 1;">
-    <vaadin-radio-group value="foo" style="padding-left: var(--lumo-space-l);" label="Now Viewing">
-     <vaadin-radio-button name="foo">
-       My Schedule 
-     </vaadin-radio-button>
-     <vaadin-radio-button name="bar" tabindex="-1">
-       Team Schedule 
-     </vaadin-radio-button>
-     <vaadin-radio-button name="baz" tabindex="-1">
-       Custom 
-     </vaadin-radio-button>
-    </vaadin-radio-group>
-   </vaadin-horizontal-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
