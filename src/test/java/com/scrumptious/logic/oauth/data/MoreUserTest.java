@@ -7,9 +7,9 @@ import static org.junit.Assert.assertEquals;
 public class MoreUserTest {
     @Test
     public void testEmail() {
-        User u = new User("Billy", "Bob", "bob.bob@me.me", null);
+        User u = new User("Billy", "Bob", "abc.bob@me.me", null);
 
-        assertEquals("bob.bob@me.me", u.getEmail());
+        assertEquals("abc.bob@me.me", u.getEmail());
     }
 
     @Test

@@ -56,7 +56,7 @@ public class ProjectController {
 		if (projectRepository == null)
 			return p;
     	if (projectRepository.findByNameAndDescription(p.getName(), p.getDescription()) != null)
-			return null;
+    		return null;
     	pushProject(p);
     	for (String email : userEmailList)
     	{

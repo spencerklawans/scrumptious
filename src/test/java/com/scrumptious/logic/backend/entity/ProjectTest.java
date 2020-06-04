@@ -7,14 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-class ProjectTest {
-
-    @Before
-    public void setup() {
-        Project p = new Project();
-        Project pDate = new Project(LocalDate.now().minusDays(10));
-    }
-
+public class ProjectTest {
 
     @Test
     public void testName() {

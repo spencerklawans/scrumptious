@@ -13,17 +13,12 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class AdvancedProjectTest {
-    @Before
-    public void setup() {
-        Project p = new Project();
-        Project pDate = new Project(LocalDate.now().minusDays(10));
-    }
 
     @Test
     public void testTeam() {
         Project p = new Project();
 
-        ArrayList<String> teamEmails = new ArrayList<String>();
+        ArrayList<String> teamEmails = new ArrayList<>();
         teamEmails.add("useless_info@email.mail"); teamEmails.add("mail@example.uk");
         teamEmails.add("that_one_guy999@legit.domain.com");
 

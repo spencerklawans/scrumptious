@@ -41,7 +41,7 @@ public class UserData extends AbstractEntity{
 
     public UserData()
     {
-		this.projects = new ArrayList<Long>();
+		this.projects = new ArrayList<>();
     }
 
     public String getNotes(){return notes;}

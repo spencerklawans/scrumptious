@@ -33,7 +33,7 @@ public class Ticket extends AbstractEntity{
 
 	public Ticket()
 	{
-		this.assigneeEmails = new ArrayList<String>();
+		this.assigneeEmails = new ArrayList<>();
 	}
 
 	public String getTitle() {return this.title;}

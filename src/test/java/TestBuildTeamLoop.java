@@ -1,15 +1,8 @@
 import com.scrumptious.logic.Application;
 import com.scrumptious.logic.backend.controller.ProjectController;
-import com.scrumptious.logic.backend.controller.UserDataController;
-import com.scrumptious.logic.backend.controller.UserSessionController;
-import com.scrumptious.logic.backend.entity.Project;
-import com.scrumptious.logic.ui.ProjectMiniComponent;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -26,7 +19,7 @@ public class TestBuildTeamLoop
     @Test
     public void buildLoopNoRuns() {
         String team = "";
-        List<String> teamList = new ArrayList<String>();
+        List<String> teamList = new ArrayList<>();
         teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 0);
     }
@@ -34,7 +27,7 @@ public class TestBuildTeamLoop
     @Test
     public void buildLoopOneRun() {
         String team = "abc@gmail.com";
-        List<String> teamList = new ArrayList<String>();
+        List<String> teamList = new ArrayList<>();
         teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 1);
     }
@@ -42,7 +35,7 @@ public class TestBuildTeamLoop
     @Test
     public void buildLoopMultiRuns() {
         String team = "abc@gmail.com, def@gmail.com";
-        List<String> teamList = new ArrayList<String>();
+        List<String> teamList = new ArrayList<>();
         teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 2);
     }

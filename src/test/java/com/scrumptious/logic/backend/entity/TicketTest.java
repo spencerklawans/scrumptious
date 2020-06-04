@@ -21,7 +21,6 @@ public class TicketTest {
 
     @Test
     public void testAssignees() {
-        //TODO update with emails(?) and actual assignee mechanism
         ArrayList<String> assignees = new ArrayList<>();
         assignees.add("John Smith");
         assignees.add("Jane Doe");
