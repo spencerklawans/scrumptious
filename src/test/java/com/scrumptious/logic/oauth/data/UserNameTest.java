@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class UserNameTest {
 
 	@Test
 	public void testFirstName() {
@@ -27,13 +27,4 @@ class UserTest {
 		assertNull(v.getLastName());
 		assertEquals("Bob", w.getLastName());
 	}
-	
-	
-	@Test
-	public void testEmail() {
-		User u = new User("Billy", "Bob", "bob.bob@me.me", null);
-		
-		assertEquals("bob.bob@me.me", u.getEmail());
-	}
-
 }
