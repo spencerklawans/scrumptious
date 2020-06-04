@@ -24,16 +24,9 @@ public class TicketController {
     public void addTicket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
 						  String description, LocalDate assigned, LocalDate dueDate, Long pid)
     {
-    	GoogleCalendarController gcc = new GoogleCalendarController();
         Ticket t = new Ticket(title, pe, se, assigneeEmails, description, assigned, dueDate, pid);
         tr.save(t);
         
-        try {
-			gcc.addTicketToGCal(t);
-		} catch (IOException e) {
-			//TODO: Add exception handling
-			return;
-		}
     }
 
     public List<Ticket> findTicketsByPid(Long pid)

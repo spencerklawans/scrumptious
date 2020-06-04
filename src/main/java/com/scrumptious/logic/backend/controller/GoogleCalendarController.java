@@ -40,17 +40,36 @@ import com.vaadin.flow.component.notification.Notification;
 
 public class GoogleCalendarController {
 	
-	//Added for Gcalendar
 	private static final String APPLICATION_NAME = "Scrumptious";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     
-    private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR_READONLY);
+    private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR_EVENTS);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
     
     private Calendar service;
+    private TicketController tc;
+    private static Long pid = null;
+    
     
     public GoogleCalendarController() {
+    	try {
+    		this.setService();
+    		
+    	}
+    	catch(GeneralSecurityException gse) {
+    		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
+    	}
+    	catch(IOException ioe){
+    		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
+    	}
+    	
+    }
+    
+    public GoogleCalendarController(TicketController tc, Long projectId) {
+    	this.tc = tc;
+    	pid = projectId;
+    	
     	//configure the calendar service
     	try {
     		this.setService();
@@ -62,6 +81,13 @@ public class GoogleCalendarController {
     	catch(IOException ioe){
     		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
     	}
+    }
+    
+    public boolean hasProject() {
+    	/**
+    	 * @return if the instance has a PID associated with it
+    	 */
+    	return pid != null;
     }
 	
 	private static Credential getCredentials(final NetHttpTransport httpTrans) throws IOException {
@@ -89,7 +115,11 @@ public class GoogleCalendarController {
     
     
     private void setService() throws IOException, GeneralSecurityException{
-    	// Google Calendar API configuration
+    	/**
+    	 * @return Nothing. set service as required by Google Calendar API
+    	 * 
+    	 * Google Calendar API configuration
+    	 */
     	final NetHttpTransport httpTrans = GoogleNetHttpTransport.newTrustedTransport();
         this.service = new Calendar.Builder(httpTrans, JSON_FACTORY, getCredentials(httpTrans))
                 .setApplicationName(APPLICATION_NAME)
@@ -120,7 +150,44 @@ public class GoogleCalendarController {
     	return entries;
     }
     
-    public void addTicketToGCal(Ticket ticket) throws IOException {
+    public List<Entry> getTicketEntries(){
+    	/**
+    	 * @return List of Vaadin Entries associated with the Tickets in 
+    	 * 		current project's list of tickets
+    	 */
+    	
+    	List<Entry> entries = new ArrayList<Entry>();
+    	
+    	// Get tickets associated with current project
+    	List<Ticket> tickets = this.tc.findTicketsByPid(pid);
+    	
+    	for (Ticket t : tickets) {
+    		try {
+    			Event e = getEventFromTicket(t);
+    			
+    			Entry entry = getVaadinEntry(e);
+        		entries.add(entry);
+        		
+    		} 
+    		
+    		catch(IOException e) 
+    		{
+    			continue;
+    		}
+    			
+    	}
+    	return entries;
+    }
+    
+    public Event getEventFromTicket(Ticket ticket) throws IOException {
+    	/**
+    	 * @param ticket: a ticket to be added to user's calendar
+    	 * @return Google Calendar Event
+    	 * 
+    	 * Note: this is a round-about way of adding tickets that is more portable for 
+    	 * future addition of write-to-GCal functionality
+    	 */
+    	
     	Event event = new Event();
     	
     	event.setSummary("Ticket: " + ticket.getTitle());
@@ -136,7 +203,7 @@ public class GoogleCalendarController {
     	EventDateTime end = parseGoogleEDTFromLDT(endDateTime);
     	event.setEnd(end);
     	
-    	this.service.events().insert("primary", event).execute();
+    	return event;
     }
     
     
@@ -197,7 +264,7 @@ public class GoogleCalendarController {
     	colors.add("MidnightBlue"); colors.add("#FF7F50");
     	
     	// pick a random element of colors
-    	int choice = (rand.nextInt() * colors.size());
+    	int choice = (rand.nextInt(colors.size()));
     	
     	return colors.get(choice);
     }
@@ -229,7 +296,12 @@ public class GoogleCalendarController {
     }
     
     private static EventDateTime parseGoogleEDTFromLDT(LocalDateTime ldt) {
-    	DateTimeFormatter formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+    	/**
+    	 * @param a LocalDateTime
+    	 * @return a Google Calendar API EventDateTime for creation of Google Calendar Events
+    	 */
+    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     	String date = ldt.format(formatter);
     	
     	return new EventDateTime().setDateTime(new DateTime(date));

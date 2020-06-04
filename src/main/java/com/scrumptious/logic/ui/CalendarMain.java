@@ -11,12 +11,19 @@ import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.scrumptious.logic.backend.controller.GoogleCalendarController;
+import com.scrumptious.logic.backend.controller.ProjectController;
+import com.scrumptious.logic.backend.controller.TicketController;
+import com.scrumptious.logic.backend.controller.UserDataController;
+import com.scrumptious.logic.backend.controller.UserSessionController;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +44,12 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 	@Id("calendarWrapper")
 	private HorizontalLayout calendarWrapper;
 	
+	private ProjectController pc;
+	private UserSessionController usc;
+	private UserDataController udc;
+	private TicketController tc;
+	
+	
 	
     
    
@@ -46,16 +59,23 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 	/**
      * Creates a new CalendarMain.
      */
-    public CalendarMain() {
+    public CalendarMain(ProjectController projectController, UserSessionController usc, UserDataController udc, 
+    		TicketController tc) {
         // You can initialise any data required for the connected UI components here.
     	
     	
+    	this.pc = projectController;
+    	this.usc = usc;
+    	this.udc = udc;
+    	this.tc = tc;
     	
     	setCalendar(); 
     	header.setLogo();
     	header.setUserButton();
     	sidebar.setNavButtons();
     	sidebar.setCalendarColor();
+    		
+    	
     }
 
     /**
@@ -66,21 +86,36 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
     }
     
     public void setCalendar() {
+    	GoogleCalendarController gcc;
     	FullCalendar calendar = FullCalendarBuilder.create().build();
-    	GoogleCalendarController gcc = new GoogleCalendarController();
+    	Long pid = usc.getPid();
+    	if (pid != null) {
+    		gcc = new GoogleCalendarController(this.tc, pid);
+    	}
+    	else {
+    		gcc = new GoogleCalendarController();
+    	}
+    	
 
     	calendar.setWeekNumbersVisible(false);
     	calendarWrapper.add(calendar);
     	calendarWrapper.setFlexGrow(1, calendar);
 
-    	// get next 100 events
+    	// get next 100 events from Google Calendar
     	List<Entry> entries= gcc.getCalendarEntries(100); 
+    	
 
-		for (Entry entry : entries) {
-			//Adds upcoming events from Signed In User's Google Calendar to calendar
-			
-			calendar.addEntry(entry);
+		calendar.addEntries(entries);
+		
+		// Add any tickets from current project to calendar
+		List<Entry> ticketEntries = new ArrayList<>();
+		if (gcc.hasProject()) {
+			ticketEntries = gcc.getTicketEntries();
 		}
+		
+		calendar.addEntries(ticketEntries);
+		
+		Notification.show(String.valueOf(entries.size() + ticketEntries.size()));
 		
 		
 		//select which view to display 
@@ -104,18 +139,6 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
 }
