@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
 class ProjectTest {
 
     @Before
-    void setup() {
+    public void setup() {
         Project p = new Project();
         Project pDate = new Project(LocalDate.now().minusDays(10));
     }
 
 
     @Test
-    void testName() {
+    public void testName() {
         Project p = new Project();
 
         assertEquals(null, p.getName());
@@ -31,7 +31,7 @@ class ProjectTest {
     }
 
     @Test
-    void testCreator() {
+    public void testCreator() {
         Project p = new Project();
 
         assertEquals(null, p.getCreator());
@@ -42,7 +42,7 @@ class ProjectTest {
     }
 
     @Test
-    void testDescription() {
+    public void testDescription() {
         Project p = new Project();
 
         assertEquals(null, p.getDescription());
@@ -53,7 +53,7 @@ class ProjectTest {
     }
 
     @Test
-    void testTeam() {
+    public void testTeam() {
         Project p = new Project();
 
         ArrayList<String> teamEmails = new ArrayList<String>();
@@ -74,7 +74,7 @@ class ProjectTest {
     }
 
     @Test
-    void testDate() {
+    public void testDate() {
         Project p = new Project();
         Project pDate = new Project(LocalDate.now().minusDays(10));
 

@@ -14,7 +14,7 @@ class ProjectControllerTest {
     //TODO: more tests when ProjC further decomposed
 
     @Test
-    void addProjectOne() {
+    public void addProjectOne() {
         //Generic add project test
         String name = "This is a test";
         String description = "This project is a dummy project for the purpose of unit testing.";
@@ -29,7 +29,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    void addProjectTwo() {
+    public void addProjectTwo() {
         //No date test
         String name = "This is a test";
         String description = "This project is a dummy project for the purpose of unit testing.";

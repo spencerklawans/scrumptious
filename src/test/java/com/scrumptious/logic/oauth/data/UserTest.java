@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class UserTest {
 
 	@Test
-	void testFirstName() {
+	public void testFirstName() {
 		User u = new User("John", null, null, null);
 		User v = new User(null, null, null, null);
 		User w = new User("Billy", "Bob", "bob.bob@me.me", null);
@@ -18,7 +18,7 @@ class UserTest {
 	}
 	
 	@Test
-	void testLastName() {
+	public void testLastName() {
 		User u = new User(null, "Smith", null, null);
 		User v = new User(null, null, null, null);
 		User w = new User("Billy", "Bob", "bob.bob@me.me", null);
@@ -30,7 +30,7 @@ class UserTest {
 	
 	
 	@Test
-	void testEmail() {
+	public void testEmail() {
 		User u = new User("Billy", "Bob", "bob.bob@me.me", null);
 		
 		assertEquals("bob.bob@me.me", u.getEmail());

@@ -9,7 +9,7 @@ import org.junit.Test;
 public class TicketTest {
 
     @Test
-    void testTitle() {
+    public void testTitle() {
         Ticket ticket = new Ticket();
 
         assertEquals(null, ticket.getTitle());
@@ -20,7 +20,7 @@ public class TicketTest {
     }
 
     @Test
-    void testPriority() {
+    public void testPriority() {
         Ticket ticket = new Ticket();
 
         assertEquals(null, ticket.getPriority());
@@ -36,29 +36,29 @@ public class TicketTest {
     }
 
     @Test
-    void testStatus() {
+    public void testStatus() {
         Ticket ticket = new Ticket();
 
         assertEquals(null, ticket.getStatus());
 
         ticket.setStatus(StatusEnum.TODO);
-        assertEquals(StatusEnum.TODO, ticket.getPriority());
+        assertEquals(StatusEnum.TODO, ticket.getStatus());
 
         ticket.setStatus(StatusEnum.INPROGRESS);
-        assertEquals(StatusEnum.INPROGRESS, ticket.getPriority());
+        assertEquals(StatusEnum.INPROGRESS, ticket.getStatus());
 
         ticket.setStatus(StatusEnum.DONE);
-        assertEquals(StatusEnum.DONE, ticket.getPriority());
+        assertEquals(StatusEnum.DONE, ticket.getStatus());
 
         ticket.setStatus(StatusEnum.BACKLOG);
-        assertEquals(StatusEnum.BACKLOG, ticket.getPriority());
+        assertEquals(StatusEnum.BACKLOG, ticket.getStatus());
 
         ticket.setStatus(StatusEnum.OVERDUE);
-        assertEquals(StatusEnum.OVERDUE, ticket.getPriority());
+        assertEquals(StatusEnum.OVERDUE, ticket.getStatus());
     }
 
     @Test
-    void testAssignees() {
+    public void testAssignees() {
         //TODO update with emails(?) and actual assignee mechanism
         ArrayList<String> assignees = new ArrayList<>();
         assignees.add("John Smith");
@@ -75,7 +75,7 @@ public class TicketTest {
     }
 
     @Test
-    void testDescription() {
+    public void testDescription() {
         Ticket ticket = new Ticket();
 
         assertNull(ticket.getDescription());
