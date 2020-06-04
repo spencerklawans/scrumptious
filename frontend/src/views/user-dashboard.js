@@ -40,7 +40,7 @@ class UserDashboard extends PolymerElement {
       <vaadin-button id="email" style="background-color: #009FB7; font-size: 12pt; padding-right: var(--lumo-space-xs); color: #000000;" disabled tabindex=""></vaadin-button>
      </vaadin-horizontal-layout>
      <vaadin-horizontal-layout style="width: 100%; justify-content: flex-start; flex-wrap: wrap; align-content: flex-start;" id="roleField">
-      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt; font-weight: bold; padding: var(--lumo-space-xs);" disabled tabindex="">
+      <vaadin-button style="background-color: #009FB7; color: #000000; font-size: 12pt; font-weight: bold; padding: var(--lumo-space-xs); margin-left: var(--lumo-space-s);" disabled tabindex="">
         Current Project: 
       </vaadin-button>
       <vaadin-button id="currProject" style="background-color: #009FB7; font-size: 12pt; padding-right: var(--lumo-space-xs); color: #000000; padding: var(--lumo-space-s); margin-left: var(--lumo-space-s);" disabled tabindex=""></vaadin-button>

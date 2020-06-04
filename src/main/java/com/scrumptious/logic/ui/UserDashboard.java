@@ -131,6 +131,7 @@ public class UserDashboard extends PolymerTemplate<UserDashboard.UserDashboardMo
     public void setPageButtons() {
     	name.setText(usc.getFullName());
     	email.setText(usc.getEmail());
+    	currProject.setText(pc.findPid(usc.getPid()).getName());
 		Image icon = new Image(usc.getPicUrl(),"UserIcon");
 		icon.setHeight("150px");
 		icon.setWidth("150px");
