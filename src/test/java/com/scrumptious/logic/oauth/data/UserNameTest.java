@@ -8,13 +8,13 @@ public class UserNameTest {
 
 	@Test
 	public void testFirstName() {
-		User u = new User("John", null, null, null);
+		User u = new User("Johna", null, null, null);
 		User v = new User(null, null, null, null);
-		User w = new User("Billy", "Bob", "abc.bob@me.me", null);
+		User w = new User("Billya", "Boba", "abc.bob@me.me", null);
 		
-		assertEquals("John", u.getFirstName());
+		assertEquals("Johna", u.getFirstName());
 		assertNull(v.getFirstName());
-		assertEquals("Billy", w.getFirstName());
+		assertEquals("Billya", w.getFirstName());
 	}
 	
 	@Test

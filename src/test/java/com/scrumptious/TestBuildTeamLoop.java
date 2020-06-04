@@ -1,3 +1,5 @@
+package com.scrumptious;
+
 import com.scrumptious.logic.Application;
 import com.scrumptious.logic.backend.controller.ProjectController;
 import org.junit.Assert;
@@ -19,24 +21,21 @@ public class TestBuildTeamLoop
     @Test
     public void buildLoopNoRuns() {
         String team = "";
-        List<String> teamList = new ArrayList<>();
-        teamList = pc.buildTeam(team);
+        List<String> teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 0);
     }
 
     @Test
     public void buildLoopOneRun() {
         String team = "abc@gmail.com";
-        List<String> teamList = new ArrayList<>();
-        teamList = pc.buildTeam(team);
+        List<String> teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 1);
     }
 
     @Test
     public void buildLoopMultiRuns() {
         String team = "abc@gmail.com, def@gmail.com";
-        List<String> teamList = new ArrayList<>();
-        teamList = pc.buildTeam(team);
+        List<String> teamList = pc.buildTeam(team);
         Assert.assertEquals(teamList.size(), 2);
     }
 }

@@ -1,6 +1,5 @@
 package com.scrumptious.logic.backend.controller;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.scrumptious.logic.backend.entity.Project;

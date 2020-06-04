@@ -1,6 +1,7 @@
+package com.scrumptious;
+
 import com.scrumptious.logic.Application;
 import com.scrumptious.logic.backend.controller.ProjectController;
-import com.scrumptious.logic.backend.controller.UserDataController;
 import com.scrumptious.logic.backend.entity.Project;
 import org.junit.Assert;
 import org.junit.Test;

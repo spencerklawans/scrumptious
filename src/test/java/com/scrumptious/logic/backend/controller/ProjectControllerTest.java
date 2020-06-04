@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import com.scrumptious.logic.backend.entity.Project;
-
 public class ProjectControllerTest {
 
     @Test
