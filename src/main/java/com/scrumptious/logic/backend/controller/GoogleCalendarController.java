@@ -49,7 +49,9 @@ public class GoogleCalendarController {
     
     private Calendar service;
     private TicketController tc;
-    private static Long pid = null;
+    private Long pid = null;
+    
+    private static Random rand = new Random();
     
     
     public GoogleCalendarController() {
@@ -57,10 +59,8 @@ public class GoogleCalendarController {
     		this.setService();
     		
     	}
-    	catch(GeneralSecurityException gse) {
-    		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
-    	}
-    	catch(IOException ioe){
+    	catch(GeneralSecurityException|IOException gse) {
+    		System.out.println(gse.getMessage());
     		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
     	}
     	
@@ -68,18 +68,15 @@ public class GoogleCalendarController {
     
     public GoogleCalendarController(TicketController tc, Long projectId) {
     	this.tc = tc;
-    	pid = projectId;
+    	this.pid = projectId;
     	
     	//configure the calendar service
     	try {
     		this.setService();
     		
     	}
-    	catch(GeneralSecurityException gse) {
-    		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
-    	}
-    	catch(IOException ioe){
-    		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
+    	catch(GeneralSecurityException|IOException gse) {
+    		Notification.show("Error getting data from Google Calendar and Project. Refresh and try again.");
     	}
     }
     
@@ -87,7 +84,7 @@ public class GoogleCalendarController {
     	/**
     	 * @return if the instance has a PID associated with it
     	 */
-    	return pid != null;
+    	return this.pid != null;
     }
 	
 	private static Credential getCredentials(final NetHttpTransport httpTrans) throws IOException {
@@ -136,7 +133,7 @@ public class GoogleCalendarController {
     	 * returning them in Vaadin-friendly format.
     	 */
     	
-    	List<Entry> entries = new ArrayList<Entry>();
+    	List<Entry> entries = new ArrayList<>();
     	
     	List<Event> calendarEvents = getCalendarEvents(numEntries);
     	
@@ -156,10 +153,10 @@ public class GoogleCalendarController {
     	 * 		current project's list of tickets
     	 */
     	
-    	List<Entry> entries = new ArrayList<Entry>();
+    	List<Entry> entries = new ArrayList<>();
     	
     	// Get tickets associated with current project
-    	List<Ticket> tickets = this.tc.findTicketsByPid(pid);
+    	List<Ticket> tickets = this.tc.findTicketsByPid(this.pid);
     	
     	for (Ticket t : tickets) {
     		try {
@@ -170,10 +167,7 @@ public class GoogleCalendarController {
         		
     		} 
     		
-    		catch(IOException e) 
-    		{
-    			continue;
-    		}
+    		catch(IOException e) {}
     			
     	}
     	return entries;
@@ -228,13 +222,14 @@ public class GoogleCalendarController {
 			        .setSingleEvents(true)
 			        .execute();
 			
-		} catch (IOException e) {
+		} catch (IOException|NullPointerException e) {
 			Notification.show("Error getting Google Calendar Events.");
-			return Collections.emptyList();
 		}
-		if (events != null) {
-			// if events exist
-			items = events.getItems();
+		finally {
+			if (events != null) {
+				// if events exist
+				items = events.getItems();
+			}
 		}
 		return items;
     }
@@ -254,7 +249,6 @@ public class GoogleCalendarController {
     	 **/
     	
     	// Add or remove string items of this list to update color combinations
-    	Random rand = new Random();
     	ArrayList<String> colors = new ArrayList<>();
     	
     	colors.add("red"); colors.add("orange"); colors.add("Gold");

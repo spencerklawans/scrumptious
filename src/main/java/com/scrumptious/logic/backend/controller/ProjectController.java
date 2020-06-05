@@ -107,7 +107,7 @@ public class ProjectController {
     	ArrayList<String> teamList = new ArrayList<>(); 
     	for (String name : names) {
     		name = name.trim();
-    		if (name != "")
+    		if (!name.equals(""))
     			teamList.add(name);
     	}
     	return teamList; 		

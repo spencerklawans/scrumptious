@@ -7,7 +7,6 @@ import com.scrumptious.logic.backend.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class TicketController {
 	@Autowired
 	TicketRepository tr;
 
-    public void addTicket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
+    public void addTicket(String title, PriorityEnum pe, StatusEnum se, List<String> assigneeEmails,
 						  String description, LocalDate assigned, LocalDate dueDate, Long pid)
     {
         Ticket t = new Ticket(title, pe, se, assigneeEmails, description, assigned, dueDate, pid);
@@ -35,7 +34,7 @@ public class TicketController {
     }
 
 	public void updateTicket(String title, String description, LocalDate dueDate, String priority, String status,
-							 ArrayList<String> emails, int ticketIndex, Long pid){
+							 List<String> emails, int ticketIndex, Long pid){
 		Ticket t = findTicketsByPid(pid).get(ticketIndex); 
 		t.setTitle(title);
 		t.setDescription(description);

@@ -18,12 +18,12 @@ public class Ticket extends AbstractEntity{
 	private LocalDate dueDate;
 	private Long pid;
 
-	public Ticket(String title, PriorityEnum pe, StatusEnum se, ArrayList<String> assigneeEmails,
+	public Ticket(String title, PriorityEnum pe, StatusEnum se, List<String> assigneeEmails,
 	String description, LocalDate assigned, LocalDate dueDate, Long pid) {
 		this.title = title;
 		this.priority = pe;
 		this.status = se;
-		this.assigneeEmails = assigneeEmails;
+		this.assigneeEmails = (ArrayList<String>) assigneeEmails;
 		this.description = description;
 		this.assigned = assigned;
 		this.dueDate = dueDate;
@@ -78,7 +78,7 @@ public class Ticket extends AbstractEntity{
 
 	public Long getPid(){ return this.pid;}
 	
-	public void setAssigneeEmails(ArrayList<String> emails) {
-		assigneeEmails = emails;
+	public void setAssigneeEmails(List<String> emails) {
+		assigneeEmails = (ArrayList<String>) emails;
 	}
 }
