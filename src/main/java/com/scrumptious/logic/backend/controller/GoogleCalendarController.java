@@ -190,7 +190,8 @@ public class GoogleCalendarController {
     			"\n\tStatus: " + ticket.getStatus().toString() + 
     			"\n\tPriority: " + ticket.getPriority().toString());
     	
-    	LocalDateTime startDateTime = ticket.getDueDate().atStartOfDay();
+    	LocalDateTime startDateTime = ticket.getAssigned()
+    			.atStartOfDay();
     	EventDateTime start = parseGoogleEDTFromLDT(startDateTime);
     	event.setStart(start);
     	

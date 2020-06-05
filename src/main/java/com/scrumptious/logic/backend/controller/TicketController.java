@@ -32,11 +32,12 @@ public class TicketController {
         return tr.findByPid(pid);
     }
 
-	public void updateTicket(String title, String description, LocalDate dueDate, String priority, String status,
+	public void updateTicket(String title, String description, LocalDate assignedDate, LocalDate dueDate, String priority, String status,
 							 List<String> emails, int ticketIndex, Long pid){
 		Ticket t = findTicketsByPid(pid).get(ticketIndex); 
 		t.setTitle(title);
 		t.setDescription(description);
+		t.setAssigned(assignedDate);
 		t.setDueDate(dueDate);
 		t.setPriority(getPriorityEnum(priority));
 		t.setStatus(getStatusEnum(status));
@@ -45,7 +46,7 @@ public class TicketController {
 	}
 	
 	public void addBacklog(String title, String description, String priority, Long pid) {
-		Ticket t = new Ticket(title, getPriorityEnum(priority), StatusEnum.BACKLOG, null, description, null, null, pid); 
+		Ticket t = new Ticket(title, getPriorityEnum(priority), StatusEnum.BACKLOG, null, description, LocalDate.now(), LocalDate.now(), pid); 
 		tr.save(t); 
 	}
 	

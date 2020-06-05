@@ -128,7 +128,7 @@ public class TicketsByStatus extends PolymerTemplate<TicketsByStatus.TicketsBySt
     		dialog.close());
     	
     	et.getUpdateButton().addClickListener(e -> {
-    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getDateDue(), 
+    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getAssignedDate(), et.getDateDue(), 
     				et.getPriority(), et.getStatus(), et.getAssignees(), index, pid);
     		dialog.close(); 
     		UI.getCurrent().getPage().reload();

@@ -153,4 +153,8 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
 		}
 		return emails; 
     }
+    
+    public LocalDate getAssignedDate() {
+    	return dateAssigned.getValue(); 
+    }
 }

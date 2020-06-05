@@ -121,7 +121,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 
     	
     	et.getUpdateButton().addClickListener(e -> {
-    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getDateDue(), 
+    		tc.updateTicket(et.getTitle(), et.getDescription(), et.getAssignedDate(), et.getDateDue(), 
     				et.getPriority(), et.getStatus(), et.getAssignees(), index, pid);
     		dialog.close(); 
     		UI.getCurrent().getPage().reload();
