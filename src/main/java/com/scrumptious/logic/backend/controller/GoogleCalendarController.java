@@ -60,7 +60,6 @@ public class GoogleCalendarController {
     		
     	}
     	catch(GeneralSecurityException|IOException gse) {
-    		System.out.println(gse.getMessage());
     		Notification.show("Error getting data from Google Calendar. Refresh and try again.");
     	}
     	
@@ -167,7 +166,9 @@ public class GoogleCalendarController {
         		
     		} 
     		
-    		catch(IOException e) {}
+    		catch(IOException e) {
+    			;
+    		}
     			
     	}
     	return entries;

@@ -11,15 +11,12 @@ import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.scrumptious.logic.backend.controller.GoogleCalendarController;
-import com.scrumptious.logic.backend.controller.ProjectController;
 import com.scrumptious.logic.backend.controller.TicketController;
-import com.scrumptious.logic.backend.controller.UserDataController;
 import com.scrumptious.logic.backend.controller.UserSessionController;
 
 import java.time.LocalDate;
