@@ -19,6 +19,7 @@ public class Project extends AbstractEntity{
 
 	public Project() {
 		this.dateCreated = LocalDate.now();
+		this.userEmails = new ArrayList<>();
 	}
 	
 	public Project(LocalDate date) {

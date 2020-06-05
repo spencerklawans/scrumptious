@@ -4,6 +4,7 @@ import com.scrumptious.logic.backend.controller.TicketController;
 import com.scrumptious.logic.backend.controller.UserSessionController;
 import com.scrumptious.logic.backend.entity.PriorityEnum;
 import com.scrumptious.logic.backend.entity.StatusEnum;
+import com.scrumptious.logic.backend.entity.UserData;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
@@ -160,7 +161,9 @@ public class NewTicket extends PolymerTemplate<NewTicket.NewTicketModel> {
 		ArrayList<String> emails = new ArrayList<>();
 		for (String name : possibleMembers.getValue())
 		{
-			emails.add(udc.getFromDisplay(name).getEmail());
+			UserData user = udc.getFromDisplay(name);
+			String email = user.getEmail();
+			emails.add(email);
 		}
 		tc.addTicket(title.getValue(), pe, se, emails, description.getValue(),
 				dateAssigned.getValue(), dateDue.getValue(), usc.getPid());

@@ -87,7 +87,7 @@ public class TeamView extends PolymerTemplate<TeamView.TeamViewModel> {
 
     public void populateTeam() {
         for (UserComponent userComponent:
-                projectController.buildUserComponents()) {
+                projectController.buildUserComponents(projectController.findPid(usc.getPid()))) {
             teamWrapper.add(userComponent);
             
         }

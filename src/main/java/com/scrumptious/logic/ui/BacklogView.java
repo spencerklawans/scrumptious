@@ -37,7 +37,7 @@ public class BacklogView extends PolymerTemplate<BacklogView.BacklogViewModel> {
 	@Id("addComponent")
 	private AddBacklogComponent addComponent;
 
-	private ProjectController projectController;
+	ProjectController projectController;
 	UserSessionController usc;
 	UserDataController udc;
 	TicketController tc;

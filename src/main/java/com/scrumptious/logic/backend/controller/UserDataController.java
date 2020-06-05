@@ -10,9 +10,9 @@ public class UserDataController {
 		
 	@Autowired
     UserDataRepository userDataRepository;
-    
+
     public void saveUser(UserData ud) {
-    	userDataRepository.save(ud);
+        userDataRepository.save(ud);
     }
     
     public void addUser(String email) {
@@ -43,5 +43,10 @@ public class UserDataController {
     public UserData getFromDisplay(String displayName)
     {
         return userDataRepository.findByDisplayName(displayName);
+    }
+
+    public void removeUser(String email)
+    {
+        userDataRepository.deleteByEmail(email);
     }
 }
