@@ -44,9 +44,7 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 	@Id("calendarWrapper")
 	private HorizontalLayout calendarWrapper;
 	
-	private ProjectController pc;
 	private UserSessionController usc;
-	private UserDataController udc;
 	private TicketController tc;
 	
 	
@@ -59,14 +57,10 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 	/**
      * Creates a new CalendarMain.
      */
-    public CalendarMain(ProjectController projectController, UserSessionController usc, UserDataController udc, 
-    		TicketController tc) {
+    public CalendarMain(UserSessionController usc, TicketController tc) {
         // You can initialise any data required for the connected UI components here.
     	
-    	
-    	this.pc = projectController;
     	this.usc = usc;
-    	this.udc = udc;
     	this.tc = tc;
     	
     	setCalendar(); 
@@ -114,8 +108,6 @@ public class CalendarMain extends PolymerTemplate<CalendarMain.CalendarMainModel
 		}
 		
 		calendar.addEntries(ticketEntries);
-		
-		Notification.show(String.valueOf(entries.size() + ticketEntries.size()));
 		
 		
 		//select which view to display 

@@ -142,7 +142,7 @@ public class EditTicket extends PolymerTemplate<EditTicket.EditTicketModel> {
     	addAssignees.setValue(assigneeSet);
     }
     
-    public ArrayList<String> getAssignees() {
+    public List<String> getAssignees() {
     	ArrayList<String> emails = new ArrayList<>();
 		for (String name : addAssignees.getValue())
 		{
